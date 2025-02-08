@@ -120,6 +120,85 @@
     <button onclick="enviarComentario()">Enviar</button>
 </div>
 
+  <style>
+    #comentarios {
+        width: 100%;
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #f9f9f9;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #comentarios h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    #listaComentarios {
+        list-style: none;
+        padding: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    #listaComentarios li {
+        background: #fff;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #comentario {
+        width: calc(100% - 20px);
+        height: 80px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .btn-enviar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        max-width: 150px;
+        margin: auto;
+        transition: 0.3s;
+    }
+
+    .btn-enviar:hover {
+        background: #0056b3;
+    }
+
+    .btn-enviar i {
+        margin-left: 5px;
+    }
+</style>
+
+<div id="comentarios">
+    <h3>Comentários</h3>
+    <ul id="listaComentarios"></ul>
+    <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+    <button class="btn-enviar" onclick="enviarComentario()">
+        Enviar <i>✈️</i>
+    </button>
+</div>
+
 <script>
     let comentarios = [];
 
@@ -127,17 +206,13 @@
         let comentario = document.getElementById("comentario").value;
         if (comentario.trim() === "") return;
 
-        // Adiciona o comentário à lista
         comentarios.unshift(comentario);
-        if (comentarios.length > 5) comentarios.pop(); // Mantém no máximo 5 comentários visíveis
+        if (comentarios.length > 5) comentarios.pop();
 
-        // Atualiza a lista na página
         atualizarLista();
 
-        // Enviar por email (simulação)
         window.location.href = `mailto:danielkindle11@gmail.com?subject=Novo Comentário&body=${encodeURIComponent(comentario)}`;
 
-        // Limpa o campo de comentário
         document.getElementById("comentario").value = "";
     }
 
