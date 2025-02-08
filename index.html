@@ -113,4 +113,45 @@
         </div>
     </div>
 </body>
+  <div id="comentarios">
+    <h3>Comentários</h3>
+    <ul id="listaComentarios"></ul>
+    <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+    <button onclick="enviarComentario()">Enviar</button>
+</div>
+
+<script>
+    let comentarios = [];
+
+    function enviarComentario() {
+        let comentario = document.getElementById("comentario").value;
+        if (comentario.trim() === "") return;
+
+        // Adiciona o comentário à lista
+        comentarios.unshift(comentario);
+        if (comentarios.length > 5) comentarios.pop(); // Mantém no máximo 5 comentários visíveis
+
+        // Atualiza a lista na página
+        atualizarLista();
+
+        // Enviar por email (simulação)
+        window.location.href = `mailto:danielkindle11@gmail.com?subject=Novo Comentário&body=${encodeURIComponent(comentario)}`;
+
+        // Limpa o campo de comentário
+        document.getElementById("comentario").value = "";
+    }
+
+    function atualizarLista() {
+        let lista = document.getElementById("listaComentarios");
+        lista.innerHTML = "";
+        comentarios.forEach(comentario => {
+            let li = document.createElement("li");
+            li.textContent = comentario;
+            lista.appendChild(li);
+        });
+    }
+</script>
+
 </html>
+
+
