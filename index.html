@@ -33,7 +33,7 @@
             text-align: justify;
         }
 
-        .applet-container {
+        .scroll-box {
             max-height: 250px;
             overflow-y: auto;
             border: 1px solid #ccc;
@@ -158,7 +158,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Applets em GeoGebra Classic</h1>
+        <h1>Matemática Interativa</h1>
 
         <p class="description">
             Bem-vindo ao <strong>Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio de 
@@ -168,36 +168,32 @@
         </p>
 
         <h2>📚 Ebooks para aprender GeoGebra</h2>
-        <a class="link-button" href="https://amzn.to/4gywBHi" target="_blank" rel="noopener noreferrer">
-            Acesse os Ebooks
-        </a>
+        <div class="scroll-box">
+            <a class="link-button" href="https://amzn.to/4gywBHi" target="_blank" rel="noopener noreferrer">
+                Ebook 1 - Introdução ao GeoGebra
+            </a>
+            <a class="link-button" href="https://amzn.to/4gywBHi" target="_blank" rel="noopener noreferrer">
+                Ebook 2 - Construções Geométricas
+            </a>
+            <a class="link-button" href="https://amzn.to/4gywBHi" target="_blank" rel="noopener noreferrer">
+                Ebook 3 - Álgebra e Cálculo com GeoGebra
+            </a>
+            <a class="link-button" href="https://amzn.to/4gywBHi" target="_blank" rel="noopener noreferrer">
+                Ebook 4 - Aplicações Avançadas
+            </a>
+        </div>
 
         <h2>📊 Applets Interativos</h2>
-        <div class="applet-container">
+        <div class="scroll-box">
             <a class="link-button" href="https://www.geogebra.org/classic/yh5wxe8p" target="_blank" rel="noopener noreferrer">
                 Método de Newton-Raphson - Parte 01
             </a>
-
             <a class="link-button" href="https://www.geogebra.org/classic/fvmqtpcp" target="_blank" rel="noopener noreferrer">
                 Integrais Definidas - Parte 01
             </a>
-
             <a class="link-button" href="https://www.geogebra.org/classic/u2hatjgv" target="_blank" rel="noopener noreferrer">
                 Área do Triângulo em Função do Raio
             </a>
-         
-            <a class="link-button" href="https://www.geogebra.org/classic/fxw28fjb" target="_blank" rel="noopener noreferrer">
-                Calcular o raio da circunferência
-            </a>
-
-         <a class="link-button" href="https://www.geogebra.org/classic/fxw28fjb" target="_blank" rel="noopener noreferrer">
-                Calcular o raio da circunferência
-            </a>
-
-         <a class="link-button" href="https://www.geogebra.org/classic/fxw28fjb" target="_blank" rel="noopener noreferrer">
-                Calcular o raio da circunferência
-            </a>
-         
         </div>
 
         <div class="socials">
@@ -217,30 +213,5 @@
             Enviar <i>✈️</i>
         </button>
     </div>
-
-    <script>
-        let comentarios = [];
-
-        function enviarComentario() {
-            let comentario = document.getElementById("comentario").value;
-            if (comentario.trim() === "") return;
-
-            comentarios.unshift(comentario);
-            if (comentarios.length > 5) comentarios.pop();
-
-            atualizarLista();
-            document.getElementById("comentario").value = "";
-        }
-
-        function atualizarLista() {
-            let lista = document.getElementById("listaComentarios");
-            lista.innerHTML = "";
-            comentarios.forEach(comentario => {
-                let li = document.createElement("li");
-                li.textContent = comentario;
-                lista.appendChild(li);
-            });
-        }
-    </script>
 </body>
 </html>
