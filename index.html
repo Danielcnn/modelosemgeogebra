@@ -1,233 +1,106 @@
-  <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática Interativa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
+ <style>
+    #comentarios {
+        width: 100%;
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #f9f9f9;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        h1 {
-            color: #333;
-        }
+    #comentarios h3 {
+        text-align: center;
+        color: #333;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    #listaComentarios {
+        list-style: none;
+        padding: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
 
-        .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
+    #listaComentarios li {
+        background: #fff;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .link-button {
-            display: block;
-            background-color: #0073e6;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
+    #comentario {
+        width: calc(100% - 20px);
+        height: 80px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
 
-        .link-button:hover {
-            background-color: #005bb5;
-        }
+    .btn-enviar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        max-width: 150px;
+        margin: auto;
+        transition: 0.3s;
+    }
 
-        .socials {
-            margin-top: 30px;
-            padding: 20px;
-            background: #e3e3e3;
-            border-radius: 10px;
-            text-align: left;
-        }
+    .btn-enviar:hover {
+        background: #0056b3;
+    }
 
-        .socials h2 {
-            text-align: center;
-            color: #333;
-        }
+    .btn-enviar i {
+        margin-left: 5px;
+    }
+</style>
 
-        .socials p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
+<div id="comentarios">
+    <h3>Comentários</h3>
+    <ul id="listaComentarios"></ul>
+    <textarea id="comentario" placeholder="Escreva seu comentário..."></textarea>
+    <button class="btn-enviar" onclick="enviarComentario()">
+        Enviar <i>✈️</i>
+    </button>
+</div>
 
-        .socials a {
-            color: #0073e6;
-            text-decoration: none;
-            font-weight: bold;
-        }
+<script>
+    let comentarios = [];
 
-        .socials a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Applets em GeoGebra Classic</h1>
+    function enviarComentario() {
+        let comentario = document.getElementById("comentario").value;
+        if (comentario.trim() === "") return;
 
-        <p class="description">
-            Bem-vindo ao <strong>Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio de 
-            applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que facilitam 
-            a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, <strong>Integrais Definidas</strong> e 
-            <strong>Geometria Analítica</strong>.
-        </p>
+        comentarios.unshift(comentario);
+        if (comentarios.length > 5) comentarios.pop();
 
-        <a class="link-button" href="https://www.geogebra.org/classic/yh5wxe8p" target="_blank" rel="noopener noreferrer">
-            Método de Newton-Raphson - Parte 01
-        </a>
+        atualizarLista();
 
-        <a class="link-button" href="https://www.geogebra.org/classic/fvmqtpcp" target="_blank" rel="noopener noreferrer">
-            Integrais Definidas - Parte 01
-        </a>
+        window.location.href = `mailto:danielkindle11@gmail.com?subject=Novo Comentário&body=${encodeURIComponent(comentario)}`;
 
-        <a class="link-button" href="https://www.geogebra.org/classic/u2hatjgv" target="_blank" rel="noopener noreferrer">
-            Área do Triângulo em Função do Raio
-        </a>
-      <a class="link-button" href="https://www.geogebra.org/classic/fxw28fjb" target="_blank" rel="noopener noreferrer">
-            Calcular o raio da circunferência
-        </a>
+        document.getElementById("comentario").value = "";
+    }
 
-        <div class="socials">
-            <h2>📢 Minhas Redes Sociais</h2>
-            <p>📌 <strong>Telegram:</strong> <a href="https://t.me/+JQZuCJH_Oo5mMDkx" target="_blank">Acesse meu canal</a></p>
-            <p>📌 <strong>YouTube:</strong> <a href="https://www.youtube.com/@geogebraoficial" target="_blank">GeoGebra Oficial</a></p>
-            <p>📌 <strong>WhatsApp:</strong> <a href="https://whatsapp.com/channel/0029Vb54FcSJpe8YxSsX0g2C" target="_blank">Entre no canal</a></p>
-            <p>📩 <strong>E-mail:</strong> <a href="mailto:danielkindle11@gmail.com">danielkindle11@gmail.com</a></p>
-        </div>
-    </div>
-</body>
-   <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática Interativa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .link-button {
-            display: block;
-            background-color: #0073e6;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .link-button:hover {
-            background-color: #005bb5;
-        }
-
-        .socials {
-            margin-top: 30px;
-            padding: 20px;
-            background: #e3e3e3;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .socials h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .socials p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        .socials a {
-            color: #0073e6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .socials a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Applets em GeoGebra Classic</h1>
-
-        <p class="description">
-            Bem-vindo ao <strong>Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio de 
-            applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que facilitam 
-            a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, <strong>Integrais Definidas</strong> e 
-            <strong>Geometria Analítica</strong>.
-        </p>
-
-        <a class="link-button" href="https://www.geogebra.org/classic/yh5wxe8p" target="_blank" rel="noopener noreferrer">
-            Método de Newton-Raphson - Parte 01
-        </a>
-
-        <a class="link-button" href="https://www.geogebra.org/classic/fvmqtpcp" target="_blank" rel="noopener noreferrer">
-            Integrais Definidas - Parte 01
-        </a>
-
-        <a class="link-button" href="https://www.geogebra.org/classic/u2hatjgv" target="_blank" rel="noopener noreferrer">
-            Área do Triângulo em Função do Raio
-        </a>
-
-        <div class="socials">
-            <h2>📢 Minhas Redes Sociais</h2>
-            <p>📌 <strong>Telegram:</strong> <a href="https://t.me/+JQZuCJH_Oo5mMDkx" target="_blank">Acesse meu canal</a></p>
-            <p>📌 <strong>YouTube:</strong> <a href="https://www.youtube.com/@geogebraoficial" target="_blank">GeoGebra Oficial</a></p>
-            <p>📌 <strong>WhatsApp:</strong> <a href="https://whatsapp.com/channel/0029Vb54FcSJpe8YxSsX0g2C" target="_blank">Entre no canal</a></p>
-            <p>📩 <strong>E-mail:</strong> <a href="mailto:danielkindle11@gmail.com">danielkindle11@gmail.com</a></p>
-        </div>
-    </div>
-</body>
-</html>
-
-      
-</html>
-
-
+    function atualizarLista() {
+        let lista = document.getElementById("listaComentarios");
+        lista.innerHTML = "";
+        comentarios.forEach(comentario => {
+            let li = document.createElement("li");
+            li.textContent = comentario;
+            lista.appendChild(li);
+        });
+    }
+</script>
