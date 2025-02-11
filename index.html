@@ -3,163 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+        <img src="geogebra-icon-512x512-pbsn0hml.png" alt="Ícone do GeoGebra" width="100">
     <title>Matemática Interativa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 2; /* Espaçamento duplo */
+            color: #333;
             text-align: center;
-            background-color: #f4f4f4;
-            margin: 0; 
+            margin: 0;
             padding: 20px;
         }
-
-        h1 {
-            color: #333;
-        }
-
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .scroll-box {
-            max-height: 250px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 10px;
-            background: #fff;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-button {
-            display: block;
-            background-color: #0073e6;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .link-button:hover {
-            background-color: #005bb5;
-        }
-
-        .socials {
-            margin-top: 30px;
-            padding: 20px;
-            background: #e3e3e3;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .socials h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .socials p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        .socials a {
-            color: #0073e6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .socials a:hover {
-            text-decoration: underline;
-        }
-
-        #comentarios {
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background: #f9f9f9;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #comentarios h3 {
-            text-align: center;
-            color: #333;
-        }
-
-        #listaComentarios {
-            list-style: none;
-            padding: 0;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        #listaComentarios li {
-            background: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #comentario {
-            width: calc(100% - 20px);
-            height: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: none;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .btn-enviar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            max-width: 150px;
+            max-width: 800px;
             margin: auto;
-            transition: 0.3s;
         }
-
-        .btn-enviar:hover {
-            background: #0056b3;
-        }
-
-        .btn-enviar i {
-            margin-left: 5px;
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="geogebra-icon-512x512-pbsn0hml.png" alt="Ícone do GeoGebra" width="100">
-        <h1>Matemática Interativa</h1>
+       
+        
 
         <p class="description">
             Bem-vindo ao <strong>Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio de 
@@ -205,6 +76,12 @@
         <h2>📊 Applets Interativos</h2>
         <p>
          <img src="asa.jpg" alt="Ícone do GeoGebra" width="600">
+        </p>
+        <p class="description">
+            Bem-vindo ao <strong>Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio de 
+            applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que facilitam 
+            a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, <strong>Integrais Definidas</strong> e 
+            <strong>Geometria Analítica</strong>.
         </p>
         <div class="scroll-box">
             <a class="link-button" href="https://www.geogebra.org/classic/yh5wxe8p" target="_blank" rel="noopener noreferrer">
