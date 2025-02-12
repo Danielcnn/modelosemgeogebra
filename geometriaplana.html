@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -109,6 +109,38 @@
         .justificado {
             text-align: justify;
         }
+
+        .link-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #0078D7;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .link-button:hover {
+            background-color: #005A9E;
+        }
+
+        .botao-interativo {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .botao-interativo:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +194,8 @@
         <a class="link-button" href="https://www.geogebra.org/m/k87duppn" target="_blank" rel="noopener noreferrer">
             Área Máxima do Triângulo
         </a>
+
+        <button class="botao-interativo" onclick="alert('Você clicou no botão interativo!')">Clique Aqui</button>
     </div>
 
     <script>
