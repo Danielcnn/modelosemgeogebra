@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -17,10 +17,10 @@
             text-align: center;
         }
 
-        /* MENU FIXO NO TOPO COM INTEGRAÇÃO AO LAYOUT */
+        /* MENU FIXO NO TOPO COM MENOS ALTURA */
         .navbar {
             background: linear-gradient(90deg, #005f99, #0099cc);
-            padding: 15px 0;
+            padding: 8px 0; /* Reduzido para um visual mais fino */
             width: 100%;
             position: fixed;
             top: 0;
@@ -42,7 +42,7 @@
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 10px 18px; /* Ajustado para um melhor encaixe */
             display: block;
             border-radius: 5px;
             transition: background 0.3s;
@@ -67,7 +67,7 @@
 
         .submenu a {
             color: #005f99;
-            padding: 10px 15px;
+            padding: 8px 15px;
             display: block;
             transition: background 0.3s;
             font-weight: 500;
@@ -87,9 +87,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Ajuste para o conteúdo não ficar escondido atrás do menu fixo */
+        /* Ajuste para o conteúdo não ficar escondido atrás do menu */
         .content {
-            padding-top: 70px;
+            padding-top: 50px; /* Ajustado para o novo tamanho do menu */
         }
 
         /* Responsivo */
@@ -148,7 +148,7 @@
 
     <div class="content">
         <h1>Bem-vindo ao site!</h1>
-        <p>Este é um exemplo de como o menu pode ficar mais integrado ao layout.</p>
+        <p>Agora o menu está mais fino e elegante.</p>
     </div>
 
 </body>
