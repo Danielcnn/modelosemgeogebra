@@ -1,48 +1,258 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+  
+ <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site no GitHub</title>
+    <title>Menu com Submenu</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+        .menu {
+            background-color: #333;
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
         }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .menu:hover .submenu {
+            display: block;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        }
+        .submenu a {
+            padding: 10px;
+            display: block;
+            color: white;
+        }
+        .submenu a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="#">Applets</a>
+        <div class="submenu">
+            <a href="geometria-dinamica.html">Geometria Dinâmica</a>
+            <a href="calculo-numerico.html">Cálculo Numérico</a>
+            <a href="equacoes-quadraticas.html">Equações Quadráticas</a>
+        </div>
+    </div>
+    
+    <div class="menu">
+        <a href="#">Applets II</a>
+        <div class="submenu">
+            <a href="integral-definida.html">Integral Definida</a>
+            <a href="integral-indefinida.html">Integral Indefinida</a>
+        </div>
+    </div>
+
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática Interativa</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
         h1 {
             color: #333;
         }
-        p {
-            font-size: 18px;
-            color: #666;
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        a {
+
+        .description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .scroll-box {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-button {
+            display: block;
+            background-color: #0073e6;
+            color: white;
             text-decoration: none;
-            color: #007BFF;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .link-button:hover {
+            background-color: #005bb5;
+        }
+
+        .socials {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e3e3e3;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .socials h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .socials p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .socials a {
+            color: #0073e6;
+            text-decoration: none;
             font-weight: bold;
         }
-        a:hover {
-            color: #0056b3;
+
+        .socials a:hover {
+            text-decoration: underline;
+        }
+
+        #comentarios {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #comentarios h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        #listaComentarios {
+            list-style: none;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #listaComentarios li {
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #comentario {
+            width: calc(100% - 20px);
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .btn-enviar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            max-width: 150px;
+            margin: auto;
+            transition: 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background: #0056b3;
+        }
+
+        .btn-enviar i {
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bem-vindo ao meu site!</h1>
-        <p>Aqui você encontrará conteúdos sobre GeoGebra, Matemática e Métodos Numéricos.</p>
-        <p>Confira meu canal no Telegram: <a href="https://t.me/seu_canal" target="_blank">GeoGebra Interativo</a></p>
-        <p>Explore meus projetos e recursos no GitHub.</p>
-    </div>
+       <img src="geogebra-icon-512x512-pbsn0hml.png" alt="Ícone do GeoGebra" width="100">
+         <h1>Matemática Interativa</h1>
+
+        <p class="description">
+            <strong>Bem-vindo ao Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio 
+        de applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que 
+        facilitam a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, 
+        <strong>Integrais Definidas</strong> e <strong>Geometria Analítica</strong>.
+    </p>
+</section>
+
+<style>
+    .welcome {
+        max-width: 800px;
+        margin: auto;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        text-align: center;
+    }
+</style>
+        </p>
+         <p>
+         <img src="bel.jpg" alt="Ícone do GeoGebra" width="600">
+        </p>
+</a>
+         <a class="link-button" href="https://www.geogebra.org/m/ezcvvrug" target="_blank" rel="noopener noreferrer">
+         Acessar applet sobre Equações Quadráticas
+            </a>
+        <p></p>
 </body>
+    
 </html>
