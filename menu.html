@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -14,17 +14,21 @@
 
         body {
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
         }
 
+        /* Mantém o menu fixo no topo da página */
         .navbar {
             background-color: #222;
             padding: 10px 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
         }
 
         .menu {
@@ -81,13 +85,12 @@
 
         /* Para dispositivos móveis */
         @media (max-width: 600px) {
-            body {
-                flex-direction: column;
-            }
-
             .navbar {
                 width: 90%;
                 text-align: center;
+                position: static;
+                transform: none;
+                margin-top: 10px;
             }
 
             .menu {
@@ -137,3 +140,4 @@
 
 </body>
 </html>
+
