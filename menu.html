@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Submenu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .menu {
+            background-color: #333;
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .submenu a {
+            padding: 10px;
+            display: block;
+            color: white;
+        }
+        .submenu a:hover {
+            background-color: #555;
+        }
+        .menu:hover .submenu {
+            display: block;
+        }
+
+        /* Para dispositivos móveis */
+        @media (max-width: 600px) {
+            .menu {
+                display: block;
+                width: 100%;
+            }
+            .submenu {
+                position: static;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <a href="#">Applets</a>
+        <div class="submenu">
+            <a href="geometriaplana.html">Geometria Dinâmica</a>
+            <a href="calculo-numerico.html">Cálculo Numérico</a>
+            <a href="equacoes-quadraticas.html">Equações Quadráticas</a>
+        </div>
+    </div>
+
+    <div class="menu">
+        <a href="#">Applets II</a>
+        <div class="submenu">
+            <a href="integral-definida.html">Integral Definida</a>
+            <a href="integral-indefinida.html">Integral Indefinida</a>
+        </div>
+    </div>
+
+    <script>
+        // Para dispositivos móveis, fazer o submenu abrir ao clique
+        document.querySelectorAll('.menu').forEach(menu => {
+            menu.addEventListener('click', function() {
+                let submenu = this.querySelector('.submenu');
+                if (submenu) {
+                    submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+                }
+            });
+        });
+
+        // Fechar submenu ao clicar fora
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.menu')) {
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.style.display = 'none';
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
