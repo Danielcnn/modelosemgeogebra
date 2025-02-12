@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Interativo</title>
+    <title>Modelos em Geogebra e Matlab</title>
     <style>
         * {
             margin: 0;
@@ -13,133 +13,123 @@
         }
 
         body {
-            background-color: #f0f2f5;
+            background-color: #e3e3e3;
             text-align: center;
         }
 
-        /* Mantém o menu fixo no topo e com um visual moderno */
-        .navbar {
-            background: linear-gradient(90deg, #0077b6, #00b4d8);
-            padding: 12px 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: inline-block;
+        /* Barra superior estilo Windows 7 + GNOME */
+        .top-bar {
             position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #0078D7, #005A9E);
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
 
-        .menu {
-            position: relative;
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .menu a {
+        .menu-button {
+            background: none;
+            border: none;
             color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            display: block;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.2s;
-            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px 10px;
         }
 
-        .menu > a:hover {
+        .menu-button:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
             border-radius: 5px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
-            overflow: hidden;
         }
 
-        .submenu a {
-            color: #0077b6;
-            padding: 10px 15px;
-            display: block;
-            transition: background 0.3s;
-            font-weight: 500;
-        }
-
-        .submenu a:hover {
-            background-color: #caf0f8;
-        }
-
-        .menu:hover .submenu {
-            display: block;
+        .menu-container {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            display: none;
             animation: fadeIn 0.3s ease-in-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+        .menu-section {
+            margin-bottom: 10px;
+            padding: 5px;
+            background: #f8f9fa;
+            border-radius: 5px;
         }
 
-        /* Para dispositivos móveis */
-        @media (max-width: 600px) {
-            .navbar {
-                width: 90%;
-                text-align: center;
-                position: static;
-                transform: none;
-                margin-top: 10px;
-            }
+        .menu-section h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+            text-align: left;
+            padding-left: 5px;
+        }
 
-            .menu {
-                display: block;
-                margin: 5px 0;
-            }
+        .menu-section a {
+            display: block;
+            text-decoration: none;
+            padding: 8px;
+            color: #0078D7;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
 
-            .submenu {
-                position: static;
-                box-shadow: none;
-                background: #00b4d8;
-                border-radius: 5px;
-                text-align: left;
-                display: none;
-            }
+        .menu-section a:hover {
+            background: #dde9f7;
+        }
 
-            .submenu a {
-                color: white;
-            }
-
-            .submenu a:hover {
-                background-color: #0077b6;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="menu">
-            <a href="#">📌 Applets</a>
-            <div class="submenu">
-                <a href="geometriaplana.html">🟢 Geometria Dinâmica</a>
-                <a href="calculo-numerico.html">🔢 Cálculo Numérico</a>
-                <a href="equacoes-quadraticas.html">📐 Equações Quadráticas</a>
-            </div>
-        </div>
+    <div class="top-bar">
+        <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+        <span>Matemática Interativa</span>
+        <span>🔔 Notificações</span>
+    </div>
 
-        <div class="menu">
-            <a href="#">📌 Applets II</a>
-            <div class="submenu">
-                <a href="integral-definida.html">∫ Integral Definida</a>
-                <a href="integral-indefinida.html">∫ Integral Indefinida</a>
-            </div>
+    <div class="menu-container" id="menuContainer">
+        <div class="menu-section">
+            <h3>📌 Geogebra</h3>
+            <a href="https://danielcnn.github.io/modelosemgeoiaplana.htmlgebra/geometriaplana.html">💻 Geometria Plana</a>
+            <a href="#">💻 Geometria Analítica</a>
+         <a href="#">💻 Geometria Espacial</a>
+          <a href="#">💻 Sistema de Equações</a>
+         <a href="#">💻 Cálculo Numérico</a>
+            
+        </div>
+        <div class="menu-section">
+            <h3>📌 MATLAB</h3>
+            <a href="#">⚙️ Método da Bissecção</a>
+            <a href="#">⚙️ Métoddo de Newton-Raphson</a>
+             <a href="#">⚙️ Equações Quadráticas</a>
+             
         </div>
     </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('menuContainer');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
 
  
 
