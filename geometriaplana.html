@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -13,41 +13,44 @@
         }
 
         body {
-            background-color: #f4f4f4;
+            background-color: #f0f2f5;
             text-align: center;
         }
 
-        /* Mantém o menu fixo no topo da página */
+        /* MENU FIXO NO TOPO COM MENOS ALTURA E VERMELHO */
         .navbar {
-            background-color: #222;
-            padding: 10px 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: inline-block;
+            background: linear-gradient(90deg, #8B0000, #FF4500);
+            padding: 6px 0; /* Altura ainda menor */
+            width: 100%;
             position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            text-align: center;
             z-index: 1000;
+        }
+
+        .menu-container {
+            display: inline-block;
         }
 
         .menu {
             position: relative;
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 12px;
         }
 
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 8px 15px; /* Menos espaçamento */
             display: block;
             border-radius: 5px;
             transition: background 0.3s;
+            font-weight: bold;
         }
 
         .menu > a:hover {
-            background-color: #444;
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .submenu {
@@ -57,20 +60,21 @@
             left: 0;
             background: white;
             border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
             overflow: hidden;
         }
 
         .submenu a {
-            color: #333;
-            padding: 10px 15px;
+            color: #8B0000;
+            padding: 6px 12px;
             display: block;
             transition: background 0.3s;
+            font-weight: 500;
         }
 
         .submenu a:hover {
-            background-color: #f0f0f0;
+            background-color: #FFDDCC;
         }
 
         .menu:hover .submenu {
@@ -83,25 +87,27 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Para dispositivos móveis */
+        /* Ajuste para o conteúdo não ficar escondido atrás do menu */
+        .content {
+            padding-top: 45px; /* Ajustado para o novo tamanho do menu */
+        }
+
+        /* Responsivo */
         @media (max-width: 600px) {
-            .navbar {
-                width: 90%;
+            .menu-container {
+                display: block;
                 text-align: center;
-                position: static;
-                transform: none;
-                margin-top: 10px;
             }
 
             .menu {
                 display: block;
-                margin: 5px 0;
+                margin: 4px 0;
             }
 
             .submenu {
                 position: static;
                 box-shadow: none;
-                background: #333;
+                background: #FF4500;
                 border-radius: 5px;
                 text-align: left;
                 display: none;
@@ -112,7 +118,7 @@
             }
 
             .submenu a:hover {
-                background-color: #444;
+                background-color: #8B0000;
             }
         }
     </style>
@@ -120,20 +126,22 @@
 <body>
 
     <div class="navbar">
-        <div class="menu">
-            <a href="#">📌 Applets</a>
-            <div class="submenu">
-                <a href="geometriaplana.html">🟢 Geometria Dinâmica</a>
-                <a href="calculo-numerico.html">🔢 Cálculo Numérico</a>
-                <a href="equacoes-quadraticas.html">📐 Equações Quadráticas</a>
+        <div class="menu-container">
+            <div class="menu">
+                <a href="#">📌 Applets</a>
+                <div class="submenu">
+                    <a href="geometriaplana.html">🟢 Geometria Dinâmica</a>
+                    <a href="calculo-numerico.html">🔢 Cálculo Numérico</a>
+                    <a href="equacoes-quadraticas.html">📐 Equações Quadráticas</a>
+                </div>
             </div>
-        </div>
 
-        <div class="menu">
-            <a href="#">📌 Applets II</a>
-            <div class="submenu">
-                <a href="integral-definida.html">∫ Integral Definida</a>
-                <a href="integral-indefinida.html">∫ Integral Indefinida</a>
+            <div class="menu">
+                <a href="#">📌 Applets II</a>
+                <div class="submenu">
+                    <a href="integral-definida.html">∫ Integral Definida</a>
+                    <a href="integral-indefinida.html">∫ Integral Indefinida</a>
+                </div>
             </div>
         </div>
     </div>
