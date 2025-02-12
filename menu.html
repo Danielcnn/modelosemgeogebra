@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -17,10 +17,10 @@
             text-align: center;
         }
 
-        /* MENU FIXO NO TOPO COM MENOS ALTURA */
+        /* MENU FIXO NO TOPO COM MENOS ALTURA E VERMELHO */
         .navbar {
-            background: linear-gradient(90deg, #005f99, #0099cc);
-            padding: 8px 0; /* Reduzido para um visual mais fino */
+            background: linear-gradient(90deg, #8B0000, #FF4500);
+            padding: 6px 0; /* Altura ainda menor */
             width: 100%;
             position: fixed;
             top: 0;
@@ -36,13 +36,13 @@
         .menu {
             position: relative;
             display: inline-block;
-            margin: 0 15px;
+            margin: 0 12px;
         }
 
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 10px 18px; /* Ajustado para um melhor encaixe */
+            padding: 8px 15px; /* Menos espaçamento */
             display: block;
             border-radius: 5px;
             transition: background 0.3s;
@@ -50,7 +50,7 @@
         }
 
         .menu > a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .submenu {
@@ -61,20 +61,20 @@
             background: white;
             border-radius: 5px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-            min-width: 200px;
+            min-width: 180px;
             overflow: hidden;
         }
 
         .submenu a {
-            color: #005f99;
-            padding: 8px 15px;
+            color: #8B0000;
+            padding: 6px 12px;
             display: block;
             transition: background 0.3s;
             font-weight: 500;
         }
 
         .submenu a:hover {
-            background-color: #cceeff;
+            background-color: #FFDDCC;
         }
 
         .menu:hover .submenu {
@@ -89,7 +89,7 @@
 
         /* Ajuste para o conteúdo não ficar escondido atrás do menu */
         .content {
-            padding-top: 50px; /* Ajustado para o novo tamanho do menu */
+            padding-top: 45px; /* Ajustado para o novo tamanho do menu */
         }
 
         /* Responsivo */
@@ -101,13 +101,13 @@
 
             .menu {
                 display: block;
-                margin: 5px 0;
+                margin: 4px 0;
             }
 
             .submenu {
                 position: static;
                 box-shadow: none;
-                background: #0099cc;
+                background: #FF4500;
                 border-radius: 5px;
                 text-align: left;
                 display: none;
@@ -118,7 +118,7 @@
             }
 
             .submenu a:hover {
-                background-color: #005f99;
+                background-color: #8B0000;
             }
         }
     </style>
@@ -148,7 +148,7 @@
 
     <div class="content">
         <h1>Bem-vindo ao site!</h1>
-        <p>Agora o menu está mais fino e elegante.</p>
+        <p>O menu agora está mais fino e com um visual moderno em vermelho.</p>
     </div>
 
 </body>
