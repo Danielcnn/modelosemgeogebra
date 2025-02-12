@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -14,10 +14,8 @@
 
         body {
             background-color: #e3e3e3;
-            text-align: center;
         }
 
-        /* Barra superior estilo Windows 7 + GNOME */
         .top-bar {
             position: fixed;
             top: 0;
@@ -58,6 +56,7 @@
             padding: 15px;
             display: none;
             animation: fadeIn 0.3s ease-in-out;
+            text-align: left;
         }
 
         .menu-section {
@@ -71,12 +70,12 @@
             font-size: 16px;
             margin-bottom: 5px;
             color: #333;
-            text-align: left;
             padding-left: 5px;
         }
 
         .menu-section a {
-            display: block;
+            display: flex;
+            align-items: center;
             text-decoration: none;
             padding: 8px;
             color: #0078D7;
@@ -87,6 +86,10 @@
 
         .menu-section a:hover {
             background: #dde9f7;
+        }
+
+        .menu-section a i {
+            margin-right: 8px;
         }
 
         @keyframes fadeIn {
@@ -104,27 +107,25 @@
     </div>
 
     <div class="menu-container" id="menuContainer">
-     <div class="menu-section">
+        <div class="menu-section">
             <h3>📌 Apresentação</h3>
-            <a href="https://danielcnn.github.io/modelosemgeogebra">⚙️ Página Inicial</a>
-             
-             
+            <a href="https://danielcnn.github.io/modelosemgeogebra">🏠 Página Inicial</a>
         </div>
+        
         <div class="menu-section">
             <h3>📌 Geogebra</h3>
-            <a href="https://danielcnn.github.io/modelosemgeogebra/geometriaplana.html">💻 Geometria Plana</a>
-            <a href="#">💻 Geometria Analítica</a>
-         <a href="#">💻 Geometria Espacial</a>
-          <a href="#">💻 Sistema de Equações</a>
-         <a href="#">💻 Cálculo Numérico</a>
-            
+            <a href="https://danielcnn.github.io/modelosemgeogebra/geometriaplana.html">📏 Geometria Plana</a>
+            <a href="#">📐 Geometria Analítica</a>
+            <a href="#">📦 Geometria Espacial</a>
+            <a href="#">🔢 Sistema de Equações</a>
+            <a href="#">∫ Cálculo Numérico</a>
         </div>
+        
         <div class="menu-section">
             <h3>📌 MATLAB</h3>
-            <a href="#">⚙️ Método da Bissecção</a>
-            <a href="#">⚙️ Métoddo de Newton-Raphson</a>
-             <a href="#">⚙️ Equações Quadráticas</a>
-             
+            <a href="#">➗ Método da Bissecção</a>
+            <a href="#">✏️ Método de Newton-Raphson</a>
+            <a href="#">🧮 Equações Quadráticas</a>
         </div>
     </div>
 
@@ -136,6 +137,7 @@
     </script>
 </body>
 </html>
+
 
  
 
