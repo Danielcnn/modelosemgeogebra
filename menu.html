@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Estilo Windows 3.11</title>
+    <title>Menu Estilo Windows 7 + GNOME Shell</title>
     <style>
         * {
             margin: 0;
@@ -13,101 +13,115 @@
         }
 
         body {
-            background-color: #c0c0c0;
+            background-color: #e3e3e3;
             text-align: center;
         }
 
-        /* Barra de menu estilo Windows 3.11 */
-        .menu-bar {
+        /* Barra superior estilo Windows 7 + GNOME */
+        .top-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: #008080;
+            background: linear-gradient(90deg, #0078D7, #005A9E);
             color: white;
-            padding: 5px;
+            padding: 10px;
             display: flex;
-            justify-content: left;
-            font-size: 14px;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-        .menu-bar div {
-            margin: 0 10px;
+        .menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
             cursor: pointer;
-            position: relative;
+            padding: 5px 10px;
         }
 
-        .menu-bar div:hover {
-            background: #00aaaa;
-            padding: 3px 8px;
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
         }
 
-        /* Submenus estilo retrô */
-        .submenu {
-            display: none;
+        .menu-container {
             position: absolute;
-            top: 20px;
-            left: 0;
-            background: #f8f8f8;
-            border: 2px solid black;
-            padding: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            text-align: left;
-            min-width: 150px;
+            top: 50px;
+            left: 10px;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .submenu a {
+        .menu-section {
+            margin-bottom: 10px;
+            padding: 5px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .menu-section h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        .menu-section a {
             display: block;
             text-decoration: none;
-            color: black;
-            padding: 5px;
-            font-size: 14px;
+            padding: 8px;
+            color: #0078D7;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        .submenu a:hover {
-            background: #008080;
-            color: white;
+        .menu-section a:hover {
+            background: #dde9f7;
         }
 
-        .menu-bar div:hover .submenu {
-            display: block;
-        }
-
-        /* Conteúdo abaixo da barra de menu */
-        .content {
-            margin-top: 40px;
-            padding: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-bar">
-        <div>Arquivo
-            <div class="submenu">
-                <a href="#">Abrir</a>
-                <a href="#">Salvar</a>
-                <a href="#">Sair</a>
-            </div>
+    <div class="top-bar">
+        <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+        <span>Meu Sistema</span>
+        <span>🔔 Notificações</span>
+    </div>
+
+    <div class="menu-container" id="menuContainer">
+        <div class="menu-section">
+            <h3>📌 Programas</h3>
+            <a href="#">💻 Meus Documentos</a>
+            <a href="#">🌍 Navegador</a>
+            <a href="#">🎵 Músicas</a>
         </div>
-        <div>Editar
-            <div class="submenu">
-                <a href="#">Copiar</a>
-                <a href="#">Colar</a>
-                <a href="#">Recortar</a>
-            </div>
-        </div>
-        <div>Ajuda
-            <div class="submenu">
-                <a href="#">Sobre</a>
-            </div>
+        <div class="menu-section">
+            <h3>📌 Configurações</h3>
+            <a href="#">⚙️ Painel de Controle</a>
+            <a href="#">🔒 Segurança</a>
         </div>
     </div>
 
-    <div class="content">
-        <h1>Bem-vindo ao estilo retrô moderno!</h1>
-        <p>Este menu é inspirado no Windows 3.11, mas com uma aparência mais moderna.</p>
-    </div>
-
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('menuContainer');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
