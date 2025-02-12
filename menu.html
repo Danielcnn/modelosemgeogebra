@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Estilo Windows</title>
+    <title>Menu Estilo Windows 3.11</title>
     <style>
         * {
             margin: 0;
@@ -13,110 +13,101 @@
         }
 
         body {
-            background-color: #f0f2f5;
+            background-color: #c0c0c0;
             text-align: center;
         }
 
-        /* Botão estilo Windows */
-        .start-btn {
+        /* Barra de menu estilo Windows 3.11 */
+        .menu-bar {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0078D7, #005A9E);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-        }
-
-        .start-btn:hover {
-            background: linear-gradient(135deg, #005A9E, #003A6B);
-        }
-
-        .start-btn img {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Menu estilo Windows */
-        .start-menu {
-            position: fixed;
-            bottom: 70px;
-            left: 10px;
-            width: 250px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .menu-section {
-            margin-bottom: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #008080;
+            color: white;
             padding: 5px;
-            background: #f8f9fa;
-            border-radius: 5px;
-        }
-
-        .menu-section h3 {
+            display: flex;
+            justify-content: left;
             font-size: 14px;
-            margin-bottom: 5px;
-            color: #333;
-            text-align: left;
-            padding-left: 5px;
         }
 
-        .menu-section a {
+        .menu-bar div {
+            margin: 0 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-bar div:hover {
+            background: #00aaaa;
+            padding: 3px 8px;
+        }
+
+        /* Submenus estilo retrô */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            background: #f8f8f8;
+            border: 2px solid black;
+            padding: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            min-width: 150px;
+        }
+
+        .submenu a {
             display: block;
             text-decoration: none;
-            padding: 6px;
-            color: #0078D7;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s;
+            color: black;
+            padding: 5px;
+            font-size: 14px;
         }
 
-        .menu-section a:hover {
-            background: #dde9f7;
+        .submenu a:hover {
+            background: #008080;
+            color: white;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .menu-bar div:hover .submenu {
+            display: block;
+        }
+
+        /* Conteúdo abaixo da barra de menu */
+        .content {
+            margin-top: 40px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="start-btn" onclick="toggleMenu()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_logo_-_2012.svg" alt="Windows Icon">
+    <div class="menu-bar">
+        <div>Arquivo
+            <div class="submenu">
+                <a href="#">Abrir</a>
+                <a href="#">Salvar</a>
+                <a href="#">Sair</a>
+            </div>
+        </div>
+        <div>Editar
+            <div class="submenu">
+                <a href="#">Copiar</a>
+                <a href="#">Colar</a>
+                <a href="#">Recortar</a>
+            </div>
+        </div>
+        <div>Ajuda
+            <div class="submenu">
+                <a href="#">Sobre</a>
+            </div>
+        </div>
     </div>
 
-    <div class="start-menu" id="startMenu">
-        <div class="menu-section">
-            <h3>📌 Applets</h3>
-            <a href="geometriaplana.html">🟢 Geometria Dinâmica</a>
-            <a href="calculo-numerico.html">🔢 Cálculo Numérico</a>
-            <a href="equacoes-quadraticas.html">📐 Equações Quadráticas</a>
-        </div>
-        <div class="menu-section">
-            <h3>📌 Applets II</h3>
-            <a href="integral-definida.html">∫ Integral Definida</a>
-            <a href="integral-indefinida.html">∫ Integral Indefinida</a>
-        </div>
+    <div class="content">
+        <h1>Bem-vindo ao estilo retrô moderno!</h1>
+        <p>Este menu é inspirado no Windows 3.11, mas com uma aparência mais moderna.</p>
     </div>
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById('startMenu');
-            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-        }
-    </script>
 </body>
 </html>
