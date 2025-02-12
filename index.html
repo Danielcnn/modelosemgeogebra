@@ -1,6 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Submenu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            background-color: #333;
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .menu:hover .submenu {
+            display: block;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        }
+        .submenu a {
+            padding: 10px;
+            display: block;
+            color: white;
+        }
+        .submenu a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="#">Applets</a>
+        <div class="submenu">
+            <a href="geometria-dinamica.html">Geometria Dinâmica</a>
+            <a href="calculo-numerico.html">Cálculo Numérico</a>
+            <a href="equacoes-quadraticas.html">Equações Quadráticas</a>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+
+
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
