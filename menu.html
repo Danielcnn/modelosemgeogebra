@@ -3,102 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu com Submenu</title>
+    <title>Menu Interativo</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .navbar {
+            background-color: #222;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         .menu {
-            background-color: #333;
-            padding: 10px;
-            display: inline-block;
             position: relative;
-            margin-right: 10px;
-            cursor: pointer;
+            display: inline-block;
+            margin: 0 10px;
         }
+
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px 20px;
             display: block;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
+
+        .menu > a:hover {
+            background-color: #444;
+        }
+
         .submenu {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #444;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             min-width: 200px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1000;
+            overflow: hidden;
         }
+
         .submenu a {
-            padding: 10px;
+            color: #333;
+            padding: 10px 15px;
             display: block;
-            color: white;
+            transition: background 0.3s;
         }
+
         .submenu a:hover {
-            background-color: #555;
+            background-color: #f0f0f0;
         }
+
         .menu:hover .submenu {
             display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Para dispositivos móveis */
         @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+
+            .navbar {
+                width: 90%;
+                text-align: center;
+            }
+
             .menu {
                 display: block;
-                width: 100%;
+                margin: 5px 0;
             }
+
             .submenu {
                 position: static;
                 box-shadow: none;
+                background: #333;
+                border-radius: 5px;
+                text-align: left;
+                display: none;
+            }
+
+            .submenu a {
+                color: white;
+            }
+
+            .submenu a:hover {
+                background-color: #444;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu">
-        <a href="#">Applets</a>
-        <div class="submenu">
-            <a href="geometriaplana.html">Geometria Dinâmica</a>
-            <a href="calculo-numerico.html">Cálculo Numérico</a>
-            <a href="equacoes-quadraticas.html">Equações Quadráticas</a>
+    <div class="navbar">
+        <div class="menu">
+            <a href="#">📌 Applets</a>
+            <div class="submenu">
+                <a href="geometriaplana.html">🟢 Geometria Dinâmica</a>
+                <a href="calculo-numerico.html">🔢 Cálculo Numérico</a>
+                <a href="equacoes-quadraticas.html">📐 Equações Quadráticas</a>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="#">📌 Applets II</a>
+            <div class="submenu">
+                <a href="integral-definida.html">∫ Integral Definida</a>
+                <a href="integral-indefinida.html">∫ Integral Indefinida</a>
+            </div>
         </div>
     </div>
-
-    <div class="menu">
-        <a href="#">Applets II</a>
-        <div class="submenu">
-            <a href="integral-definida.html">Integral Definida</a>
-            <a href="integral-indefinida.html">Integral Indefinida</a>
-        </div>
-    </div>
-
-    <script>
-        // Para dispositivos móveis, fazer o submenu abrir ao clique
-        document.querySelectorAll('.menu').forEach(menu => {
-            menu.addEventListener('click', function() {
-                let submenu = this.querySelector('.submenu');
-                if (submenu) {
-                    submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
-                }
-            });
-        });
-
-        // Fechar submenu ao clicar fora
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.menu')) {
-                document.querySelectorAll('.submenu').forEach(submenu => {
-                    submenu.style.display = 'none';
-                });
-            }
-        });
-    </script>
 
 </body>
 </html>
