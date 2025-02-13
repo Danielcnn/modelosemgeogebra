@@ -100,6 +100,37 @@
 </head>
 <body>
 
+
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Visitantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #visitantes {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>Visitantes:</div>
+    <div id="visitantes">3200</div>
+    <script>
+        let contador = localStorage.getItem("contador") ? parseInt(localStorage.getItem("contador")) : 3200;
+        contador++;
+        localStorage.setItem("contador", contador);
+        document.getElementById("visitantes").innerText = contador;
+    </script>
+</body>
+</html>
+
     <div class="top-bar">
         <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
         <span>Matemática Interativa</span>
