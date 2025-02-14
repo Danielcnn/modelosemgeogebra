@@ -145,12 +145,12 @@
 
 
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visitantes</title>
+    <title>Contador de Visitantes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -167,13 +167,19 @@
     <div>Visitantes:</div>
     <div id="visitantes">10250</div>
     <script>
-        let contador = localStorage.getItem("contador") ? parseInt(localStorage.getItem("contador")) : 10250;
+        let contador = localStorage.getItem("contador");
+        if (!contador || parseInt(contador) < 10250) {
+            contador = 10250;
+        } else {
+            contador = parseInt(contador);
+        }
         contador++;
         localStorage.setItem("contador", contador);
         document.getElementById("visitantes").innerText = contador;
     </script>
 </body>
 </html>
+
 
 
   
