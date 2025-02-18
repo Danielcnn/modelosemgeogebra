@@ -345,22 +345,29 @@
 <h2>📚 Conteúdos Interativos</h2>
 
 <div class="accordion-container">
-    <input type="checkbox" id="toggleIntegrais">
+    <input type="checkbox" id="toggleIntegrais" checked>
     <button class="accordion">Integrais Definidas</button>
 </div>
-<div class="panel" id="integraisPanel">
+<div class="panel" id="integraisPanel" style="display: block;">
     <img src="curva.jpg" alt="Área entre curvas">
     <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
   
-  <p>  <img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
-  <p>  </p>
-  
-
+    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
   
     <img src="gerar.jpg" alt="Gerar integrais">
     <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
+  
+    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
+</div>
 
-   <p>  <img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
+<style>
+    .panel {
+        display: none;
+    }
+    input[type="checkbox"]:checked + .accordion + .panel {
+        display: block;
+    }
+</style>
   
 </div>
 
