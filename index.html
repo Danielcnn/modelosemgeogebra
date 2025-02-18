@@ -108,16 +108,10 @@
 
     <div class="menu-container" id="menuContainer">
          
- <div class="menu-section">
-            <h3>📌Apresentação</h3>
-            <a href="index.html">📏 Página Inicial</a>
-             
-        </div>
-
-     
+        
         <div class="menu-section">
             <h3>📌 Geogebra</h3>
-            <a href="https://danielcnn.github.io/modelosemgeogebra/geometria1.html">📏 Geometria Plana</a>
+            <a href="https://danielcnn.github.io/modelosemgeogebra/geometriaplana.html">📏 Geometria Plana</a>
             <a href="#">📐 Geometria Analítica</a>
             <a href="#">📦 Geometria Espacial</a>
             <a href="#">🔢 Sistema de Equações</a>
@@ -143,42 +137,6 @@
 
 
 
-
-
- <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Visitantes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #visitantes {
-            font-size: 2em;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div>Visitantes:</div>
-    <div id="visitantes">10250</div>
-    <script>
-        let contador = localStorage.getItem("contador");
-        if (!contador || parseInt(contador) < 10250) {
-            contador = 10250;
-        } else {
-            contador = parseInt(contador);
-        }
-        contador++;
-        localStorage.setItem("contador", contador);
-        document.getElementById("visitantes").innerText = contador;
-    </script>
-</body>
-</html>
 
 
 
@@ -349,50 +307,20 @@
       </p>
       <p>
       </p>
-       <img src="geogebra-icon-512x512-pbsn0hml.png" alt="Ícone do GeoGebra" width="100">
-         <h1>Matemática Interativa</h1>
+        
+         <h1>.</h1>
+     <h1>.         </h1>
+     <h1>Matemática Interativa</h1>
+     
 
         <p class="description">
             <strong>Bem-vindo ao Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio 
         de applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que 
         facilitam a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, 
         <strong>Integrais Definidas</strong> e <strong>Geometria Analítica</strong>.
-
-
-
-
-
-
-
-
-          
     </p>
-
-<script>
-
-
-
-
-
-
-      
 </section>
 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-      
 <style>
     .welcome {
         max-width: 800px;
@@ -409,13 +337,69 @@
          <img src="bel.jpg" alt="Ícone do GeoGebra" width="450">
         </p>
 </a>
-         
-
-           <a class="link-button" href="https://www.geogebra.org/m/ezcvvrug" target="_blank" rel="noopener noreferrer" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
-
+         <a class="link-button" href="https://www.geogebra.org/m/ezcvvrug" target="_blank" rel="noopener noreferrer">
          Acessar applet sobre Equações Quadráticas
             </a>
         <p></p>
+
+<h2>📚 Conteúdos Interativos</h2>
+
+<div class="accordion-container">
+    <input type="checkbox" id="toggleIntegrais">
+    <button class="accordion">Integrais Definidas</button>
+</div>
+<div class="panel" id="integraisPanel">
+    <img src="curva.jpg" alt="Área entre curvas">
+    <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
+    <img src="gerar.jpg" alt="Gerar integrais">
+    <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
+</div>
+
+<div class="accordion-container">
+    <input type="checkbox" id="toggleEquacoes">
+    <button class="accordion">Equações</button>
+</div>
+<div class="panel" id="equacoesPanel">
+    <img src="sistemas1.jpg" alt="Sistema de Equações">
+    <a class="link-button" href="https://www.geogebra.org/m/npfzf3sh" target="_blank">Sistema de Equações</a>
+</div>
+
+<div class="accordion-container">
+    <input type="checkbox" id="toggleMetodos">
+    <button class="accordion">Métodos Numéricos</button>
+</div>
+<div class="panel" id="metodosPanel">
+    <img src="bismeu.jpg" alt="Método da Bissecção">
+    <a class="link-button" href="https://www.geogebra.org/m/dthfjmue" target="_blank">Método da Bissecção: x^3 - 2x + sen(x) = 0</a>
+</div>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+    document.getElementById("toggleIntegrais").addEventListener("change", function() {
+        document.getElementById("integraisPanel").style.display = this.checked ? "block" : "none";
+    });
+    document.getElementById("toggleEquacoes").addEventListener("change", function() {
+        document.getElementById("equacoesPanel").style.display = this.checked ? "block" : "none";
+    });
+    document.getElementById("toggleMetodos").addEventListener("change", function() {
+        document.getElementById("metodosPanel").style.display = this.checked ? "block" : "none";
+    });
+</script>
+
+
+     
 
 <section class="ebooks">
     <h2>📚eBooks para Aprender GeoGebra</h2>
@@ -463,11 +447,13 @@
     }
 </style>
 <p>
-    
+      
+</p>
+      
 
 
 
-        <h2>📚Coleção de Ebooks</h2>
+        
            <p>
          <img src="mod.jpg" alt="mod.jpg" width="450">
         </p>
@@ -493,7 +479,8 @@
          <a class="link-button" href="https://amzn.to/4hREzg3" target="_blank" rel="noopener noreferrer">
                 Ebook 7 - Geogebra: animações geométricas
             </a>
-         <a class="link-button" href="https://amzn.to/3WPkX3W" target="_blank" rel="noopener noreferrer">
+ 
+                  <a class="link-button" href="https://amzn.to/3WPkX3W" target="_blank" rel="noopener noreferrer">
                 Ebook 8 - Objetos de aprendizagem no geogebra 
             </a>
            <a class="link-button" href="https://amzn.to/4i2UyIf" target="_blank" rel="noopener noreferrer">
@@ -527,9 +514,7 @@
           <a class="link-button" href="https://amzn.to/4gKg5Ey" target="_blank" rel="noopener noreferrer">
                 Ebook  18- Explorando Matemática de Forma Interativa Exercícios Dinâmicos para o 9º Ano
                                           </a>
-
-          
-                            
+         
         </div>
 <p></p>
         
@@ -537,57 +522,7 @@
         <p class="description">
 <p></p>
 
-
-<h2>📚Integrais definidas</h2>
-
-<p>
-  <img src="curva.jpg" alt="Ícone do GeoGebra" width="450">
-</p>
-
-<a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank" rel="noopener noreferrer" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
-  Área entre curvas
-</a>
-
-<p>
-
-
-  <h2>📚</h2>
-
-<p>
-  <img src="gerar.jpg" alt="Ícone do GeoGebra" width="450">
-</p>
-
-<a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank" rel="noopener noreferrer" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
-  Gerar integrais definidas
-</a>
-
-<p>
-
-      
-
-<h2>📚Equações</h2>
-
-<p>
-  <img src="sistemas1.jpg" alt="Ícone do GeoGebra" width="450">
-</p>
-
-<a class="link-button" href="https://www.geogebra.org/m/npfzf3sh" target="_blank" rel="noopener noreferrer" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
-  Sistema de Equações
-</a>
-
-<p>
-
-<h2>📚Métodos Numéricos</h2>
-
-<p>
-  <img src="bismeu.jpg" alt="Ícone do GeoGebra" width="450">
-</p>
-
-<a class="link-button" href="https://www.geogebra.org/m/dthfjmue" target="_blank" rel="noopener noreferrer" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
-  Método da Bissecção: x^3 - 2x + sen(x) = 0
-</a>
-  
-</p>
+ 
 
 
 
@@ -598,37 +533,88 @@
 
 
 
-  
 
-<section class="applets">
-    <h2>Livros e Exames (UNMSM)</h2>
-    
-         <img src="MARCOS.jpg" alt="Ícone do GeoGebra" width="450">
+
+            
+       
         
 
-      <a class="link-button" href="https://drive.google.com/drive/folders/1pD4gdJBSD2t4B_67-3Q6vuP85J1nYTnC?usp=drive_link" target="_blank" rel="noopener noreferrer">
-        Universidade Nacional Maior de São Marcos (UNMSM)
-            </a>
-<p>
 
 
 
  
-<p>
+
+
+ 
+        </div>
+
+
+<section class="applets">
+    <h2>Drive de livros de exatas</h2>
     
-</p>
-            
-       
+         <img src="li.jpg" alt="Ícone do GeoGebra" width="450">
+        
+
+      <a class="link-button" href="https://drive.google.com/drive/folders/1pD4gdJBSD2t4B_67-3Q6vuP85J1nYTnC?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        Download de livros de exatas (inglês/espanhol)
+            </a>
+<p>
+
+ 
+
+ 
+  
+
+
+        
+           <p>
+
+
+    
+                
+
              </div>
 
-      
+
+
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Visitantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #visitantes {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>Visitantes:</div>
+    <div id="visitantes">10250</div>
+    <script>
+        let contador = localStorage.getItem("contador");
+        if (!contador || parseInt(contador) < 10250) {
+            contador = 10250;
+        } else {
+            contador = parseInt(contador);
+        }
+        contador++;
+        localStorage.setItem("contador", contador);
+        document.getElementById("visitantes").innerText = contador;
+    </script>
+</body>
+</html>
 
 
 
-
-
-
-  
+ 
     <div id="comentarios">
         <h3>Comentários</h3>
         <ul id="listaComentarios"></ul>
@@ -637,23 +623,28 @@
             Enviar <i>✈️</i>
         </button>
     </div>
-
-
-
-        
-
-
-
-      
- 
 </body>
 </html>
 
 
+ <!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática Interativa</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: white; }
+        .accordion-container { display: flex; align-items: center; gap: 10px; }
+        .accordion { color: black; cursor: pointer; padding: 10px; width: 100%; text-align: left; border: none; outline: none; transition: 0.4s; font-size: 18px; background: none; }
+        .active, .accordion:hover { text-decoration: underline; }
+        .panel { padding: 0 18px; display: none; overflow: hidden; background: none; }
+        .link-button { display: inline-block; background-color: green; color: white; padding: 10px; text-decoration: none; margin: 10px 0; }
+        img { width: 450px; display: block; margin: 10px auto; }
+    </style>
+</head>
+<body>
 
  
-
-
-
-
- 
+</body>
+</html>
