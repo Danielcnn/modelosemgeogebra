@@ -337,12 +337,8 @@
         <p></p>
 
  
-
-
  
-<h2>📚 Conteúdos Interativos</h2>
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -351,7 +347,6 @@
     <style>
         .panel {
             display: none;
-            background: none;
             padding: 10px;
             margin-top: 10px;
         }
@@ -370,7 +365,6 @@
             position: relative;
         }
 
-        /* Check vermelho quando marcado */
         input[type="checkbox"]:checked::after {
             content: "\2713"; /* ✓ */
             font-size: 16px;
@@ -386,38 +380,88 @@
             border: none;
             font-size: 16px;
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accordion-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-button {
+            display: inline-block;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
+    <h2>📚 Conteúdos Interativos</h2>
+
+    <!-- Primeiro Checkbox (Ativado por padrão) -->
     <div class="accordion-container">
-        <input type="checkbox" id="toggleIntegrais" checked>
-        <label for="toggleIntegrais" class="checkbox-label"></label>
+        <label>
+            <input type="checkbox" id="toggleIntegrais" checked>
+        </label>
         <button class="accordion">Integrais Definidas</button>
     </div>
-    <div class="panel" id="integraisPanel" style="background: none;">
+    <div class="panel" id="integraisPanel">
         <img src="curva.jpg" alt="Área entre curvas" width="200">
         <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
     </div>
 
+    <!-- Segundo Checkbox (Pronto para uso) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleOutroTopico">
+        </label>
+        <button class="accordion">Outro Tópico</button>
+    </div>
+    <div class="panel" id="outroTopicoPanel">
+        <img src="outra_imagem.jpg" alt="Outra Imagem" width="200">
+        <a class="link-button" href="https://www.geogebra.org/m/outro_link" target="_blank">Outro Link</a>
+    </div>
+
+    <!-- Terceiro Checkbox (Pronto para uso) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleMaisUmTopico">
+        </label>
+        <button class="accordion">Mais um Tópico</button>
+    </div>
+    <div class="panel" id="maisUmTopicoPanel">
+        <img src="mais_uma_imagem.jpg" alt="Mais uma Imagem" width="200">
+        <a class="link-button" href="https://www.geogebra.org/m/mais_um_link" target="_blank">Mais um Link</a>
+    </div>
+
     <script>
-        document.getElementById("toggleIntegrais").addEventListener("change", function() {
-            let panel = document.getElementById("integraisPanel");
-            panel.style.display = this.checked ? "block" : "none";
-        });
-
         document.addEventListener("DOMContentLoaded", function() {
-            let checkbox = document.getElementById("toggleIntegrais");
-            let panel = document.getElementById("integraisPanel");
-            panel.style.display = checkbox.checked ? "block" : "none";
+            // Função para controlar a visibilidade dos painéis
+            function togglePanel(checkboxId, panelId) {
+                let checkbox = document.getElementById(checkboxId);
+                let panel = document.getElementById(panelId);
 
-    
+                // Configura o estado inicial do painel
+                panel.style.display = checkbox.checked ? "block" : "none";
+
+                // Evento para exibir ou ocultar o painel
+                checkbox.addEventListener("change", function() {
+                    panel.style.display = this.checked ? "block" : "none";
+                });
+            }
+
+            // Vincular cada checkbox ao seu painel
+            togglePanel("toggleIntegrais", "integraisPanel");
+            togglePanel("toggleOutroTopico", "outroTopicoPanel");
+            togglePanel("toggleMaisUmTopico", "maisUmTopicoPanel");
         });
     </script>
-</script>
 </body>
 </html>
-
 
 
 
@@ -656,115 +700,7 @@
 </html>
 
 
- <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matemática Interativa</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: white; }
-        .accordion-container { display: flex; align-items: center; gap: 10px; }
-        .accordion { color: black; cursor: pointer; padding: 10px; width: 100%; text-align: left; border: none; outline: none; transition: 0.4s; font-size: 18px; background: none; }
-        .active, .accordion:hover { text-decoration: underline; }
-        .panel { padding: 0 18px; display: none; overflow: hidden; background: none; }
-        .link-button { display: inline-block; background-color: green; color: white; padding: 10px; text-decoration: none; margin: 10px 0; }
-        img { width: 450px; display: block; margin: 10px auto; }
-    </style>
-</head>
-<body>
-
  
-</body>
-</html>
-
  
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Painel</title>
-    <style>
-        .panel {
-            display: none;
-            padding: 10px;
-            margin-top: 10px;
-        }
-
-        input[type="checkbox"] {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background-color: white;
-            border: 2px solid black;
-            border-radius: 3px;
-            position: relative;
-        }
-
-        input[type="checkbox"]:checked::after {
-            content: "\2713"; /* ✓ */
-            font-size: 16px;
-            color: red;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .accordion {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .accordion-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="accordion-container">
-        <label>
-            <input type="checkbox" id="toggleIntegrais">
-        </label>
-        <button class="accordion">Integrais Definidas</button>
-    </div>
-    <div class="panel" id="integraisPanel">
-        <img src="curva.jpg" alt="Área entre curvas" width="200">
-        <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let checkbox = document.getElementById("toggleIntegrais");
-            let panel = document.getElementById("integraisPanel");
-
-            // Começa oculto
-            panel.style.display = "none";
-
-            // Evento para exibir ou ocultar o painel
-            checkbox.addEventListener("change", function() {
-                panel.style.display = this.checked ? "block" : "none";
-            });
-        });
-    </script>
-</body>
-</html>
+ 
 
