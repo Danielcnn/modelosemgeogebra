@@ -355,48 +355,70 @@
     <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
 </div>
 
-<div class="accordion-container">
+
+
+     <div class="accordion-container">
     <input type="checkbox" id="toggleEquacoes">
+    <label for="toggleEquacoes" class="checkbox-label"></label>
     <button class="accordion">Equações</button>
 </div>
-<div class="panel" id="equacoesPanel">
+<div class="panel" id="equacoesPanel" style="display: none;">
     <img src="sistemas1.jpg" alt="Sistema de Equações">
     <a class="link-button" href="https://www.geogebra.org/m/npfzf3sh" target="_blank">Sistema de Equações</a>
+    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
 </div>
 
 <div class="accordion-container">
     <input type="checkbox" id="toggleMetodos">
+    <label for="toggleMetodos" class="checkbox-label"></label>
     <button class="accordion">Métodos Numéricos</button>
 </div>
-<div class="panel" id="metodosPanel">
+<div class="panel" id="metodosPanel" style="display: none;">
     <img src="bismeu.jpg" alt="Método da Bissecção">
     <a class="link-button" href="https://www.geogebra.org/m/dthfjmue" target="_blank">Método da Bissecção: x^3 - 2x + sen(x) = 0</a>
+    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
 </div>
 
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        });
+<style>
+    .panel {
+        display: none;
     }
+    input[type="checkbox"] {
+        display: none;
+    }
+    .checkbox-label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+    input[type="checkbox"]:checked + .checkbox-label::after {
+        content: "\2713"; /* Símbolo de verificação */
+        font-size: 16px;
+        color: red; /* Vermelho quando marcado */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
 
-    document.getElementById("toggleIntegrais").addEventListener("change", function() {
-        document.getElementById("integraisPanel").style.display = this.checked ? "block" : "none";
-    });
-    document.getElementById("toggleEquacoes").addEventListener("change", function() {
-        document.getElementById("equacoesPanel").style.display = this.checked ? "block" : "none";
-    });
-    document.getElementById("toggleMetodos").addEventListener("change", function() {
-        document.getElementById("metodosPanel").style.display = this.checked ? "block" : "none";
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var accordions = document.querySelectorAll(".accordion");
+        accordions.forEach(function (accordion) {
+            accordion.addEventListener("click", function () {
+                var panel = this.nextElementSibling;
+                panel.style.display = (panel.style.display === "block") ? "none" : "block";
+            });
+        });
     });
 </script>
+
 
 
      
