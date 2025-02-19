@@ -390,24 +390,20 @@
   
 </div>
 
-
-
-
 <div class="accordion-container">
-    <input type="checkbox" id="toggleIntegrais">
+    <input type="checkbox" id="toggleIntegrais" checked>
     <label for="toggleIntegrais" class="checkbox-label"></label>
     <button class="accordion" style="background: none; border: none;">Integrais Definidas</button>
 </div>
-
-<div class="panel" id="integraisPanel">
+<div class="panel" id="integraisPanel" style="display: block; background: none;">
     <img src="curva.jpg" alt="Área entre curvas">
     <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
-
+  
     <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
-
+  
     <img src="gerar.jpg" alt="Gerar integrais">
     <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
-
+  
     <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
 </div>
 
@@ -438,12 +434,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    input[type="checkbox"]:checked + .checkbox-label + .accordion + .panel {
+        display: block;
+    }
 </style>
 
-<script>
-    document.getElementById('toggleIntegrais').addEventListener('change', function () {
-        document.getElementById('integraisPanel').style.display = this.checked ? 'block' : 'none';
-    });
+  
 
   
 </script>
