@@ -345,17 +345,17 @@
  <div class="accordion-container">
     <input type="checkbox" id="toggleIntegrais" checked>
     <label for="toggleIntegrais" class="checkbox-label"></label>
-    <button class="accordion" style="background: none; border: none;">Integrais Definidas</button>
+    <button class="accordion">Integrais Definidas</button>
 </div>
-<div class="panel" id="integraisPanel" style="display: block; background: none;">
+<div class="panel" id="integraisPanel">
     <img src="curva.jpg" alt="Área entre curvas">
     <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
-  
+
     <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
-  
+
     <img src="gerar.jpg" alt="Gerar integrais">
     <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
-  
+
     <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
 </div>
 
@@ -364,21 +364,24 @@
         display: none;
         background: none;
     }
+
     input[type="checkbox"] {
-        display: none;
-    }
-    .checkbox-label {
         display: inline-block;
         width: 20px;
         height: 20px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
         background-color: white;
         border: 2px solid black;
         border-radius: 3px;
         position: relative;
-        cursor: pointer;
     }
-    input[type="checkbox"]:checked + .checkbox-label::after {
-        content: "\2713";
+
+    /* Check vermelho quando marcado */
+    input[type="checkbox"]:checked::after {
+        content: "\2713"; /* ✓ */
         font-size: 16px;
         color: red;
         position: absolute;
@@ -386,10 +389,22 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    input[type="checkbox"]:checked + .checkbox-label + .accordion + .panel {
-        display: block;
-    }
 </style>
+
+<script>
+    document.getElementById("toggleIntegrais").addEventListener("change", function() {
+        let panel = document.getElementById("integraisPanel");
+        panel.style.display = this.checked ? "block" : "none";
+    });
+
+    // Inicia o painel visível se o checkbox estiver marcado
+    document.addEventListener("DOMContentLoaded", function() {
+        let checkbox = document.getElementById("toggleIntegrais");
+        let panel = document.getElementById("integraisPanel");
+        panel.style.display = checkbox.checked ? "block" : "none";
+    });
+</script>
+
       
 
      
