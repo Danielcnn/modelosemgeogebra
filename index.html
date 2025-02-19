@@ -678,11 +678,16 @@
 </body>
 </html>
 
+ 
 
 
-<h2>📚 Conteúdos Interativos</h2>
 
- <!DOCTYPE html>
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -691,7 +696,6 @@
     <style>
         .panel {
             display: none;
-            background: none;
             padding: 10px;
             margin-top: 10px;
         }
@@ -710,7 +714,6 @@
             position: relative;
         }
 
-        /* Check vermelho quando marcado */
         input[type="checkbox"]:checked::after {
             content: "\2713"; /* ✓ */
             font-size: 16px;
@@ -726,34 +729,42 @@
             border: none;
             font-size: 16px;
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accordion-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
     <div class="accordion-container">
-        <input type="checkbox" id="toggleIntegrais" checked>
-        <label for="toggleIntegrais" class="checkbox-label"></label>
+        <label>
+            <input type="checkbox" id="toggleIntegrais">
+        </label>
         <button class="accordion">Integrais Definidas</button>
     </div>
-    <div class="panel" id="integraisPanel" style="background: none;">
+    <div class="panel" id="integraisPanel">
         <img src="curva.jpg" alt="Área entre curvas" width="200">
         <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
     </div>
 
     <script>
-        document.getElementById("toggleIntegrais").addEventListener("change", function() {
-            let panel = document.getElementById("integraisPanel");
-            panel.style.display = this.checked ? "block" : "none";
-        });
-
         document.addEventListener("DOMContentLoaded", function() {
             let checkbox = document.getElementById("toggleIntegrais");
             let panel = document.getElementById("integraisPanel");
-            panel.style.display = checkbox.checked ? "block" : "none";
 
-    
+            // Começa oculto
+            panel.style.display = "none";
+
+            // Evento para exibir ou ocultar o painel
+            checkbox.addEventListener("change", function() {
+                panel.style.display = this.checked ? "block" : "none";
+            });
         });
     </script>
-</script>
 </body>
 </html>
+
