@@ -342,68 +342,79 @@
  
 <h2>📚 Conteúdos Interativos</h2>
 
- <div class="accordion-container">
-    <input type="checkbox" id="toggleIntegrais" checked>
-    <label for="toggleIntegrais" class="checkbox-label"></label>
-    <button class="accordion">Integrais Definidas</button>
-</div>
-<div class="panel" id="integraisPanel">
-    <img src="curva.jpg" alt="Área entre curvas">
-    <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Painel</title>
+    <style>
+        .panel {
+            display: none;
+            background: none;
+            padding: 10px;
+            margin-top: 10px;
+        }
 
-    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
+        input[type="checkbox"] {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 3px;
+            position: relative;
+        }
 
-    <img src="gerar.jpg" alt="Gerar integrais">
-    <a class="link-button" href="https://www.geogebra.org/m/pgz8vvkg" target="_blank">Gerar integrais definidas</a>
+        /* Check vermelho quando marcado */
+        input[type="checkbox"]:checked::after {
+            content: "\2713"; /* ✓ */
+            font-size: 16px;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    <p><img src="image_2025-02-18_18-50-32.png" alt="xxxx"></p>
-</div>
+        .accordion {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="accordion-container">
+        <input type="checkbox" id="toggleIntegrais" checked>
+        <label for="toggleIntegrais" class="checkbox-label"></label>
+        <button class="accordion">Integrais Definidas</button>
+    </div>
+    <div class="panel" id="integraisPanel" style="background: none;">
+        <img src="curva.jpg" alt="Área entre curvas" width="200">
+        <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
+    </div>
 
-<style>
-    .panel {
-        display: none;
-        background: none;
-    }
+    <script>
+        document.getElementById("toggleIntegrais").addEventListener("change", function() {
+            let panel = document.getElementById("integraisPanel");
+            panel.style.display = this.checked ? "block" : "none";
+        });
 
-    input[type="checkbox"] {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-color: white;
-        border: 2px solid black;
-        border-radius: 3px;
-        position: relative;
-    }
+        document.addEventListener("DOMContentLoaded", function() {
+            let checkbox = document.getElementById("toggleIntegrais");
+            let panel = document.getElementById("integraisPanel");
+            panel.style.display = checkbox.checked ? "block" : "none";
+        });
+    </script>
+</body>
+</html>
 
-    /* Check vermelho quando marcado */
-    input[type="checkbox"]:checked::after {
-        content: "\2713"; /* ✓ */
-        font-size: 16px;
-        color: red;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
-
-<script>
-    document.getElementById("toggleIntegrais").addEventListener("change", function() {
-        let panel = document.getElementById("integraisPanel");
-        panel.style.display = this.checked ? "block" : "none";
-    });
-
-    // Inicia o painel visível se o checkbox estiver marcado
-    document.addEventListener("DOMContentLoaded", function() {
-        let checkbox = document.getElementById("toggleIntegrais");
-        let panel = document.getElementById("integraisPanel");
-        panel.style.display = checkbox.checked ? "block" : "none";
-    });
-</script>
 
       
 
