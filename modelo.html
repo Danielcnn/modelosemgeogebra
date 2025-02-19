@@ -357,7 +357,7 @@
 
 
 
-     <div class="accordion-container">
+    <div class="accordion-container">
     <input type="checkbox" id="toggleEquacoes">
     <label for="toggleEquacoes" class="checkbox-label"></label>
     <button class="accordion">Equações</button>
@@ -383,27 +383,37 @@
     .panel {
         display: none;
     }
+
+    /* Torna os checkboxes visíveis */
     input[type="checkbox"] {
-        display: none;
-    }
-    .checkbox-label {
-        display: inline-block;
+        appearance: none; /* Remove o estilo padrão do sistema */
         width: 20px;
         height: 20px;
-        background-color: white;
         border: 2px solid black;
         border-radius: 3px;
-        position: relative;
+        display: inline-block;
+        vertical-align: middle;
         cursor: pointer;
+        position: relative;
     }
-    input[type="checkbox"]:checked + .checkbox-label::after {
-        content: "\2713"; /* Símbolo de verificação */
+
+    /* Adiciona a marcação quando clicado */
+    input[type="checkbox"]:checked::after {
+        content: "\2713"; /* Símbolo de check */
         font-size: 16px;
         color: red; /* Vermelho quando marcado */
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .accordion {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 5px;
     }
 </style>
 
@@ -417,6 +427,8 @@
             });
         });
     });
+</script>
+
 </script>
 
 
