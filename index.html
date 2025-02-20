@@ -550,7 +550,150 @@
 </p>
       
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Painel</title>
+    <style>
+        .panel {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+        }
 
+        input[type="checkbox"] {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: "\2713"; /* ✓ */
+            font-size: 16px;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .accordion {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accordion-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-button {
+            display: inline-block;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        img {
+            width: 400px; /* Aumentei o tamanho da imagem */
+            height: auto; /* Mantém a proporção da imagem */
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>📚 Conteúdos Interativos</h2>
+
+    <!-- Primeiro Checkbox (Ativado por padrão) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleIntegrais" checked>
+        </label>
+        <button class="accordion">Integrais Definidas</button>
+    </div>
+    <div class="panel" id="integraisPanel">
+        <img src="curva.jpg" alt="Área entre curvas">
+        <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
+    </div>
+
+    <!-- Segundo Checkbox (Pronto para uso) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleOutroTopico">
+        </label>
+        <button class="accordion">Outro Tópico</button>
+    </div>
+    <div class="panel" id="outroTopicoPanel">
+        <img src="outra_imagem.jpg" alt="Outra Imagem">
+        <a class="link-button" href="https://www.geogebra.org/m/outro_link" target="_blank">Outro Link</a>
+    </div>
+
+    <!-- Terceiro Checkbox (Pronto para uso) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleMaisUmTopico">
+        </label>
+        <button class="accordion">Mais um Tópico</button>
+    </div>
+    <div class="panel" id="maisUmTopicoPanel">
+        <img src="mais_uma_imagem.jpg" alt="Mais uma Imagem">
+        <a class="link-button" href="https://www.geogebra.org/m/mais_um_link" target="_blank">Mais um Link</a>
+    </div>
+
+    <!-- Quarto Checkbox (Pronto para uso) -->
+    <div class="accordion-container">
+        <label>
+            <input type="checkbox" id="toggleQuartoTopico">
+        </label>
+        <button class="accordion">Quarto Tópico</button>
+    </div>
+    <div class="panel" id="quartoTopicoPanel">
+        <img src="quarta_imagem.jpg" alt="Quarta Imagem">
+        <a class="link-button" href="https://www.geogebra.org/m/quarto_link" target="_blank">Quarto Link</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Função para controlar a visibilidade dos painéis
+            function togglePanel(checkboxId, panelId) {
+                let checkbox = document.getElementById(checkboxId);
+                let panel = document.getElementById(panelId);
+
+                // Configura o estado inicial do painel
+                panel.style.display = checkbox.checked ? "block" : "none";
+
+                // Evento para exibir ou ocultar o painel
+                checkbox.addEventListener("change", function() {
+                    panel.style.display = this.checked ? "block" : "none";
+                });
+            }
+
+            // Vincular cada checkbox ao seu painel
+            togglePanel("toggleIntegrais", "integraisPanel");
+            togglePanel("toggleOutroTopico", "outroTopicoPanel");
+            togglePanel("toggleMaisUmTopico", "maisUmTopicoPanel");
+            togglePanel("toggleQuartoTopico", "quartoTopicoPanel");
+        });
+    </script>
+</body>
+</html>
 
         
            <p>
