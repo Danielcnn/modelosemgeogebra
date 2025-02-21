@@ -3,129 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Painel</title>
+    <title>Meu Site com Notificações</title>
     <style>
-        .panel {
-            display: none;
-            padding: 10px;
-            margin-top: 10px;
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
 
-        input[type="checkbox"] {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background-color: white;
-            border: 2px solid black;
-            border-radius: 3px;
-            position: relative;
+        h1 {
+            color: #333;
         }
 
-        input[type="checkbox"]:checked::after {
-            content: "\2713"; /* ✓ */
-            font-size: 16px;
-            color: red;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* Estilos para o botão de seguidores */
+        #followers-container {
+            margin: 20px 0;
         }
 
-        .accordion {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .accordion-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .link-button {
-            display: inline-block;
-            background-color: green;
+        #follow-button {
+            background-color: #4CAF50; /* Verde */
             color: white;
-            padding: 10px;
-            text-decoration: none;
-            margin: 10px 0;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        img {
-            width: 400px; /* Aumentei o tamanho da imagem */
-            height: auto; /* Mantém a proporção da imagem */
-            display: block;
-            margin: 10px auto;
+        #follow-button:hover {
+            background-color: #45a049;
+        }
+
+        #follower-count {
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Estilos para o formulário de inscrição */
+        #email-form {
+            margin: 40px 0;
+        }
+
+        #email-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #subscribe-button {
+            background-color: #007BFF; /* Azul */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        #subscribe-button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h2>📚 Conteúdos Interativos</h2>
+    <h1>Bem-vindo ao Meu Site!</h1>
+    <p>Este é um exemplo de como adicionar um botão de seguidores e notificações por e-mail.</p>
 
-    <!-- Primeiro Checkbox (Ativado por padrão) -->
-    <div class="accordion-container">
-        <label>
-            <input type="checkbox" id="toggleIntegrais" checked>
-        </label>
-        <button class="accordion">Integrais Definidas</button>
-    </div>
-    <div class="panel" id="integraisPanel">
-        <img src="curva.jpg" alt="Área entre curvas">
-        <a class="link-button" href="https://www.geogebra.org/m/qnxkzcdt" target="_blank">Área entre curvas</a>
+    <!-- Botão de seguidores e contador -->
+    <div id="followers-container">
+        <button id="follow-button">Seguir</button>
+        <span id="follower-count">8,000</span> seguidores
     </div>
 
-    <!-- Segundo Checkbox (Pronto para uso) -->
-    <div class="accordion-container">
-        <label>
-            <input type="checkbox" id="toggleOutroTopico">
-        </label>
-        <button class="accordion">Outro Tópico</button>
-    </div>
-    <div class="panel" id="outroTopicoPanel">
-        <img src="outra_imagem.jpg" alt="Outra Imagem">
-        <a class="link-button" href="https://www.geogebra.org/m/outro_link" target="_blank">Outro Link</a>
+    <!-- Formulário de inscrição por e-mail -->
+    <div id="email-form">
+        <h2>Receba atualizações do site!</h2>
+        <input type="email" id="email-input" placeholder="Digite seu e-mail" required>
+        <button id="subscribe-button">Inscrever-se</button>
+        <p id="message"></p>
     </div>
 
-    <!-- Terceiro Checkbox (Pronto para uso) -->
-    <div class="accordion-container">
-        <label>
-            <input type="checkbox" id="toggleMaisUmTopico">
-        </label>
-        <button class="accordion">Mais um Tópico</button>
-    </div>
-    <div class="panel" id="maisUmTopicoPanel">
-        <img src="mais_uma_imagem.jpg" alt="Mais uma Imagem">
-        <a class="link-button" href="https://www.geogebra.org/m/mais_um_link" target="_blank">Mais um Link</a>
-    </div>
+    <!-- Firebase e scripts -->
+    <script type="module">
+        // Importe as funções necessárias do Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+        import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging.js";
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Função para controlar a visibilidade dos painéis
-            function togglePanel(checkboxId, panelId) {
-                let checkbox = document.getElementById(checkboxId);
-                let panel = document.getElementById(panelId);
+        // Configuração do Firebase (substitua com suas credenciais)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcVcGc84zIpgOaU9FmPu5YWvtfi74Wgsc",
+            authDomain: "seguidores2.firebaseapp.com",
+            projectId: "seguidores2",
+            storageBucket: "seguidores2.appspot.com",
+            messagingSenderId: "1005753011119",
+            appId: "1:1005753011119:web:307e47eababa204986bd5a",
+            measurementId: "G-NLRCH6T1ES"
+        };
 
-                // Configura o estado inicial do painel
-                panel.style.display = checkbox.checked ? "block" : "none";
+        // Inicialize o Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const messaging = getMessaging(app);
 
-                // Evento para exibir ou ocultar o painel
-                checkbox.addEventListener("change", function() {
-                    panel.style.display = this.checked ? "block" : "none";
+        // Referência para a coleção de seguidores no Firestore
+        const followersRef = collection(db, "followers");
+        const subscribersRef = collection(db, "subscribers");
+
+        // Valor inicial de seguidores
+        let followerCount = 8000;
+
+        // Função para atualizar o número de seguidores na tela
+        function updateFollowerCount() {
+            document.getElementById('follower-count').textContent = followerCount.toLocaleString();
+        }
+
+        // Função para aumentar o número de seguidores
+        document.getElementById('follow-button').addEventListener('click', async function() {
+            try {
+                // Adiciona um novo seguidor ao Firestore
+                await addDoc(followersRef, {
+                    timestamp: new Date()
                 });
-            }
 
-            // Vincular cada checkbox ao seu painel
-            togglePanel("toggleIntegrais", "integraisPanel");
-            togglePanel("toggleOutroTopico", "outroTopicoPanel");
-            togglePanel("toggleMaisUmTopico", "maisUmTopicoPanel");
+                // Aumenta o contador de seguidores
+                followerCount += 1;
+                updateFollowerCount(); // Atualiza o contador na tela
+            } catch (error) {
+                console.error("Erro ao adicionar seguidor: ", error);
+            }
         });
+
+        // Função para processar o formulário de inscrição
+        document.getElementById('subscribe-button').addEventListener('click', async function() {
+            const email = document.getElementById('email-input').value;
+            const messageElement = document.getElementById('message');
+
+            if (email && email.includes('@')) {
+                try {
+                    await addDoc(subscribersRef, {
+                        email: email,
+                        timestamp: new Date()
+                    });
+                    messageElement.textContent = 'Inscrição realizada com sucesso! Obrigado!';
+                    document.getElementById('email-input').value = ''; // Limpa o campo de e-mail
+                } catch (error) {
+                    messageElement.textContent = 'Erro ao inscrever. Tente novamente.';
+                    console.error("Erro ao salvar e-mail: ", error);
+                }
+            } else {
+                messageElement.textContent = 'Por favor, insira um e-mail válido.';
+            }
+        });
+
+        // Solicitar permissão para notificações push
+        async function requestNotificationPermission() {
+            const permission = await Notification.requestPermission();
+            if (permission === 'granted') {
+                console.log('Permissão para notificações concedida.');
+                // Obter o token de notificação
+                const token = await getToken(messaging, { vapidKey: 'SUA_CHAVE_VAPID' });
+                console.log('Token de notificação:', token);
+                // Salvar o token no Firestore (opcional)
+                await addDoc(collection(db, 'tokens'), {
+                    token: token,
+                    timestamp: new Date()
+                });
+            } else {
+                console.log('Permissão para notificações negada.');
+            }
+        }
+
+        // Lidar com mensagens recebidas em primeiro plano
+        onMessage(messaging, (payload) => {
+            console.log('Notificação recebida:', payload);
+            alert(payload.notification.body); // Exibe a notificação como um alerta
+        });
+
+        // Solicitar permissão ao carregar a página
+        requestNotificationPermission();
+
+        // Atualiza o contador de seguidores ao carregar a página
+        updateFollowerCount();
     </script>
 </body>
 </html>
