@@ -1,10 +1,25 @@
-// Carrega o número de seguidores do localStorage
-let followers = localStorage.getItem('followers') || 0;
-document.getElementById('followerCount').textContent = followers;
+ // Verifica se já existe um contador de seguidores no localStorage
+let followerCount = localStorage.getItem('followerCount');
 
-// Adiciona um seguidor ao clicar no botão
+// Se não existir, inicializa com 0
+if (followerCount === null) {
+    followerCount = 0;
+} else {
+    // Converte para número, pois o localStorage armazena strings
+    followerCount = parseInt(followerCount, 10);
+}
+
+// Atualiza o contador na página
+document.getElementById('followerCount').textContent = followerCount;
+
+// Adiciona um evento de clique ao botão "Seguir"
 document.getElementById('followButton').addEventListener('click', function() {
-    followers++;
-    localStorage.setItem('followers', followers);
-    document.getElementById('followerCount').textContent = followers;
+    // Incrementa o contador
+    followerCount++;
+    
+    // Atualiza o contador na página
+    document.getElementById('followerCount').textContent = followerCount;
+    
+    // Salva o novo valor no localStorage
+    localStorage.setItem('followerCount', followerCount);
 });
