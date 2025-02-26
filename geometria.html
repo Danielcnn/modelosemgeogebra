@@ -100,55 +100,18 @@
 </head>
 <body>
 
-
-  <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Visitantes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #visitantes {
-            font-size: 2em;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div>Visitantes:</div>
-    <div id="visitantes">3200</div>
-    <script>
-        let contador = localStorage.getItem("contador") ? parseInt(localStorage.getItem("contador")) : 3200;
-        contador++;
-        localStorage.setItem("contador", contador);
-        document.getElementById("visitantes").innerText = contador;
-    </script>
-</body>
-</html>
-
     <div class="top-bar">
-        <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-        <span>Matemática Interativa</span>
-        <span>🔔 Notificações</span>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <span>Modelos em Geogebra e Matlab</span>
+        <span>🔔</span>
     </div>
 
     <div class="menu-container" id="menuContainer">
-
-
-     <div class="menu-container" id="menuContainer">
-        <div class="menu-section">
-            <h3>📌 Apresentação</h3>
-            <a href="https://danielcnn.github.io/modelosemgeogebra">🏠 Página Inicial</a>
-        </div>
+         
         
         <div class="menu-section">
             <h3>📌 Geogebra</h3>
-            <a href="https://danielcnn.github.io/modelosemgeogebra/geometria.html">📏 Geometria Plana</a>
+            <a href="https://danielcnn.github.io/modelosemgeogebra/geometriaplana.html">📏 Geometria Plana</a>
             <a href="#">📐 Geometria Analítica</a>
             <a href="#">📦 Geometria Espacial</a>
             <a href="#">🔢 Sistema de Equações</a>
@@ -161,15 +124,6 @@
             <a href="#">✏️ Método de Newton-Raphson</a>
             <a href="#">🧮 Equações Quadráticas</a>
         </div>
-
-        <div class="menu-section">
-            <h3>📌 Downloads e Ebooks</h3>
-            <a href="#">➗ Download de livros</a>
-            <a href="#">✏️ Ebooks: Geogebra</a>
-             
-        </div>
-
-     
     </div>
 
     <script>
@@ -187,7 +141,6 @@
 
 
   
-
 
 
 
@@ -353,193 +306,17 @@
       </p>
       <p>
       </p>
-       
-
- 
-         
-
-<section class="ebooks"> 
-</body>
-</html>
-
-
-
-
-
-
-
- 
-
-
-
-
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometria Plana</title>
-    <style>
-        body {
-            font-family: 'Inter', Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .description {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .scroll-box {
-            max-height: 250px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 10px;
-            background: #fff;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-button {
-            display: block;
-            background-color: #0073e6;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .link-button:hover {
-            background-color: #005bb5;
-        }
-
-        .socials {
-            margin-top: 30px;
-            padding: 20px;
-            background: #e3e3e3;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .socials h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .socials p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        .socials a {
-            color: #0073e6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .socials a:hover {
-            text-decoration: underline;
-        }
-
-        #comentarios {
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background: #f9f9f9;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #comentarios h3 {
-            text-align: center;
-            color: #333;
-        }
-
-        #listaComentarios {
-            list-style: none;
-            padding: 0;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        #listaComentarios li {
-            background: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #comentario {
-            width: calc(100% - 20px);
-            height: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: none;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .btn-enviar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            max-width: 150px;
-            margin: auto;
-            transition: 0.3s;
-        }
-
-        .btn-enviar:hover {
-            background: #0056b3;
-        }
-
-        .btn-enviar i {
-            margin-left: 5px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-      <p>
-      </p>
-      <p>
-      </p>
-       <img src="geogebra-icon-512x512-pbsn0hml.png" alt="Ícone do GeoGebra" width="100">
+         <h1>□</h1>
          <h1>Geometria Plana</h1>
+     <h1>□□□□□□□□□□□□□□□</h1>
+     <h1></h1>
+     
 
         <p class="description">
-            <strong>Espaço dedicado a applets interativos de Geometria Plana, elaborados no GeoGebra, para auxiliar no aprendizado visual e dinâmico dos conceitos geométricos.</strong>.
+            <strong>Bem-vindo ao Matemática Interativa</strong>, um espaço onde conceitos matemáticos ganham vida por meio 
+        de applets dinâmicos no <strong>GeoGebra</strong>. Aqui, você encontrará recursos visuais e interativos que 
+        facilitam a compreensão de diversos tópicos, como o <strong>Método de Newton-Raphson</strong>, 
+        <strong>Integrais Definidas</strong> e <strong>Geometria Analítica</strong>.
     </p>
 </section>
 
@@ -555,60 +332,12 @@
     }
 </style>
         </p>
-      <h1>Área Máxima</h1>
-         <p>
-           <p>
-           </p>
-      
-         <img src="maxima.jpg" alt="Ícone do GeoGebra" width="500">
-        </p>
-</a>
-         <a class="link-button" href="https://www.geogebra.org/m/k87dupp" target="_blank" rel="noopener noreferrer">
-           <p>
-             
-           </p>
-         Acessar applet sobre Área Máxima
-            </a>
-        <p></p>
          
-
- </p>
-      <h1>Área Máxima - Triângulo Inscrito</h1>
-         <p>
-           <p>
-           </p>
-      
-         <img src="maxima2.jpg" alt="Ícone do GeoGebra" width="450">
-        </p>
-</a>
-         <a class="link-button" href="https://www.geogebra.org/m/suup8s2a" target="_blank" rel="noopener noreferrer">
-           <p>
-             
-           </p>
-         Acessar applet sobre Área Máxima - Triângulo Inscrito
-            </a>
-        <p></p>
-         
-
-
-
- </p>
-      <h1>Área Máxima - De um retângulo em funçao dos lados</h1>
-         <p>
-           <p>
-           </p>
-      
-         <img src="maxima3.jpg" alt="Ícone do GeoGebra" width="450">
-        </p>
-</a>
-         <a class="link-button" href="https://www.geogebra.org/m/anqymtj2" target="_blank" rel="noopener noreferrer">
-           <p>
-             
-           </p>
-         Acessar applet sobre Área Máxima - De um retângulo em função dos lados
-            </a>
         <p></p>
 
+ 
+
+ 
 
 
 
@@ -616,13 +345,252 @@
 
 
 
+      
 
+     
 
+<section class="ebooks">
+    <h2> </h2>
+    <p>
+    
+</p>>
 
+ <p>
 
-
-
-
-     </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizar Botão</title>
+    <style>
+        .container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+        }
+        .link-button {
+            display: inline-block; /* Faz o link se comportar como um bloco */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2>Relações Métricas no Triângulo Retângulo - </h2>
+        <img src="salvosim.jpg" alt="Ícone do GeoGebra" width="450">
+        <p>
+            <a class="link-button" href="https://www.geogebra.org/classic/vvmezyxz" target="_blank" rel="noopener noreferrer">
+                Acessar applet sobre Relações Métricas
+            </a>
+        </p>
+    </div>
 </body>
 </html>
+   
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+
+    <p>  
+      <h1>□                    </h1>
+    </p>
+  </body>
+</html>
+
+
+   
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizar Botão</title>
+    <style>
+        .container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+        }
+        .link-button {
+            display: inline-block; /* Faz o link se comportar como um bloco */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2>Teorema de Pitágoras</h2>
+        <img src="tp.jpg" alt="Ícone do GeoGebra" width="450">
+        <p>
+
+           <a class="link-button" href="https://www.geogebra.org/m/cjzzgvhh" target="_blank" rel="noopener noreferrer">
+            Acessar applet Teorema de Pitágoras (Quiz)
+            </a>
+        </p>
+    </div>
+</body>
+</html>
+   
+
+  <p>  
+      <h1>□                    </h1>
+    </p>
+  </body>
+</html>
+
+
+
+
+   
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizar Botão</title>
+    <style>
+        .container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+        }
+        .link-button {
+            display: inline-block; /* Faz o link se comportar como um bloco */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2>Equações da reta</h2>
+        <img src="reta2.jpg" alt="Ícone do GeoGebra" width="450">
+        <p>
+
+           <a class="link-button" href="https://www.geogebra.org/m/tqk27ytw" target="_blank" rel="noopener noreferrer">
+            Acessar applet Equações da reta (Quiz)
+            </a>
+        </p>
+    </div>
+</body>
+</html>
+
+
+
+
+
+  
+
+
+    <p>  
+      <h1>□                    </h1>
+    </p>
+  </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizar Botão</title>
+    <style>
+        .container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+        }
+        .link-button {
+            display: inline-block; /* Faz o link se comportar como um bloco */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2>Equações quadráticas</h2>
+        <img src="eq2.jpg" alt="Ícone do GeoGebra" width="450">
+        <p>
+
+           <a class="link-button" href="https://www.geogebra.org/m/hxw4hmuj" target="_blank" rel="noopener noreferrer">
+            Acessar applet Equações quadráticas (Gerando)
+            </a>
+        </p>
+    </div>
+</body>
+</html>
+
+
+
+ <p>  
+      <h1>□                    </h1>
+    </p>
+  </body>
+</html>
+
+  
+
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralizar Botão</title>
+    <style>
+        .container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+        }
+        .link-button {
+            display: inline-block; /* Faz o link se comportar como um bloco */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2>A proporção perfeita φ</h2>
+        <img src="perfeita.jpg" alt="Ícone do GeoGebra" width="450">
+        <p>
+
+           <a class="link-button" href="https://www.geogebra.org/m/amvmfk9q" target="_blank" rel="noopener noreferrer">
+            A proporção perfeita 
+            </a>
+        </p>
+    </div>
+</body>
+</html>
+
+
+    <p>  
+      <h1>□                    </h1>
+    </p>
+  </body>
+</html>
+
+  
+ 
+             </div>
+
+
+
+  
+
+
+ 
+
