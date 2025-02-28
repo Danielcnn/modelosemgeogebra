@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Applets GeoGebra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .carousel-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #28a745;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 10px; /* Reduzido para aproximar os botões */
+            padding-top: 10px; /* Adicionado para dar um espaço no topo */
+        }
+
+        #searchInput {
+            width: 80%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 10px; /* Espaço entre os botões e os slides */
+        }
+
+        .nav-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #218838;
+        }
+
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .slide p {
+            margin: 0;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .link-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Digite o título do slide...">
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" id="prevBtn" onclick="prevSlide()">Anterior</button>
+            <button class="nav-button" id="nextBtn" onclick="nextSlide()">Próximo</button>
+        </div>
+        <div class="slides" id="slides">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <h2>Gráfico de funções</h2>
+                <img src="esq.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/vgbrujn3" target="_blank" rel="noopener noreferrer">
+                        Acessar: Gráfico de funções
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Isolamento de raízes (e^x-sen(x)-2=0)</h2>
+                <img src="isolamento.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hx36bz7w" target="_blank" rel="noopener noreferrer">
+                        Acessar: Isolamento de raízes
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Teorema da média geométrica no triângulo retângulo</h2>
+                <img src="" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hpesnknk" target="_blank" rel="noopener noreferrer">
+                        Acessar: Teorema da média geométrica
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Equações Quadráticas (Quiz)</h2>
+                <img src="bel.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/ezcvvrug" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações Quadráticas (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Média aritmética (Quiz)</h2>
+                <img src="medias.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fmfqn5jy" target="_blank" rel="noopener noreferrer">
+                        Acessar: Média Aritmética (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Teorema de Pitágoras</h2>
+                <img src="tp.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/cjzzgvhh" target="_blank" rel="noopener noreferrer">
+                        Acessar: Teorema de Pitágoras (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 7 -->
+            <div class="slide">
+                <h2>Equações da reta</h2>
+                <img src="reta2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/tqk27ytw" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações da reta (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 8 -->
+            <div class="slide">
+                <h2>Equações quadráticas</h2>
+                <img src="eq2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hxw4hmuj" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações quadráticas (Gerando)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 9 -->
+            <div class="slide">
+                <h2>A proporção perfeita φ - decágono</h2>
+                <img src="perfeita.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/amvmfk9q" target="_blank" rel="noopener noreferrer">
+                        Acessar: A proporção perfeita - decágono
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 10 -->
+            <div class="slide">
+                <h2>A proporção perfeita φ - hexágono e quadrado</h2>
+                <img src="" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/py9b6qnw" target="_blank" rel="noopener noreferrer">
+                        Acessar: A proporção perfeita - hexágono e quadrado
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 11 -->
+            <div class="slide">
+                <h2>Método de Newton-Raphson</h2>
+                <img src="mtn.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/kvk2evpe" target="_blank" rel="noopener noreferrer">
+                        Acessar: Método de Newton-Raphson
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 12 -->
+            <div class="slide">
+                <h2>Relações métricas no triângulo retângulo</h2>
+                <img src="salvosim.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/vvmezyxz" target="_blank" rel="noopener noreferrer">
+                        Acessar: Relações métricas no triângulo retângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 13 -->
+            <div class="slide">
+                <h2>Método de Newton-Raphson (Gerando)</h2>
+                <img src="mna.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/rdjcybwj" target="_blank" rel="noopener noreferrer">
+                        Acessar: Método de Newton-Raphson
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 14 -->
+            <div class="slide">
+                <h2>O incentro e o triângulo</h2>
+                <img src="" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/jgmdexjt" target="_blank" rel="noopener noreferrer">
+                        Acessar: O incentro e o triângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 15 -->
+            <div class="slide">
+                <h2>Raio na Circunferência</h2>
+                <img src="raio1.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fxw28fjb" target="_blank" rel="noopener noreferrer">
+                        Acessar: Raio na circunferência
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 16 -->
+            <div class="slide">
+                <h2>O triângulo retângulo e a função seno</h2>
+                <img src="" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/gjgnd26t" target="_blank" rel="noopener noreferrer">
+                        Acessar: Triângulo retângulo e a função seno
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 17 -->
+            <div class="slide">
+                <h2>Lado do quadrado inscrito num triângulo</h2>
+                <img src="jan2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/njv6zucx" target="_blank" rel="noopener noreferrer">
+                        Acessar: Lado do quadrado inscrito num triângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 18 -->
+            <div class="slide">
+                <h2>Integrais definidas</h2>
+                <img src="integrais3.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fvmqtpcp" target="_blank" rel="noopener noreferrer">
+                        Acessar: Integrais definidas
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 19 -->
+            <div class="slide">
+                <h2>Exemplo de Slide 19</h2>
+                <img src="exemplo19.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/exemplo19" target="_blank" rel="noopener noreferrer">
+                        Acessar: Exemplo de Slide 19
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function showSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+            updateButtons();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Função de busca
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const slideElements = document.querySelectorAll('.slide');
+            
+            for (let i = 0; i < slideElements.length; i++) {
+                const title = slideElements[i].querySelector('h2').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    showSlide(i);
+                    break; // Mostra o primeiro slide que corresponde à busca
+                }
+            }
+        });
+
+        // Inicializa o carrossel
+        showSlide(0);
+    </script>
+</body>
+</html>
