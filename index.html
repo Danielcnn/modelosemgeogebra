@@ -502,18 +502,13 @@
     Aqui você encontrará <strong>applets interativos</strong> criados no <strong>GeoGebra</strong>, 
     explorando conceitos matemáticos de forma dinâmica. Também mostramos exemplos e ensinamos 
     a construir esses applets em nossos <strong>eBooks</strong>.
-</p>
 
- <p>
-
- <p>  
-      <h1>□                    </h1>
-    </p>
+      <h1>                    </h1>
+    
   </body>
 </html>
 
- 
-    <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -528,72 +523,42 @@
         }
 
         .carousel-container {
-            max-width: 500px; /* Reduzi de 600px para 500px */
+            max-width: 500px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-            border: 3px solid #28a745; /* Borda verde */
+            border: 3px solid #28a745;
             border-radius: 10px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: 100%;
-        }
-
-        .slide {
-            min-width: 100%;
+        .search-container {
             text-align: center;
-            padding: 15px; /* Reduzi de 20px para 15px */
-            box-sizing: border-box;
+            margin-bottom: 10px; /* Reduzido para aproximar os botões */
+            padding-top: 10px; /* Adicionado para dar um espaço no topo */
         }
 
-        .slide img {
-            width: 400px; /* Reduzi de 450px para 400px */
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px; /* Reduzi de 15px para 10px */
-        }
-
-        .slide h2 {
-            color: #333;
-            margin: 0 0 10px 0; /* Reduzi de 15px para 10px */
-            font-size: 1.3em; /* Reduzi o tamanho da fonte */
-        }
-
-        .slide p {
-            margin: 0;
-        }
-
-        .link-button {
-            display: inline-block;
-            padding: 8px 16px; /* Reduzi de 10px 20px para 8px 16px */
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
+        #searchInput {
+            width: 80%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            transition: background-color 0.3s;
-            margin-top: 10px; /* Reduzi de 15px para 10px */
-        }
-
-        .link-button:hover {
-            background-color: #218838;
+            outline: none;
         }
 
         .nav-buttons {
             text-align: center;
-            margin-top: 10px; /* Reduzi de 20px para 10px */
+            margin-bottom: 10px; /* Espaço entre os botões e os slides */
         }
 
         .nav-button {
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 8px 16px; /* Reduzi de 10px 20px para 8px 16px */
-            margin: 0 5px; /* Reduzi de 10px para 5px */
+            padding: 8px 16px;
+            margin: 0 5px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -607,10 +572,62 @@
             background-color: #cccccc;
             cursor: not-allowed;
         }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .slide p {
+            margin: 0;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .link-button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
     <div class="carousel-container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Digite o título do slide...">
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" id="prevBtn" onclick="prevSlide()">Anterior</button>
+            <button class="nav-button" id="nextBtn" onclick="nextSlide()">Próximo</button>
+        </div>
         <div class="slides" id="slides">
             <!-- Slide 1 -->
             <div class="slide">
@@ -792,16 +809,69 @@
                     </a>
                 </p>
             </div>
+            <!-- Slide 19 -->
+            <div class="slide">
+                <h2>Exemplo de Slide 19</h2>
+                <img src="exemplo19.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/exemplo19" target="_blank" rel="noopener noreferrer">
+                        Acessar: Exemplo de Slide 19
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 
-<div class="slide">
-    <h2>Exemplo de Slide 19</h2>
-    <img src="exemplo19.jpg" alt="Ícone do GeoGebra">
-    <p>
-        <a class="link-button" href="https://www.geogebra.org/m/exemplo19" target="_blank" rel="noopener noreferrer">
-            Acessar: Exemplo de Slide 19
-        </a>
-    </p>
-</div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const searchInput = document.getElementById('searchInput');
+
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function showSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+            updateButtons();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Função de busca
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const slideElements = document.querySelectorAll('.slide');
+            
+            for (let i = 0; i < slideElements.length; i++) {
+                const title = slideElements[i].querySelector('h2').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    showSlide(i);
+                    break; // Mostra o primeiro slide que corresponde à busca
+                }
+            }
+        });
+
+        // Inicializa o carrossel
+        showSlide(0);
+    </script>
+</body>
+</html>
 
          
         </div>
