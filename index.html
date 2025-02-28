@@ -874,48 +874,7 @@
 </html>
 
          
-        </div>
-        <div class="nav-buttons">
-            <button class="nav-button" id="prevBtn" onclick="prevSlide()">Anterior</button>
-            <button class="nav-button" id="nextBtn" onclick="nextSlide()">Próximo</button>
-        </div>
-    </div>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.getElementById('slides');
-        const totalSlides = document.querySelectorAll('.slide').length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        function updateButtons() {
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === totalSlides - 1;
-        }
-
-        function showSlide(index) {
-            slides.style.transform = `translateX(-${index * 100}%)`;
-            currentSlide = index;
-            updateButtons();
-        }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                showSlide(currentSlide + 1);
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
-            }
-        }
-
-        // Inicializa o carrossel
-        showSlide(0);
-    </script>
-</body>
-</html>
+      
 
 
   
