@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGebra Applet</title>
+    <style>
+        /* Estilizando o contêiner do iframe */
+        .applet-container {
+            width: 100%; /* Largura ajustável */
+            max-width: 800px; /* Largura máxima do applet */
+            margin: 20px auto; /* Centraliza o contêiner */
+            border: 1px solid #e4e4e4; /* Borda leve */
+            border-radius: 4px; /* Cantos arredondados */
+            overflow: hidden; /* Evita que o conteúdo vaze */
+        }
+
+        /* Estilizando o iframe */
+        .applet-container iframe {
+            width: 100%;
+            height: 600px; /* Altura fixa, mas pode ser ajustada */
+            border: none; /* Remove borda padrão do iframe */
+        }
+
+        /* Tornando responsivo */
+        @media (max-width: 800px) {
+            .applet-container {
+                max-width: 100%; /* Adapta a telas menores */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="applet-container">
+        <iframe src="https://www.geogebra.org/classic/ujeqgawv?embed" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
