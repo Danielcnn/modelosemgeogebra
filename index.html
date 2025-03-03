@@ -390,10 +390,6 @@
 <body>
     
  
-
-      <h2>Isolamento de raízes</h2>
-
-  
  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -428,6 +424,16 @@
             color: #333;
         }
 
+        /* Estilizando a descrição */
+        .applet-description {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #555;
+            text-align: justify;
+            padding: 0 20px 20px 20px;
+            line-height: 1.5;
+        }
+
         /* Responsividade */
         @media (max-width: 800px) {
             .applet-container {
@@ -440,12 +446,18 @@
             .applet-title {
                 font-size: 20px; /* Reduz o tamanho do título em telas menores */
             }
+            .applet-description {
+                font-size: 14px; /* Reduz o tamanho da descrição em telas menores */
+            }
         }
     </style>
 </head>
 <body>
     <div class="applet-container">
         <div class="applet-title">Isolamento de Raízes</div>
+        <div class="applet-description">
+            Este applet interativo, desenvolvido no GeoGebra, permite explorar o conceito de isolamento de raízes de funções matemáticas. Ele oferece uma visualização gráfica que auxilia na identificação dos intervalos onde as raízes de uma função estão localizadas, utilizando métodos numéricos e geométricos. O usuário pode inserir diferentes funções, ajustar parâmetros e observar como as mudanças afetam o comportamento do gráfico, facilitando a compreensão desse importante tópico da análise matemática. Ideal para estudantes e professores que desejam uma ferramenta prática e visual para o aprendizado.
+        </div>
         <iframe src="https://www.geogebra.org/classic/ujeqgawv?embed" 
                 title="Applet GeoGebra - Isolamento de Raízes" 
                 allowfullscreen>
