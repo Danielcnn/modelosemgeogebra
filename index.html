@@ -825,64 +825,8 @@
  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isolamento de Raízes</title>
-    <style>
-        /* Estilizando o contêiner como uma caixa de rolagem */
-        .applet-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
-            border: 1px solid #e4e4e4;
-            border-radius: 4px;
-            overflow-y: auto;
-            max-height: 600px;
-        }
-
-        /* Estilizando o iframe */
-        .applet-container iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-        }
-
-        /* Estilizando o título */
-        .applet-title {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            margin: 10px 0;
-            color: #333;
-        }
-
-        /* Estilizando a descrição */
-        .applet-description {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            color: #555;
-            text-align: justify;
-            padding: 0 20px 20px 20px;
-            line-height: 1.5;
-        }
-
-        /* Responsividade */
-        @media (max-width: 800px) {
-            .applet-container {
-                max-width: 100%;
-                max-height: 400px;
-            }
-            .applet-container iframe {
-                height: 400px;
-            }
-            .applet-title {
-                font-size: 20px; /* Reduz o tamanho do título em telas menores */
-            }
-            .applet-description {
-                font-size: 14px; /* Reduz o tamanho da descrição em telas menores */
-            }
-        }
-    </style>
+  <a class="link-button" href="https://www.geogebra.org/classroom/uvtwxyaj" target="_blank" rel="noopener noreferrer">
+        Acessar
 </head>
 <body>
     <div class="applet-container">
@@ -1121,40 +1065,4 @@
 
 
 
-
-
-  
-  <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Visitantes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #visitantes {
-            font-size: 2em;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div>Visitantes:</div>
-    <div id="visitantes">10250</div>
-    <script>
-        let contador = localStorage.getItem("contador");
-        if (!contador || parseInt(contador) < 10250) {
-            contador = 10250;
-        } else {
-            contador = parseInt(contador);
-        }
-        contador++;
-        localStorage.setItem("contador", contador);
-        document.getElementById("visitantes").innerText = contador;
-    </script>
-</body>
-</html>
+ 
