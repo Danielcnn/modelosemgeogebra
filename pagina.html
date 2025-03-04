@@ -45,32 +45,21 @@
 <body>
 
     <div class="pagination">
-        <a href="pagina.html" class="page" onclick="changePage(event, 1)">1</a>
-        <a href="pagina2.html" class="page" onclick="changePage(event, 2)">2</a>
-        <a href="pagina3.html" class="page" onclick="changePage(event, 3)">3</a>
-        <a href="pagina4.html" class="page" onclick="changePage(event, 4)">4</a>
-        <a href="pagina5.html" class="page" onclick="changePage(event, 5)">5</a>
+        <a href="pagina.html" class="page">1</a>
+        <a href="pagina2.html" class="page">2</a>
+        <a href="pagina3.html" class="page">3</a>
+        <a href="pagina4.html" class="page">4</a>
+        <a href="pagina5.html" class="page">5</a>
         <span>...</span>
-        <a href="pagina358.html" class="page" onclick="changePage(event, 358)">358</a>
+        <a href="pagina358.html" class="page">358</a>
         <a href="#" onclick="nextPage()">Próximo</a>
     </div>
 
     <script>
-        function changePage(event, pageNumber) {
-            event.preventDefault(); // Evita o recarregamento da página
-            
-            // Salva a página atual no localStorage
-            localStorage.setItem("currentPage", pageNumber);
-
-            // Redireciona para a nova página
-            window.location.href = event.target.href;
-        }
-
         function highlightCurrentPage() {
-            let currentPage = localStorage.getItem("currentPage") || 1;
-            
+            let currentPath = window.location.pathname; // Obtém o caminho da URL atual
             document.querySelectorAll(".pagination .page").forEach(page => {
-                if (page.textContent.trim() == currentPage) {
+                if (page.getAttribute("href") === currentPath.split("/").pop()) {
                     page.classList.add("active");
                 } else {
                     page.classList.remove("active");
@@ -78,7 +67,13 @@
             });
         }
 
-        // Quando a página carregar, destacar a página atual
+        function nextPage() {
+            let currentPage = document.querySelector(".pagination .active");
+            if (currentPage && currentPage.nextElementSibling && currentPage.nextElementSibling.classList.contains("page")) {
+                window.location.href = currentPage.nextElementSibling.getAttribute("href");
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", highlightCurrentPage);
     </script>
 
