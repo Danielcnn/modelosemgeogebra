@@ -1,24 +1,7 @@
-   <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">function highlightCurrentPage() {
-    // Remove a classe 'active' de todas as páginas primeiro
-    document.querySelectorAll(".pagination .page").forEach(page => {
-        page.classList.remove("active");
-    });
-
-    // Força a página 3 a ser selecionada
-    const page3 = document.querySelector(`.pagination a[data-page="3"]`);
-    if (page3) {
-        page3.classList.add("active");
-    }
-
-    // Opcional: Sincroniza o slide com a página 3 (se aplicável)
-    const slideIndex = 2; // Página 3 corresponde ao slide 2 (índice 2)
-    if (slideIndex >= 0 && slideIndex < totalSlides) {
-        showSlide(slideIndex);
-    }
-}
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explorando a Matemática com GeoGebra</title>
     <style>
@@ -596,7 +579,9 @@
         </div>
 
  
-  <!DOCTYPE html>
+ 
+
+ <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -637,19 +622,15 @@
 </head>
 <body>
     <div class="pagination">
-        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page" data-page="1">1</a>
+        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page active" data-page="1">1</a>
         <a href="2.html" class="page" data-page="2">2</a>
         <a href="3.html" class="page" data-page="3">3</a>
         <a href="4.html" class="page" data-page="4">4</a>
-        <a href="5.html" class="page" data-page="5">5</a>
-        <span>...</span>
-        <a href="pagina358.html" class="page" data-page="358">358</a>
         <a href="#" onclick="nextPage()">Próximo</a>
     </div>
 
     <div id="slides">
-        <!-- Aqui você pode adicionar os slides (exemplo) -->
-        
+ 
     </div>
 
     <script>
@@ -668,24 +649,24 @@
 
         showSlide(0);
 
-        function highlightCurrentPage() {
-            // Remove a classe 'active' de todas as páginas primeiro
-            document.querySelectorAll(".pagination .page").forEach(page => {
-                page.classList.remove("active");
-            });
+ function highlightCurrentPage() {
+    // Remove a classe 'active' de todas as páginas primeiro
+    document.querySelectorAll(".pagination .page").forEach(page => {
+        page.classList.remove("active");
+    });
 
-            // Força a página 4 a ser selecionada
-            const page4 = document.querySelector(`.pagination a[data-page="4"]`);
-            if (page4) {
-                page4.classList.add("active");
-            }
+    // Força a página 3 a ser selecionada
+    const page4 = document.querySelector(`.pagination a[data-page="4"]`);
+    if (page4) {
+        page4.classList.add("active");
+    }
 
-            // Opcional: Sincroniza o slide com a página 4 (se aplicável)
-            const slideIndex = 3; // Página 4 corresponde ao slide 3 (índice 3)
-            if (slideIndex >= 0 && slideIndex < totalSlides) {
-                showSlide(slideIndex);
-            }
-        }
+    // Opcional: Sincroniza o slide com a página 3 (se aplicável)
+    const slideIndex = 3; // Página 3 corresponde ao slide 2 (índice 2)
+    if (slideIndex >= 0 && slideIndex < totalSlides) {
+        showSlide(slideIndex);
+    }
+}
 
         document.addEventListener("DOMContentLoaded", highlightCurrentPage);
 
