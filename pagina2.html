@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -18,15 +18,17 @@
             display: flex;
             align-items: center;
             background-color: #000;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
         }
-        .pagination a {
+        .pagination a, .pagination span {
             color: white;
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 6px 10px;
             margin: 2px;
             border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
         }
         .pagination a:hover {
             background-color: #333;
@@ -36,20 +38,49 @@
             color: black;
             font-weight: bold;
             border-radius: 4px;
-            padding: 8px 12px;
+            padding: 6px 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="pagination">
-        <a href="#" class="active">https://danielcnn.github.io/modelosemgeogebra/pagina.html</a>
-        <a href="#">https://danielcnn.github.io/modelosemgeogebra/pagina2.html</a>
-        <a href="#">3</a>
+        <a href="pagina.html" class="page" onclick="changePage(event, 1)">1</a>
+        <a href="pagina2.html" class="page" onclick="changePage(event, 2)">2</a>
+        <a href="pagina3.html" class="page" onclick="changePage(event, 3)">3</a>
+        <a href="pagina4.html" class="page" onclick="changePage(event, 4)">4</a>
+        <a href="pagina5.html" class="page" onclick="changePage(event, 5)">5</a>
         <span>...</span>
-        <a href="#">358</a>
-        <a href="#">Próximo</a>
+        <a href="pagina358.html" class="page" onclick="changePage(event, 358)">358</a>
+        <a href="#" onclick="nextPage()">Próximo</a>
     </div>
+
+    <script>
+        function changePage(event, pageNumber) {
+            event.preventDefault(); // Evita o recarregamento da página
+            
+            // Salva a página atual no localStorage
+            localStorage.setItem("currentPage", pageNumber);
+
+            // Redireciona para a nova página
+            window.location.href = event.target.href;
+        }
+
+        function highlightCurrentPage() {
+            let currentPage = localStorage.getItem("currentPage") || 1;
+            
+            document.querySelectorAll(".pagination .page").forEach(page => {
+                if (page.textContent.trim() == currentPage) {
+                    page.classList.add("active");
+                } else {
+                    page.classList.remove("active");
+                }
+            });
+        }
+
+        // Quando a página carregar, destacar a página atual
+        document.addEventListener("DOMContentLoaded", highlightCurrentPage);
+    </script>
 
 </body>
 </html>
