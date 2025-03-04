@@ -674,19 +674,18 @@
     document.querySelectorAll(".pagination .page").forEach(page => {
         page.classList.remove("active");
     });
+// Força a página 4 a ser selecionada
+            const page4 = document.querySelector(`.pagination a[data-page="4"]`);
+            if (page4) {
+                page4.classList.add("active");
+            }
 
-    // Força a página 4 a ser selecionada
-    const page4 = document.querySelector(`.pagination a[data-page="4"]`);
-    if (page4) {
-        page4.classList.add("active");
-    }
-
-    // Opcional: Sincroniza o slide com a página 4 (se aplicável)
-    const slideIndex = 3; // Página 3 corresponde ao slide 2 (índice 2)
-    if (slideIndex >= 0 && slideIndex < totalSlides) {
-        showSlide(slideIndex);
-    }
-}
+            // Opcional: Sincroniza o slide com a página 4 (se aplicável)
+            const slideIndex = 3; // Página 4 corresponde ao slide 3 (índice 3)
+            if (slideIndex >= 0 && slideIndex < totalSlides) {
+                showSlide(slideIndex);
+            }
+        }
 
         document.addEventListener("DOMContentLoaded", highlightCurrentPage);
 
@@ -701,3 +700,12 @@
     </script>
 </body>
 </html>
+   
+    
+    
+    
+    
+    
+    
+    
+     
