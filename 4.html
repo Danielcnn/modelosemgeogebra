@@ -596,9 +596,7 @@
         </div>
 
  
- 
-
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -639,7 +637,7 @@
 </head>
 <body>
     <div class="pagination">
-        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page active" data-page="1">1</a>
+        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page" data-page="1">1</a>
         <a href="2.html" class="page" data-page="2">2</a>
         <a href="3.html" class="page" data-page="3">3</a>
         <a href="4.html" class="page" data-page="4">4</a>
@@ -650,7 +648,12 @@
     </div>
 
     <div id="slides">
- 
+        <!-- Aqui você pode adicionar os slides (exemplo) -->
+        <div class="slide"><h2>Slide 1</h2><p>Conteúdo do slide 1.</p></div>
+        <div class="slide"><h2>Slide 2</h2><p>Conteúdo do slide 2.</p></div>
+        <div class="slide"><h2>Slide 3</h2><p>Conteúdo do slide 3.</p></div>
+        <div class="slide"><h2>Slide 4</h2><p>Conteúdo do slide 4.</p></div>
+        <!-- Adicione mais slides conforme necessário -->
     </div>
 
     <script>
@@ -669,12 +672,13 @@
 
         showSlide(0);
 
- function highlightCurrentPage() {
-    // Remove a classe 'active' de todas as páginas primeiro
-    document.querySelectorAll(".pagination .page").forEach(page => {
-        page.classList.remove("active");
-    });
-// Força a página 4 a ser selecionada
+        function highlightCurrentPage() {
+            // Remove a classe 'active' de todas as páginas primeiro
+            document.querySelectorAll(".pagination .page").forEach(page => {
+                page.classList.remove("active");
+            });
+
+            // Força a página 4 a ser selecionada
             const page4 = document.querySelector(`.pagination a[data-page="4"]`);
             if (page4) {
                 page4.classList.add("active");
@@ -700,12 +704,3 @@
     </script>
 </body>
 </html>
-   
-    
-    
-    
-    
-    
-    
-    
-     
