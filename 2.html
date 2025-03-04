@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -13,83 +13,33 @@
         }
 
         body {
-            background-color: #f0f0f0;
+            background-color: #e3e3e3;
             color: #333;
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(90deg, #0078D7, #005A9E);
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .menu-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .menu-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-
-        .menu-container {
-            position: fixed;
-            top: 60px;
-            left: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            display: none;
-            z-index: 1000;
-        }
-
-        .menu-section a {
-            display: block;
-            padding: 8px;
-            color: #0078D7;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .menu-section a:hover {
-            background: #dde9f7;
-            border-radius: 5px;
         }
 
         .container {
             max-width: 1200px;
-            margin: 80px auto 20px auto;
+            margin: 0 auto;
             padding: 20px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            flex: 1;
         }
 
         h1, h2 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
         }
 
         .carousel-container {
@@ -122,6 +72,7 @@
         .slide h2 {
             font-size: 1.3em;
             margin: 10px 0;
+            color: #333;
         }
 
         .link-button {
@@ -132,6 +83,7 @@
             text-decoration: none;
             border-radius: 5px;
             margin: 10px 0;
+            transition: background 0.3s;
         }
 
         .link-button:hover {
@@ -151,6 +103,7 @@
             margin: 0 5px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
         .nav-button:hover {
@@ -172,6 +125,7 @@
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
         }
 
         .applet-section {
@@ -180,9 +134,23 @@
             text-align: center;
         }
 
+        .applet-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
         .applet-description {
             text-align: justify;
             margin-bottom: 20px;
+        }
+
+        .applet-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border: 5px solid blue;
         }
 
         .pagination {
@@ -191,13 +159,13 @@
             align-items: center;
             margin: 20px 0;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .pagination a, .pagination span {
             color: #0078D7;
             text-decoration: none;
             padding: 8px 12px;
-            margin: 5px;
             border-radius: 5px;
             background: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -216,21 +184,14 @@
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <button class="menu-button" onclick="toggleMenu()">☰</button>
-        <span>Explorando a Matemática com GeoGebra</span>
-        <span>🔔</span>
-    </div>
-
-    <div class="menu-container" id="menuContainer">
-        <div class="menu-section">
-            <a href="https://danielcnn.github.io/modelosemgeogebra/sobre.html">📏 Sobre</a>
-        </div>
-    </div>
-
     <div class="container">
-        <h1>Biblioteca de Applets em GeoGebra</h1>
+        <h1>Explorando a Matemática com GeoGebra</h1>
 
+        <div class="description">
+            Nesta sessão, você encontrará uma série de applets interativos desenvolvidos com o GeoGebra, uma plataforma poderosa que combina matemática e tecnologia de forma dinâmica. Esses applets são recursos visuais que permitem explorar conceitos matemáticos de maneira intuitiva, facilitando o entendimento de tópicos complexos de forma prática e envolvente.
+        </div>
+
+        <h2>Biblioteca de Applets em GeoGebra</h2>
         <div class="carousel-container">
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Digite o título do slide...">
@@ -250,26 +211,48 @@
                     <img src="isolamento.jpg" alt="Ícone do GeoGebra">
                     <p><a class="link-button" href="https://www.geogebra.org/m/hx36bz7w" target="_blank" rel="noopener noreferrer">Acessar</a></p>
                 </div>
-                <!-- Adicione os outros slides conforme o original -->
+                <div class="slide">
+                    <h2>Teorema da média geométrica no triângulo retângulo</h2>
+                    <img src="s1.jpg" alt="Ícone do GeoGebra">
+                    <p><a class="link-button" href="https://www.geogebra.org/m/hpesnknk" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+                </div>
+                <!-- Adicione os outros slides conforme necessário -->
             </div>
         </div>
 
         <div class="applet-section">
-            <h2>Isolamento de Raízes</h2>
+            <div class="applet-title">Isolamento de Raízes</div>
             <div class="applet-description">
-                Este applet interativo, desenvolvido no GeoGebra, permite explorar o conceito de isolamento de raízes de funções matemáticas...
+                Este applet interativo, desenvolvido no GeoGebra, permite explorar o conceito de isolamento de raízes de funções matemáticas. Ele oferece uma visualização gráfica que auxilia na identificação dos intervalos onde as raízes de uma função estão localizadas, utilizando métodos numéricos e geométricos...
             </div>
-            <img src="461.jpg" alt="Ícone do GeoGebra" style="border: 5px solid blue;">
+            <img src="461.jpg" alt="Ícone do GeoGebra">
             <p><a class="link-button" href="https://www.geogebra.org/classroom/uvtwxyaj" target="_blank" rel="noopener noreferrer">Acessar</a></p>
         </div>
 
         <div class="applet-section">
-            <h2>Sistema de Equações</h2>
+            <div class="applet-title">Sistema de Equações</div>
             <div class="applet-description">
-                O applet "Sistema de Equações (exercício interativo)" é uma ferramenta interativa desenvolvida no GeoGebra...
+                O applet "Sistema de Equações (exercício interativo)" é uma ferramenta interativa desenvolvida no GeoGebra que visa auxiliar os usuários na compreensão e resolução de sistemas de equações lineares...
             </div>
-            <img src="45.jpg" alt="Ícone do GeoGebra" style="border: 5px solid blue;">
+            <img src="45.jpg" alt="Ícone do GeoGebra">
             <p><a class="link-button" href="https://www.geogebra.org/classroom/b7wdupsh" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+        <div class="applet-section">
+            <div class="applet-title">Método da Bissecção</div>
+            <div class="applet-description">
+                Este applet interativo no GeoGebra ilustra passo a passo o funcionamento do Método da Bisseção, permitindo ao usuário visualizar como o intervalo de busca é reduzido a cada iteração até se aproximar da raiz da equação fornecida.
+            </div>
+            <img src="47.jpg" alt="Ícone do GeoGebra">
+            <p><a class="link-button" href="https://www.geogebra.org/classroom/pbbyrs8v" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+        <div class="applet-section">
+            <div class="applet-title">Biblioteca de livros no Google Drive</div>
+            <div class="applet-description">
+                Este Google Drive reúne uma coleção selecionada de livros sobre matemática e geometria, abrangendo desde conceitos básicos até tópicos avançados...
+            </div>
+            <p><a class="link-button" href="https://drive.google.com/drive/folders/1pD4gdJBSD2t4B_67-3Q6vuP85J1nYTnC?usp=drive_link" target="_blank" rel="noopener noreferrer">Acessar</a></p>
         </div>
 
         <div class="pagination">
@@ -285,10 +268,9 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById('menuContainer');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
 
         let currentSlide = 0;
         const slides = document.getElementById('slides');
