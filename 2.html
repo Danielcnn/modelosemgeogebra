@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -313,24 +313,43 @@
         showSlide(0);
 
         function highlightCurrentPage() {
-            let currentURL = window.location.href;
-            if (currentURL.includes("pagina.html")) {
-                document.querySelector('.pagination a[data-page="1"]').classList.add("active");
-                return;
-            }
+            // Remove a classe 'active' de todas as páginas primeiro
             document.querySelectorAll(".pagination .page").forEach(page => {
-                if (currentURL.includes(page.getAttribute("href"))) {
-                    page.classList.add("active");
-                } else {
-                    page.classList.remove("active");
+                page.classList.remove("active");
+            });
+
+            // Obtém a URL atual
+            let currentURL = window.location.href;
+
+            // Define a página 1 como padrão inicialmente
+            let currentPage = "1";
+            
+            // Verifica qual página corresponde à URL atual
+            document.querySelectorAll(".pagination .page").forEach(page => {
+                const pageHref = page.getAttribute("href");
+                if (currentURL.includes(pageHref) && pageHref !== "") {
+                    currentPage = page.getAttribute("data-page");
                 }
             });
+
+            // Se a URL não contém nenhum href específico (página inicial), destaca a página 1
+            if (!currentURL.includes(".html") || currentURL.includes("modelosemgeogebra")) {
+                currentPage = "1";
+            }
+
+            // Aplica a classe 'active' apenas à página atual
+            document.querySelector(`.pagination a[data-page="${currentPage}"]`).classList.add("active");
         }
 
         document.addEventListener("DOMContentLoaded", highlightCurrentPage);
 
         function nextPage() {
-            // Implementar lógica de próxima página, se necessário
+            // Lógica simples para ir à próxima página (pode ser ajustada conforme necessário)
+            const currentActive = document.querySelector(".pagination .active");
+            const nextSibling = currentActive.nextElementSibling;
+            if (nextSibling && nextSibling.classList.contains("page")) {
+                window.location.href = nextSibling.getAttribute("href");
+            }
         }
     </script>
 </body>
