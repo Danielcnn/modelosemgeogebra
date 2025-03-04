@@ -580,30 +580,65 @@
         </div>
 
  
+ 
 
+ <!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paginação Exemplo</title>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin: 20px 0;
+        }
 
-<div class="pagination">
-    <a href="https://danielcnn.github.io/modelosemgeogebra" class="page" data-page="1">1</a>
-    <a href="2.html" class="page active" data-page="2">2</a>
-    <a href="3.html" class="page" data-page="3">3</a>
-    <a href="4.html" class="page" data-page="4">4</a>
-    <a href="5.html" class="page" data-page="5">5</a>
-    <span>...</span>
-    <a href="pagina358.html" class="page" data-page="358">358</a>
-    <a href="#" onclick="nextPage()">Próximo</a>
-</div>
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
 
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
 
+        .pagination a:hover {
+            background-color: #ddd;
+        }
 
+        .pagination span {
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pagination">
+        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page active" data-page="1">1</a>
+        <a href="2.html" class="page" data-page="2">2</a>
+        <a href="3.html" class="page" data-page="3">3</a>
+        <a href="4.html" class="page" data-page="4">4</a>
+        <a href="5.html" class="page" data-page="5">5</a>
+        <span>...</span>
+        <a href="pagina358.html" class="page" data-page="358">358</a>
+        <a href="#" onclick="nextPage()">Próximo</a>
+    </div>
 
-
-
-
-
-
-
-         
-        </div>
+    <div id="slides">
+        <!-- Aqui você pode adicionar os slides (exemplo) -->
+        <div class="slide"><h2>Slide 1</h2><p>Conteúdo do slide 1.</p></div>
+        <div class="slide"><h2>Slide 2</h2><p>Conteúdo do slide 2.</p></div>
+        <div class="slide"><h2>Slide 3</h2><p>Conteúdo do slide 3.</p></div>
+        <!-- Adicione mais slides conforme necessário -->
     </div>
 
     <script>
@@ -614,40 +649,11 @@
         let currentSlide = 0;
         const slides = document.getElementById('slides');
         const totalSlides = document.querySelectorAll('.slide').length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const searchInput = document.getElementById('searchInput');
-
-        function updateButtons() {
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === totalSlides - 1;
-        }
 
         function showSlide(index) {
             slides.style.transform = `translateX(-${index * 100}%)`;
             currentSlide = index;
-            updateButtons();
         }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) showSlide(currentSlide - 1);
-        }
-
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const slideElements = document.querySelectorAll('.slide');
-            for (let i = 0; i < slideElements.length; i++) {
-                const title = slideElements[i].querySelector('h2').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    showSlide(i);
-                    break;
-                }
-            }
-        });
 
         showSlide(0);
 
@@ -657,33 +663,23 @@
                 page.classList.remove("active");
             });
 
-            // Obtém a URL atual
-            let currentURL = window.location.href;
-
-            // Define a página 1 como padrão inicialmente
-            let currentPage = "1";
-            
-            // Verifica qual página corresponde à URL atual
-            document.querySelectorAll(".pagination .page").forEach(page => {
-                const pageHref = page.getAttribute("href");
-                if (currentURL.includes(pageHref) && pageHref !== "") {
-                    currentPage = page.getAttribute("data-page");
-                }
-            });
-
-            // Se a URL não contém nenhum href específico (página inicial), destaca a página 1
-            if (!currentURL.includes(".html") || currentURL.includes("modelosemgeogebra")) {
-                currentPage = "1";
+            // Força a página 2 a ser selecionada
+            const page2 = document.querySelector(`.pagination a[data-page="2"]`);
+            if (page2) {
+                page2.classList.add("active");
             }
 
-            // Aplica a classe 'active' apenas à página atual
-            document.querySelector(`.pagination a[data-page="${currentPage}"]`).classList.add("active");
+            // Opcional: Sincroniza o slide com a página 2 (se aplicável)
+            const slideIndex = 1; // Página 2 corresponde ao slide 1 (índice 1)
+            if (slideIndex >= 0 && slideIndex < totalSlides) {
+                showSlide(slideIndex);
+            }
         }
 
         document.addEventListener("DOMContentLoaded", highlightCurrentPage);
 
         function nextPage() {
-            // Lógica simples para ir à próxima página (pode ser ajustada conforme necessário)
+            // Lógica para ir à próxima página
             const currentActive = document.querySelector(".pagination .active");
             const nextSibling = currentActive.nextElementSibling;
             if (nextSibling && nextSibling.classList.contains("page")) {
