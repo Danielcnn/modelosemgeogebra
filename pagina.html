@@ -1,5 +1,3 @@
-
-
  <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -47,13 +45,13 @@
 <body>
 
     <div class="pagination">
-        <a href="#" class="page active" onclick="changePage(event, 1)">https://danielcnn.github.io/modelosemgeogebra/pagina.html</a>
-        <a href="#" class="page" onclick="changePage(event, 2)">https://danielcnn.github.io/modelosemgeogebra/pagina2.html</a>
-        <a href="#" class="page" onclick="changePage(event, 3)">https://danielcnn.github.io/modelosemgeogebra/pagina3.html</a>
-        <a href="#" class="page" onclick="changePage(event, 4)">4</a>
-        <a href="#" class="page" onclick="changePage(event, 5)">5</a>
+        <a href="pagina.html" class="page" onclick="changePage(event, 1)">1</a>
+        <a href="pagina2.html" class="page" onclick="changePage(event, 2)">2</a>
+        <a href="pagina3.html" class="page" onclick="changePage(event, 3)">3</a>
+        <a href="pagina4.html" class="page" onclick="changePage(event, 4)">4</a>
+        <a href="pagina5.html" class="page" onclick="changePage(event, 5)">5</a>
         <span>...</span>
-        <a href="#" class="page" onclick="changePage(event, 358)">358</a>
+        <a href="pagina358.html" class="page" onclick="changePage(event, 358)">358</a>
         <a href="#" onclick="nextPage()">Próximo</a>
     </div>
 
@@ -61,24 +59,27 @@
         function changePage(event, pageNumber) {
             event.preventDefault(); // Evita o recarregamento da página
             
-            // Remove a classe 'active' de todas as páginas
+            // Salva a página atual no localStorage
+            localStorage.setItem("currentPage", pageNumber);
+
+            // Redireciona para a nova página
+            window.location.href = event.target.href;
+        }
+
+        function highlightCurrentPage() {
+            let currentPage = localStorage.getItem("currentPage") || 1;
+            
             document.querySelectorAll(".pagination .page").forEach(page => {
-                page.classList.remove("active");
+                if (page.textContent.trim() == currentPage) {
+                    page.classList.add("active");
+                } else {
+                    page.classList.remove("active");
+                }
             });
-
-            // Adiciona a classe 'active' à página clicada
-            event.target.classList.add("active");
         }
 
-        function nextPage() {
-            let currentPage = document.querySelector(".pagination .active");
-            let nextPage = currentPage.nextElementSibling;
-
-            if (nextPage && nextPage.classList.contains("page")) {
-                currentPage.classList.remove("active");
-                nextPage.classList.add("active");
-            }
-        }
+        // Quando a página carregar, destacar a página atual
+        document.addEventListener("DOMContentLoaded", highlightCurrentPage);
     </script>
 
 </body>
