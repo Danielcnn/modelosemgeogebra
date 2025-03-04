@@ -1,0 +1,686 @@
+   <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorando a Matemática com GeoGebra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e3e3e3;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .carousel-container {
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #28a745;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .slide img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .slide h2 {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background 0.3s;
+        }
+
+        .link-button:hover {
+            background: #218838;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .nav-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #218838;
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        #searchInput {
+            width: 80%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .applet-section {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .applet-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .applet-description {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .applet-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border: 5px solid blue;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pagination a, .pagination span {
+            color: #0078D7;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination a:hover {
+            background: #0078D7;
+            color: white;
+        }
+
+        .pagination .active {
+            background: #0078D7;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1></h1>
+            <div class="applet-description">
+            
+            
+            </div>
+
+
+      
+
+        <h2>Biblioteca de Applets em GeoGebra</h2>
+
+  </body>
+</html>
+
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+
+<script>
+    window.onload = function() {
+        window.scrollTo(0, 0);
+    };
+</script>
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Applets GeoGebra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .carousel-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #28a745;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 10px; /* Reduzido para aproximar os botões */
+            padding-top: 10px; /* Adicionado para dar um espaço no topo */
+        }
+
+        #searchInput {
+            width: 80%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 10px; /* Espaço entre os botões e os slides */
+        }
+
+        .nav-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #218838;
+        }
+
+        .nav-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            color: #333;
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .slide p {
+            margin: 0;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .link-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Digite o título do slide...">
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" id="prevBtn" onclick="prevSlide()">Anterior</button>
+            <button class="nav-button" id="nextBtn" onclick="nextSlide()">Próximo</button>
+        </div>
+        <div class="slides" id="slides">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <h2>Gráfico de funções</h2>
+                <img src="esq.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/vgbrujn3" target="_blank" rel="noopener noreferrer">
+                        Acessar: Gráfico de funções
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Isolamento de raízes (e^x-sen(x)-2=0)</h2>
+                <img src="isolamento.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hx36bz7w" target="_blank" rel="noopener noreferrer">
+                        Acessar: Isolamento de raízes
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Teorema da média geométrica no triângulo retângulo</h2>
+                <img src="s1.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hpesnknk" target="_blank" rel="noopener noreferrer">
+                        Acessar: Teorema da média geométrica
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Equações Quadráticas (Quiz)</h2>
+                <img src="bel.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/ezcvvrug" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações Quadráticas (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Média aritmética (Quiz)</h2>
+                <img src="medias.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fmfqn5jy" target="_blank" rel="noopener noreferrer">
+                        Acessar: Média Aritmética (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Teorema de Pitágoras</h2>
+                <img src="tp.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/cjzzgvhh" target="_blank" rel="noopener noreferrer">
+                        Acessar: Teorema de Pitágoras (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 7 -->
+            <div class="slide">
+                <h2>Equações da reta</h2>
+                <img src="reta2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/tqk27ytw" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações da reta (Quiz)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 8 -->
+            <div class="slide">
+                <h2>Equações quadráticas</h2>
+                <img src="eq2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/hxw4hmuj" target="_blank" rel="noopener noreferrer">
+                        Acessar: Equações quadráticas (Gerando)
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 9 -->
+            <div class="slide">
+                <h2>A proporção perfeita φ - decágono</h2>
+                <img src="perfeita.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/amvmfk9q" target="_blank" rel="noopener noreferrer">
+                        Acessar: A proporção perfeita - decágono
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 10 -->
+            <div class="slide">
+                <h2>A proporção perfeita φ - pentágono e quadrado</h2>
+                <img src="s2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/py9b6qnw" target="_blank" rel="noopener noreferrer">
+                        Acessar: A proporção perfeita - pentagono e quadrado
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 11 -->
+            <div class="slide">
+                <h2>Método de Newton-Raphson</h2>
+                <img src="mtn.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/kvk2evpe" target="_blank" rel="noopener noreferrer">
+                        Acessar: Método de Newton-Raphson
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 12 -->
+            <div class="slide">
+                <h2>Relações métricas no triângulo retângulo</h2>
+                <img src="salvosim.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/vvmezyxz" target="_blank" rel="noopener noreferrer">
+                        Acessar: Relações métricas no triângulo retângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 13 -->
+            <div class="slide">
+                <h2>Método de Newton-Raphson (Gerando)</h2>
+                <img src="mna.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/rdjcybwj" target="_blank" rel="noopener noreferrer">
+                        Acessar: Método de Newton-Raphson
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 14 -->
+            <div class="slide">
+                <h2>O incentro e o triângulo</h2>
+                <img src="s3.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/jgmdexjt" target="_blank" rel="noopener noreferrer">
+                        Acessar: O incentro e o triângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 15 -->
+            <div class="slide">
+                <h2>Raio na Circunferência</h2>
+                <img src="raio1.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fxw28fjb" target="_blank" rel="noopener noreferrer">
+                        Acessar: Raio na circunferência
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 16 -->
+            <div class="slide">
+                <h2>O triângulo retângulo e a função seno</h2>
+                <img src="s44.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/gjgnd26t" target="_blank" rel="noopener noreferrer">
+                        Acessar: Triângulo retângulo e a função seno
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 17 -->
+            <div class="slide">
+                <h2>Lado do quadrado inscrito num triângulo</h2>
+                <img src="jan2.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/njv6zucx" target="_blank" rel="noopener noreferrer">
+                        Acessar: Lado do quadrado inscrito num triângulo
+                    </a>
+                </p>
+            </div>
+            <!-- Slide 18 -->
+            <div class="slide">
+                <h2>Integrais definidas</h2>
+                <img src="integrais3.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/fvmqtpcp" target="_blank" rel="noopener noreferrer">
+                        Acessar: Integrais definidas
+                    </a>
+                </p>
+            </p>
+            </div>
+
+
+ <!-- Slide 19 -->
+            <div class="slide">
+                <h2>Exemplo de Slide 19</h2>
+                <img src="exemplo19.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/exemplo19" target="_blank" rel="noopener noreferrer">
+                        Acessar: Exemplo de Slide 19
+                    </a>
+                </p>
+
+
+
+               </div>
+            <!-- Slide 19 -->
+            <div class="slide">
+                <h2>Exemplo de Slide 20</h2>
+                <img src="exemplo19.jpg" alt="Ícone do GeoGebra">
+                <p>
+                    <a class="link-button" href="https://www.geogebra.org/m/exemplo19" target="_blank" rel="noopener noreferrer">
+                        Acessar: Exemplo de Slide 19
+                    </a>
+                </p>
+
+             
+            </div>
+        </div>
+    </div>
+
+
+     
+
+        <div class="applet-section">
+            <div class="applet-title">Isolamento de Raízes</div>
+            <div class="applet-description">
+                Este applet interativo, desenvolvido no GeoGebra, permite explorar o conceito de isolamento de raízes de funções matemáticas. Ele oferece uma visualização gráfica que auxilia na identificação dos intervalos onde as raízes de uma função estão localizadas, utilizando métodos numéricos e geométricos...
+            </div>
+            <img src="461.jpg" alt="Ícone do GeoGebra">
+            <p><a class="link-button" href="https://www.geogebra.org/classroom/uvtwxyaj" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+        <div class="applet-section">
+            <div class="applet-title">Sistema de Equações</div>
+            <div class="applet-description">
+                O applet "Sistema de Equações (exercício interativo)" é uma ferramenta interativa desenvolvida no GeoGebra que visa auxiliar os usuários na compreensão e resolução de sistemas de equações lineares...
+            </div>
+            <img src="45.jpg" alt="Ícone do GeoGebra">
+            <p><a class="link-button" href="https://www.geogebra.org/classroom/b7wdupsh" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+        <div class="applet-section">
+            <div class="applet-title">Método da Bissecção</div>
+            <div class="applet-description">
+                Este applet interativo no GeoGebra ilustra passo a passo o funcionamento do Método da Bisseção, permitindo ao usuário visualizar como o intervalo de busca é reduzido a cada iteração até se aproximar da raiz da equação fornecida.
+            </div>
+            <img src="47.jpg" alt="Ícone do GeoGebra">
+            <p><a class="link-button" href="https://www.geogebra.org/classroom/pbbyrs8v" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+        <div class="applet-section">
+            <div class="applet-title">Biblioteca de livros no Google Drive</div>
+            <div class="applet-description">
+                Este Google Drive reúne uma coleção selecionada de livros sobre matemática e geometria, abrangendo desde conceitos básicos até tópicos avançados...
+            </div>
+            <p><a class="link-button" href="https://drive.google.com/drive/folders/1pD4gdJBSD2t4B_67-3Q6vuP85J1nYTnC?usp=drive_link" target="_blank" rel="noopener noreferrer">Acessar</a></p>
+        </div>
+
+ 
+ 
+
+ <!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paginação Exemplo</title>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+        .pagination span {
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pagination">
+        <a href="https://danielcnn.github.io/modelosemgeogebra" class="page active" data-page="1">1</a>
+        <a href="2.html" class="page" data-page="2">2</a>
+        <a href="3.html" class="page" data-page="3">3</a>
+        <a href="4.html" class="page" data-page="4">4</a>
+        <a href="5.html" class="page" data-page="5">5</a>
+        <span>...</span>
+        <a href="pagina358.html" class="page" data-page="358">358</a>
+        <a href="#" onclick="nextPage()">Próximo</a>
+    </div>
+
+    <div id="slides">
+ 
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+        }
+
+        showSlide(0);
+
+ function highlightCurrentPage() {
+    // Remove a classe 'active' de todas as páginas primeiro
+    document.querySelectorAll(".pagination .page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    // Força a página 3 a ser selecionada
+    const page3 = document.querySelector(`.pagination a[data-page="3"]`);
+    if (page3) {
+        page3.classList.add("active");
+    }
+
+    // Opcional: Sincroniza o slide com a página 3 (se aplicável)
+    const slideIndex = 2; // Página 3 corresponde ao slide 2 (índice 2)
+    if (slideIndex >= 0 && slideIndex < totalSlides) {
+        showSlide(slideIndex);
+    }
+}
+
+        document.addEventListener("DOMContentLoaded", highlightCurrentPage);
+
+        function nextPage() {
+            // Lógica para ir à próxima página
+            const currentActive = document.querySelector(".pagination .active");
+            const nextSibling = currentActive.nextElementSibling;
+            if (nextSibling && nextSibling.classList.contains("page")) {
+                window.location.href = nextSibling.getAttribute("href");
+            }
+        }
+    </script>
+</body>
+</html>
