@@ -1420,15 +1420,19 @@ Este Google Drive reúne uma coleção selecionada de livros sobre matemática e
             display: flex;
             align-items: center;
             background-color: #000;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
+            width: 50%;
+            max-width: 250px; /* Define um limite máximo para evitar que fique grande demais em telas maiores */
+            justify-content: space-between;
         }
-        .pagination a {
+        .pagination a, .pagination span {
             color: white;
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 6px 10px;
             margin: 2px;
             border-radius: 4px;
+            font-size: 14px;
         }
         .pagination a:hover {
             background-color: #333;
@@ -1438,7 +1442,7 @@ Este Google Drive reúne uma coleção selecionada de livros sobre matemática e
             color: black;
             font-weight: bold;
             border-radius: 4px;
-            padding: 8px 12px;
+            padding: 6px 10px;
         }
     </style>
 </head>
@@ -1455,6 +1459,7 @@ Este Google Drive reúne uma coleção selecionada de livros sobre matemática e
 
 </body>
 </html>
+
 
 
 
