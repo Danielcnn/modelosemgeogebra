@@ -828,7 +828,186 @@ As cinco primeiras iterações são:
 
   
 </p>
-            
+
+
+
+
+              </p>
+
+   </p>
+
+<div class="applet-description">
+ 
+</p>
+</div>         
+              <div class="applet-section" id="matlab-quadraticas">
+
+            <div class="applet-title">Matlab - Equações quadráticas</div>
+
+       
+            <div class="applet-description">
+   
+              <p>
+ (EXERCÍCIO 02)  Agoritmo em matlab, que resolve uma equação quadrática e traça o gráfico, destacando as raízes.
+              </p>
+                          <img src="quadra.png" alt="Ícone do GeoGebra">
+<p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método da Bisseção</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .code-container {
+            display: inline-block;
+            background-color: #282c34;
+            color: #ffffff;
+            padding: 15px;
+            border: 3px solid #00aaff;
+            border-radius: 8px;
+            text-align: left;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Algoritmo</h1>
+
+<div class="code-container">
+
+  function quadratic(a,b,c)
+
+  % Esta função resolve uma equação quadrática da forma ax^2 + bx + c = 0
+
+  % e traça o gráfico da função com as raízes destacadas.
+
+  % a, b e c são os coeficientes da equação quadrática.
+
+
+
+  % Calcula as raízes da equação quadrática
+
+  x1 = (-b + sqrt(b^2 - 4*a*c)) / (2*a);
+
+  x2 = (-b - sqrt(b^2 - 4*a*c)) / (2*a);
+
+
+
+  % Define o intervalo para traçar o gráfico
+
+  x = linspace(min(x1,x2)-1,max(x1,x2)+1);
+
+  y = a*x.^2 + b*x + c;
+
+
+
+  % Traça o gráfico da função
+
+  plot(x,y)
+
+  hold on
+
+
+
+  % Destaca as raízes no gráfico
+
+  plot(x1,0,'ro')
+
+  plot(x2,0,'ro')
+
+
+
+  % Adiciona título e rótulos aos eixos
+
+  title('Gráfico da Função Quadrática')
+
+  xlabel('x')
+
+  ylabel('y')
+
+end
+
+
+</div>
+
+</body>
+</html>
+
+    
+            <div class="applet-title">Execução do algoritmo</div>
+
+       
+            <div class="applet-description">
+   
+              <p>
+             <div class="applet-section">
+            <div class="applet-title"></div>
+            <div class="applet-description">
+Executar usando o comando: quadratic(1,-5,6);
+              
+              <p>
+
+
+    
+            <div class="applet-title">Resolução:</div>
+
+       
+            <div class="applet-description">
+   
+              <p>
+                
+                      <img src="" alt="Ícone do GeoGebra">
+
+ <div class="applet-section">
+            <div class="applet-title"></div>
+            <div class="applet-description">
+<p>
+xxxxxxxxxxx
+</p>
+    
+      
+
+              
+</p>   
+              <p>
+
+
+
+  
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
             </div>
  
         </div>
