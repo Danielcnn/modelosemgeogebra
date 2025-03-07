@@ -1012,9 +1012,9 @@ Executar usando o comando: quadratic(1,-5,6);
             <div class="applet-description">
    
               <p>
- (EXERCÍCIO 03)  Agoritmo em matlab, que resolve uma equação quadrática e traça o gráfico, destacando as raízes.
+ (EXERCÍCIO 03) Ao digitar uma equação na forma , @(x) x^3 - 3*x +1, no MATLAB, escolhendo um intervalo [0;1] onde estão presentes as raízes da equação obteremos as raízes aproximadas dessa equação de acordo com as iterações que escolhemos, e poderemos visualizar esse resultado graficamente.
               </p>
-                          <img src="nw.png" alt="Ícone do GeoGebra">
+                          <img src="" alt="Ícone do GeoGebra">
 <p>
 <!DOCTYPE html>
 <html lang="pt">
@@ -1049,59 +1049,80 @@ Executar usando o comando: quadratic(1,-5,6);
 <h1>Algoritmo</h1>
 
 <div class="code-container">
+% Pedir ao usuário que digite a equação
 
-  function quadratic(a,b,c)
-
-  % Esta função resolve uma equação quadrática da forma ax^2 + bx + c = 0
-
-  % e traça o gráfico da função com as raízes destacadas.
-
-  % a, b e c são os coeficientes da equação quadrática.
+equation = input('Digite a equação na forma @(x) f(x): ');
 
 
 
-  % Calcula as raízes da equação quadrática
+% Pedir ao usuário que digite o valor inicial
 
-  x1 = (-b + sqrt(b^2 - 4*a*c)) / (2*a);
-
-  x2 = (-b - sqrt(b^2 - 4*a*c)) / (2*a);
+x0 = input('Digite o valor inicial: ');
 
 
 
-  % Define o intervalo para traçar o gráfico
+% Definir o número máximo de iterações
 
-  x = linspace(min(x1,x2)-1,max(x1,x2)+1);
-
-  y = a*x.^2 + b*x + c;
+max_iter = 20;
 
 
 
-  % Traça o gráfico da função
+% Definir a tolerância desejada
 
-  plot(x,y)
-
-  hold on
+tolerance = 1e-6;
 
 
 
-  % Destaca as raízes no gráfico
+% Executar o método de Newton-Raphson
 
-  plot(x1,0,'ro')
+for i = 1:max_iter
 
-  plot(x2,0,'ro')
+    f = equation(x0);
 
+    df = (equation(x0 + tolerance) - equation(x0 - tolerance)) / (2 * tolerance);
 
+    x1 = x0 - f/df;
 
-  % Adiciona título e rótulos aos eixos
+    if abs(x1 - x0) < tolerance
 
-  title('Gráfico da Função Quadrática')
+        break
 
-  xlabel('x')
+    end
 
-  ylabel('y')
+    x0 = x1;
 
 end
 
+
+
+% Imprimir os resultados
+
+fprintf('A aproximação encontrada é %.6f.\nForam necessárias %d iterações.\n', x1, i);
+
+
+
+% Traçar o gráfico da equação
+
+figure;
+
+fplot(equation, [-10 10]);
+
+hold on;
+
+plot([x1 x1], ylim, 'r--');
+
+xlabel('x');
+
+ylabel('f(x)');
+
+title('Gráfico da Equação');
+
+
+
+% Adicionar legenda
+
+legend('Equação', 'Aproximação Encontrada');
+  
 
 </div>
 
@@ -1118,20 +1139,21 @@ end
              <div class="applet-section">
             <div class="applet-title"></div>
             <div class="applet-description">
-Executar usando o comando: quadratic(1,-5,6);
-              
+Obs: a equação digitada tem que ser na forma: 
+@(x) x^3 - 3*x +1
               <p>
 
 
     
             <div class="applet-title">Resolução:</div>
 
-       
+                                 <img src="nw.png" alt="Ícone do GeoGebra">
+
             <div class="applet-description">
    
               <p>
                 
-                      <img src="janela-w" alt="Ícone do GeoGebra">
+                      <img src="nwa.jpg" alt="Ícone do GeoGebra">
 
  <div class="applet-section">
             <div class="applet-title"></div>
