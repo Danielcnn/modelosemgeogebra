@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Raízes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Raízes</h2>
+        <label>Digite a função f(x): <input type="text" id="campo_funcao" value="x * x - 4"></label><br>
+        <label>Limite inferior (a): <input type="number" id="campo_a" value="-5"></label><br>
+        <label>Limite superior (b): <input type="number" id="campo_b" value="5"></label><br>
+        <button onclick="calcularRaizes()">Calcular</button>
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th>Iteração</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>Raiz (x)</th>
+                    <th>f(x)</th>
+                </tr>
+            </thead>
+            <tbody id="tabela_corpo"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function calcularRaizes() {
+            const funStr = document.getElementById("campo_funcao").value;
+            const a = parseFloat(document.getElementById("campo_a").value);
+            const b = parseFloat(document.getElementById("campo_b").value);
+            const tabelaCorpo = document.getElementById("tabela_corpo");
+
+            // Limpar tabela
+            tabelaCorpo.innerHTML = "";
+
+            // Converter string da função para função JavaScript
+            let f;
+            try {
+                f = new Function("x", "return " + funStr);
+                f(0); // Testar função
+            } catch (e) {
+                alert("Função inválida! Use formato como 'x * x - 4'");
+                return;
+            }
+
+            // Validar limites
+            if (a >= b) {
+                alert("O limite inferior deve ser menor que o superior!");
+                return;
+            }
+
+            // Encontrar raízes usando bissecção em subintervalos
+            const nPontos = 100;
+            const x = linspace(a, b, nPontos);
+            const fx = x.map(val => f(val));
+
+            for (let i = 0; i < x.length - 1; i++) {
+                if (fx[i] * fx[i + 1] < 0) { // Mudança de sinal
+                    bissecao(f, x[i], x[i + 1], tabelaCorpo);
+                }
+            }
+        }
+
+        function bissecao(f, a, b, tabelaCorpo) {
+            const tol = 1e-6;
+            const maxIter = 100;
+
+            for (let i = 1; i <= maxIter; i++) {
+                const c = (a + b) / 2;
+                const fc = f(c);
+
+                // Arredondar valores para 5 casas decimais
+                const aRounded = a.toFixed(5);
+                const bRounded = b.toFixed(5);
+                const cRounded = c.toFixed(5);
+                const fcRounded = fc.toFixed(5);
+
+                // Adicionar linha na tabela
+                const linha = document.createElement("tr");
+                linha.innerHTML = `
+                    <td>${i}</td>
+                    <td>${aRounded}</td>
+                    <td>${bRounded}</td>
+                    <td>${cRounded}</td>
+                    <td>${fcRounded}</td>
+                `;
+                tabelaCorpo.appendChild(linha);
+
+                // Critério de parada
+                if (Math.abs(fc) < tol || (b - a) / 2 < tol) {
+                    return;
+                }
+
+                // Atualizar intervalo
+                if (f(a) * fc < 0) {
+                    b = c;
+                } else {
+                    a = c;
+                }
+            }
+        }
+
+        // Função para criar array linear (equivalente a linspace do MATLAB)
+        function linspace(a, b, n) {
+            const step = (b - a) / (n - 1);
+            return Array.from({ length: n }, (_, i) => a + i * step);
+        }
+    </script>
+</body>
+</html>
