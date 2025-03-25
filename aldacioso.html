@@ -2,26 +2,79 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Área de Regiões Sombreadas na Circunferência Trigonométrica</title>
+    <title>Área de Regiões Sombreadas - Visualização Personalizada</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             max-width: 800px;
-            margin: auto;
+            width: 100%;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .input-group {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        input[type="range"] {
+            width: 300px;
+            -webkit-appearance: none;
+            background: #ddd;
+            border-radius: 5px;
+            height: 8px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #ff6f61;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
         canvas {
             display: block;
             margin: 20px auto;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
         }
-        .input-group {
-            margin: 10px 0;
+        #areaResult {
+            margin-top: 20px;
+            font-size: 18px;
         }
-        label {
-            margin-right: 10px;
+        .area-formula {
+            display: inline-block;
+            background: #ffeb3b;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
@@ -34,6 +87,7 @@
             <input type="range" id="thetaSlider" min="0" max="180" value="46.67" step="0.01">
             <span id="thetaValue">46.67</span>
         </div>
+        <div id="sketch-holder"></div>
         <div id="areaResult"></div>
     </div>
 
@@ -41,12 +95,14 @@
         let thetaSlider;
         let thetaValue;
         let areaResult;
+        let radius = 200; // Raio escalado (2 * 100)
 
         function setup() {
             let canvas = createCanvas(600, 600);
-            canvas.parent('container');
+            canvas.parent('sketch-holder');
             textAlign(CENTER, CENTER);
             textSize(16);
+            angleMode(DEGREES); // Usa graus para facilitar
 
             // Referências aos elementos HTML
             thetaSlider = document.getElementById('thetaSlider');
@@ -61,20 +117,19 @@
 
         function draw() {
             background(255);
-            translate(width / 2, height / 2); // Move a origem para o centro do canvas
-            scale(1, -1); // Inverte o eixo Y para que o ângulo 0 esteja na horizontal positiva
+            translate(width / 2, height / 2); // Move a origem para o centro
+            scale(1, -1); // Inverte o eixo Y
 
             // Desenha os eixos
-            stroke(0);
+            stroke(150);
             strokeWeight(1);
             line(-300, 0, 300, 0); // Eixo X
             line(0, -300, 0, 300); // Eixo Y
 
-            // Desenha a circunferência (raio 2, escalado para 200 pixels)
-            let radius = 200; // Raio escalado (2 * 100)
+            // Desenha a circunferência
             noFill();
-            stroke('red');
-            strokeWeight(2);
+            stroke(255, 99, 71); // Vermelho (tomato)
+            strokeWeight(4);
             ellipse(0, 0, radius * 2, radius * 2);
 
             // Obtém o ângulo theta do slider
@@ -82,40 +137,44 @@
             let thetaRad = radians(theta);
 
             // Calcula as coordenadas dos pontos
-            let pointE = { x: radius * cos(thetaRad), y: radius * sin(thetaRad) }; // Ponto E na circunferência
-            let pointD = { x: pointE.x, y: 0 }; // Ponto D (projeção de E no eixo X)
             let pointA = { x: 0, y: 0 }; // Origem
+            let pointE = { x: radius * cos(thetaRad), y: radius * sin(thetaRad) }; // Ponto E
+            let pointD = { x: pointE.x, y: 0 }; // Ponto D
 
-            // Desenha o triângulo GFA (que é o triângulo DEA no caso)
-            fill(0, 255, 0, 100); // Verde com transparência
+            // Desenha o triângulo GFA (DEA)
+            fill(50, 205, 50, 150); // Verde com transparência
             stroke(0);
             strokeWeight(1);
             beginShape();
-            vertex(pointA.x, pointA.y); // A (0,0)
-            vertex(pointD.x, pointD.y); // D
-            vertex(pointE.x, pointE.y); // E
+            vertex(pointA.x, pointA.y);
+            vertex(pointD.x, pointD.y);
+            vertex(pointE.x, pointE.y);
             endShape(CLOSE);
 
-            // Desenha os pontos e rótulos
+            // Desenha o ângulo theta
+            stroke(255, 99, 71);
+            strokeWeight(2);
+            noFill();
+            arc(0, 0, 50, 50, 0, theta);
+
+            // Adiciona rótulos aos pontos
             fill(0);
             noStroke();
             textSize(16);
             scale(1, -1); // Reverte a escala para o texto
-            text('A', pointA.x, pointA.y + 20);
-            text('D', pointD.x, pointD.y + 20);
-            text('E', pointE.x + 20, pointE.y);
-            scale(1, -1); // Volta a escala para os desenhos
-
-            // Desenha o ângulo theta
-            stroke('red');
-            strokeWeight(1);
-            noFill();
-            arc(0, 0, 50, 50, 0, thetaRad);
+            text('A', pointA.x - 20, pointA.y + 20);
+            text('D', pointD.x + 20, pointD.y + 20);
+            text('E', pointE.x + 30, pointE.y);
+            text(`θ = ${theta.toFixed(2)}°`, 70 * cos(theta / 2), -70 * sin(theta / 2));
+            scale(1, -1);
 
             // Calcula a área
-            let area = (Math.sin(thetaRad) * 2 * 2) / 8; // A = (sen(θ) * r^2) / 8, com r = 2
-            areaResult.innerHTML = `Área de GFA = ${(area).toFixed(2)}<br>` +
-                                  `A = sen(${theta.toFixed(2)}°) / 8 = ${(Math.sin(thetaRad) / 8).toFixed(2)}`;
+            let r = 2; // Raio real
+            let area = (Math.sin(thetaRad) * r * r) / 8;
+
+            // Exibe a área e a fórmula
+            areaResult.innerHTML = `<div>Área de GFA = ${area.toFixed(2)}</div>` +
+                                  `<div class="area-formula">A = sen(${theta.toFixed(2)}°) / 8 = ${(Math.sin(thetaRad) / 8).toFixed(2)}</div>`;
         }
     </script>
 </body>
