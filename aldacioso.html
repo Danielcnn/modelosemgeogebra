@@ -12,8 +12,9 @@
             text-align: center;
         }
         #ggb-container {
-            width: 100vw; /* 100% da largura da tela */
-            height: 90vh; /* 90% da altura da tela */
+            width: 90vw; /* Ocupa 90% da largura da tela */
+            height: 120vh; /* Aumenta o comprimento (altura) para 120% da tela */
+            max-height: 1000px; /* Garante que não fique exageradamente grande */
             margin: auto;
             border: 2px solid black;
         }
@@ -28,8 +29,8 @@
         var applet = new GGBApplet({
             "appName": "classic",
             "material_id": "dhuhzdjy",
-            "width": window.innerWidth,  // Largura total da tela
-            "height": window.innerHeight * 0.9,  // 90% da altura da tela
+            "width": window.innerWidth * 0.9,  // 90% da largura da tela
+            "height": Math.min(window.innerHeight * 1.2, 1000),  // 120% da altura da tela, mas no máximo 1000px
             "showToolBar": false,
             "showAlgebraInput": false,
             "showMenuBar": false,
@@ -47,8 +48,8 @@
             applet = new GGBApplet({
                 "appName": "classic",
                 "material_id": "dhuhzdjy",
-                "width": window.innerWidth,
-                "height": window.innerHeight * 0.9,
+                "width": window.innerWidth * 0.9,
+                "height": Math.min(window.innerHeight * 1.2, 1000),
                 "showToolBar": false,
                 "showAlgebraInput": false,
                 "showMenuBar": false,
