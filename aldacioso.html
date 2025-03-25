@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Área de Regiões Sombreadas na Circunferência Trigonométrica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            margin-right: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Área de Regiões Sombreadas na Circunferência Trigonométrica</h2>
+        <div class="input-group">
+            <label for="thetaSlider">Ângulo θ (graus):</label>
+            <input type="range" id="thetaSlider" min="0" max="180" value="46.67" step="0.01">
+            <span id="thetaValue">46.67</span>
+        </div>
+        <div id="areaResult"></div>
+    </div>
+
+    <script>
+        let thetaSlider;
+        let thetaValue;
+        let areaResult;
+
+        function setup() {
+            let canvas = createCanvas(600, 600);
+            canvas.parent('container');
+            textAlign(CENTER, CENTER);
+            textSize(16);
+
+            // Referências aos elementos HTML
+            thetaSlider = document.getElementById('thetaSlider');
+            thetaValue = document.getElementById('thetaValue');
+            areaResult = document.getElementById('areaResult');
+
+            // Atualiza o valor do ângulo em tempo real
+            thetaSlider.addEventListener('input', () => {
+                thetaValue.textContent = parseFloat(thetaSlider.value).toFixed(2);
+            });
+        }
+
+        function draw() {
+            background(255);
+            translate(width / 2, height / 2); // Move a origem para o centro do canvas
+            scale(1, -1); // Inverte o eixo Y para que o ângulo 0 esteja na horizontal positiva
+
+            // Desenha os eixos
+            stroke(0);
+            strokeWeight(1);
+            line(-300, 0, 300, 0); // Eixo X
+            line(0, -300, 0, 300); // Eixo Y
+
+            // Desenha a circunferência (raio 2, escalado para 200 pixels)
+            let radius = 200; // Raio escalado (2 * 100)
+            noFill();
+            stroke('red');
+            strokeWeight(2);
+            ellipse(0, 0, radius * 2, radius * 2);
+
+            // Obtém o ângulo theta do slider
+            let theta = parseFloat(thetaSlider.value);
+            let thetaRad = radians(theta);
+
+            // Calcula as coordenadas dos pontos
+            let pointE = { x: radius * cos(thetaRad), y: radius * sin(thetaRad) }; // Ponto E na circunferência
+            let pointD = { x: pointE.x, y: 0 }; // Ponto D (projeção de E no eixo X)
+            let pointA = { x: 0, y: 0 }; // Origem
+
+            // Desenha o triângulo GFA (que é o triângulo DEA no caso)
+            fill(0, 255, 0, 100); // Verde com transparência
+            stroke(0);
+            strokeWeight(1);
+            beginShape();
+            vertex(pointA.x, pointA.y); // A (0,0)
+            vertex(pointD.x, pointD.y); // D
+            vertex(pointE.x, pointE.y); // E
+            endShape(CLOSE);
+
+            // Desenha os pontos e rótulos
+            fill(0);
+            noStroke();
+            textSize(16);
+            scale(1, -1); // Reverte a escala para o texto
+            text('A', pointA.x, pointA.y + 20);
+            text('D', pointD.x, pointD.y + 20);
+            text('E', pointE.x + 20, pointE.y);
+            scale(1, -1); // Volta a escala para os desenhos
+
+            // Desenha o ângulo theta
+            stroke('red');
+            strokeWeight(1);
+            noFill();
+            arc(0, 0, 50, 50, 0, thetaRad);
+
+            // Calcula a área
+            let area = (Math.sin(thetaRad) * 2 * 2) / 8; // A = (sen(θ) * r^2) / 8, com r = 2
+            areaResult.innerHTML = `Área de GFA = ${(area).toFixed(2)}<br>` +
+                                  `A = sen(${theta.toFixed(2)}°) / 8 = ${(Math.sin(thetaRad) / 8).toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
