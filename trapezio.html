@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Regra do Trapézio - Integral Numérica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        canvas {
+            max-width: 600px;
+            height: 220px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Regra do Trapézio - Integral Numérica</h2>
+        
+        <div class="input-group">
+            <label>Função f(x):</label>
+            <input type="text" id="funcInput" value="Math.exp(-x * x)">
+        </div>
+
+        <div class="input-group">
+            <label>Limite superior (b):</label>
+            <input type="range" id="bSlider" min="-10" max="10" value="1" step="0.1">
+            <span id="bValue">1</span>
+        </div>
+
+        <div class="input-group">
+            <label>Limite inferior (a):</label>
+            <input type="range" id="aSlider" min="-10" max="10" value="0" step="0.1">
+            <span id="aValue">0</span>
+        </div>
+
+        <div class="input-group">
+            <label>Subintervalos (n):</label>
+            <input type="range" id="nSlider" min="1" max="100" value="10" step="1">
+            <span id="nValue">10</span>
+        </div>
+
+        <button onclick="calculateIntegral()">Calcular</button>
+
+        <canvas id="chartCanvas"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chartCanvas').getContext('2d');
+        let chart;
+
+        // Atualiza valores dos sliders em tempo real
+        ['aSlider', 'bSlider', 'nSlider'].forEach(id => {
+            const slider = document.getElementById(id);
+            const valueSpan = document.getElementById(id.replace('Slider', 'Value'));
+            slider.addEventListener('input', () => {
+                valueSpan.textContent = slider.value;
+            });
+        });
+
+        function calculateIntegral() {
+            // Obtendo valores da interface
+            const funcStr = document.getElementById('funcInput').value;
+            const a = parseFloat(document.getElementById('aSlider').value);
+            const b = parseFloat(document.getElementById('bSlider').value);
+            const n = parseInt(document.getElementById('nSlider').value);
+
+            // Criando função a partir da string
+            const f = x => eval(funcStr); // Atenção: eval é usado aqui por simplicidade, mas deve ser tratado com cuidado em produção
+
+            // Aplicando Regra do Trapézio
+            const h = (b - a) / n;
+            const x = Array.from({ length: n + 1 }, (_, i) => a + i * h);
+            const y = x.map(f);
+            const I = (h / 2) * (y[0] + 2 * y.slice(1, -1).reduce((sum, val) => sum + val, 0) + y[y.length - 1]);
+            const result = I.toFixed(5);
+
+            // Preparando dados para o gráfico
+            const xFine = Array.from({ length: 1000 }, (_, i) => a + i * (b - a) / 999);
+            const yFine = xFine.map(f);
+
+            // Dados dos trapézios
+            const trapezoids = [];
+            for (let i = 0; i < n; i++) {
+                trapezoids.push({
+                    x: [x[i], x[i + 1], x[i + 1], x[i]],
+                    y: [0, 0, y[i + 1], y[i]]
+                });
+            }
+
+            // Configurando o gráfico
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: `f(x) = ${funcStr}`,
+                            data: xFine.map((x, i) => ({ x, y: yFine[i] })),
+                            borderColor: 'blue',
+                            fill: false,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Trapézios',
+                            data: trapezoids.flatMap(t => t.x.map((x, i) => ({ x, y: t.y[i] }))),
+                            backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                            borderColor: 'black',
+                            fill: true,
+                            showLine: true,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: { type: 'linear', position: 'bottom' },
+                        y: { beginAtZero: false }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `∫[${a} to ${b}] ${funcStr} dx ≈ ${result}`
+                        }
+                    }
+                }
+            });
+        }
+
+        // Calcula inicialmente
+        calculateIntegral();
+    </script>
+</body>
+</html>
