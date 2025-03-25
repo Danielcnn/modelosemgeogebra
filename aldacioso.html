@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -6,33 +6,55 @@
     <title>GeoGebra Personalizado</title>
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
         #ggb-container {
-            width: 800px;
-            height: 500px;
-            border: 2px solid black;
+            width: 100vw; /* 100% da largura da tela */
+            height: 90vh; /* 90% da altura da tela */
             margin: auto;
+            border: 2px solid black;
         }
     </style>
 </head>
 <body>
 
-    <h2 style="text-align: center;">App GeoGebra Personalizado</h2>
+    <h2>App GeoGebra Personalizado</h2>
     <div id="ggb-container"></div>
 
     <script>
         var applet = new GGBApplet({
-            "appName": "classic",  // Tipo do applet (calculator, graphing, geometry, etc.)
-            "material_id": "dhuhzdjy",  // ID do seu applet no GeoGebra
-            "width": 800, 
-            "height": 500,
-            "showToolBar": false,  // Esconder barra de ferramentas
-            "showAlgebraInput": false,  // Esconder entrada algébrica
-            "showMenuBar": false,  // Esconder menu
-            "enableLabelDrags": true,  // Permite arrastar rótulos
-            "enableShiftDragZoom": true  // Permite zoom e movimento
+            "appName": "classic",
+            "material_id": "dhuhzdjy",
+            "width": window.innerWidth,  // Largura total da tela
+            "height": window.innerHeight * 0.9,  // 90% da altura da tela
+            "showToolBar": false,
+            "showAlgebraInput": false,
+            "showMenuBar": false,
+            "enableLabelDrags": true,
+            "enableShiftDragZoom": true
         }, true);
 
         window.addEventListener("load", function() {
+            applet.inject('ggb-container');
+        });
+
+        // Ajusta tamanho ao redimensionar a janela
+        window.addEventListener("resize", function() {
+            document.getElementById("ggb-container").innerHTML = ""; // Limpa applet antigo
+            applet = new GGBApplet({
+                "appName": "classic",
+                "material_id": "dhuhzdjy",
+                "width": window.innerWidth,
+                "height": window.innerHeight * 0.9,
+                "showToolBar": false,
+                "showAlgebraInput": false,
+                "showMenuBar": false,
+                "enableLabelDrags": true,
+                "enableShiftDragZoom": true
+            }, true);
             applet.inject('ggb-container');
         });
     </script>
