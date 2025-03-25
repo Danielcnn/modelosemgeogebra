@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regra do Trapézio - Integral Numérica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input[type="text"], input[type="range"] {
+            width: 400px;
+        }
+        input[type="range"] {
+            vertical-align: middle;
+        }
+        .output {
+            margin-left: 10px;
+            display: inline-block;
+            width: 50px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 220px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Regra do Trapézio - Integral Numérica</h2>
+        
+        <!-- Campo para inserir a função -->
+        <div class="input-group">
+            <label>Função f(x):</label>
+            <input type="text" id="funcInput" value="Math.exp(-x*x)">
+        </div>
+
+        <!-- Slider para limite superior (b) -->
+        <div class="input-group">
+            <label>Limite superior (b):</label>
+            <input type="range" id="bSlider" min="-10" max="10" step="0.01" value="1" oninput="updateSliderValue('b')">
+            <span class="output" id="bValue">1</span>
+        </div>
+
+        <!-- Slider para limite inferior (a) -->
+        <div class="input-group">
+            <label>Limite inferior (a):</label>
+            <input type="range" id="aSlider" min="-10" max="10" step="0.01" value="0" oninput="updateSliderValue('a')">
+            <span class="output" id="aValue">0</span>
+        </div>
+
+        <!-- Slider para número de subintervalos -->
+        <div class="input-group">
+            <label>Subintervalos (n):</label>
+            <input type="range" id="nSlider" min="1" max="100" step="1" value="10" oninput="updateSliderValue('n')">
+            <span class="output" id="nValue">10</span>
+        </div>
+
+        <!-- Botão para calcular -->
+        <button onclick="calculateIntegral()">Calcular</button>
+
+        <!-- Área para exibir o resultado -->
+        <div id="result"></div>
+
+        <!-- Canvas para o gráfico -->
+        <canvas id="chart"></canvas>
+    </div>
+
+    <!-- Incluindo Chart.js para o gráfico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let chart;
+
+        // Função para atualizar os valores dos sliders
+        function updateSliderValue(sliderId) {
+            const value = document.getElementById(sliderId + 'Slider').value;
+            document.getElementById(sliderId + 'Value').textContent = parseFloat(value).toFixed(2);
+        }
+
+        // Função principal para calcular a integral
+        function calculateIntegral() {
+            // Obtendo valores da interface
+            const funcStr = document.getElementById('funcInput').value;
+            const a = parseFloat(document.getElementById('aSlider').value);
+            const b = parseFloat(document.getElementById('bSlider').value);
+            const n = parseInt(document.getElementById('nSlider').value);
+
+            // Criando função a partir da string
+            const f = new Function('x', `return ${funcStr};`);
+
+            // Regra do Trapézio
+            const h = (b - a) / n;
+            const x = Array.from({ length: n + 1 }, (_, i) => a + i * h);
+            const y = x.map(f);
+            let I = (h / 2) * (y[0] + 2 * y.slice(1, -1).reduce((sum, val) => sum + val, 0) + y[y.length - 1]);
+            I = I.toFixed(5);
+
+            // Exibir resultado
+            document.getElementById('result').textContent = `∫[${a.toFixed(2)},${b.toFixed(2)}] ${funcStr} dx ≈ ${I}`;
+
+            // Plotando gráfico
+            plotGraph(f, a, b, x, y, n);
+        }
+
+        // Função para plotar o gráfico
+        function plotGraph(f, a, b, xTrap, yTrap, n) {
+            const ctx = document.getElementById('chart').getContext('2d');
+
+            // Dados para a função original (curva suave)
+            const xFine = Array.from({ length: 1000 }, (_, i) => a + (b - a) * i / 999);
+            const yFine = xFine.map(f);
+
+            // Dados para os trapézios
+            const trapezoidData = [];
+            for (let i = 0; i < n; i++) {
+                trapezoidData.push({
+                    x: [xTrap[i], xTrap[i], xTrap[i + 1], xTrap[i + 1]],
+                    y: [0, yTrap[i], yTrap[i + 1], 0],
+                    mode: 'lines',
+                    fill: 'toself',
+                    fillcolor: 'rgba(255, 0, 0, 0.3)',
+                    line: { color: 'black' }
+                });
+            }
+
+            // Destruir gráfico anterior, se existir
+            if (chart) chart.destroy();
+
+            // Criar novo gráfico com Chart.js
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Função Original',
+                            data: xFine.map((x, i) => ({ x, y: yFine[i] })),
+                            borderColor: 'blue',
+                            fill: false,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Trapézios',
+                            data: [],
+                            backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                            borderColor: 'black',
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: { title: { display: true, text: 'x' } },
+                        y: { title: { display: true, text: 'f(x)' } }
+                    },
+                    plugins: {
+                        title: { display: false }
+                    }
+                }
+            });
+
+            // Adicionar trapézios manualmente (Chart.js não suporta preenchimento diretamente)
+            for (let i = 0; i < n; i++) {
+                chart.data.datasets[1].data.push(
+                    { x: xTrap[i], y: 0 },
+                    { x: xTrap[i], y: yTrap[i] },
+                    { x: xTrap[i + 1], y: yTrap[i + 1] },
+                    { x: xTrap[i + 1], y: 0 }
+                );
+            }
+            chart.update();
+        }
+    </script>
+</body>
+</html>
