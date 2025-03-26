@@ -1,1 +1,41 @@
 
+error = Math.abs(xNew - x);
+                    iter++;
+                    x = xNew;
+                    
+                    tableHTML += `
+                        <tr>
+                            <td>${iter}</td>
+                            <td>${x.toFixed(6)}</td>
+                            <td>${error.toFixed(6)}</td>
+                        </tr>
+                    `;
+                    
+                    if (!isFinite(x)) {
+                        throw new Error('Divergência detectada!');
+                    }
+                }
+                
+                tableHTML += </table>;
+                document.getElementById('iteration-table').innerHTML = tableHTML;
+                
+                // Mostrar resultado final
+                let resultHTML;
+                if (error <= tolerance) {
+                    resultHTML = <p class="success">Convergência para x = ${x.toFixed(6)} após ${iter} iterações.</p>;
+                } else {
+                    resultHTML = <p class="error">Não convergiu em ${maxIter} iterações (Erro final: ${error.toFixed(6)}).</p>;
+                }
+                
+                resultHTML += <p>Função utilizada: g(x) = ${gStr}</p>;
+                document.getElementById('final-result').innerHTML = resultHTML;
+                document.getElementById('results').style.display = 'block';
+                
+            } catch (e) {
+                alert(Erro: ${e.message});
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+</html>
