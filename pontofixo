@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método do Ponto Fixo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Método do Ponto Fixo</h1>
+    
+    <div class="container">
+        <div class="input-group">
+            <label for="f-function">Função f(x):</label>
+            <input type="text" id="f-function" placeholder="Ex: x^2 - 4 ou cos(x)">
+        </div>
+        
+        <div class="input-group">
+            <label>Escolha da função g(x):</label>
+            <select id="g-choice">
+                <option value="auto">Sugestão automática</option>
+                <option value="custom">Digitar minha própria função</option>
+            </select>
+        </div>
+        
+        <div class="input-group" id="custom-g-container" style="display: none;">
+            <label for="custom-g">Sua função g(x):</label>
+            <input type="text" id="custom-g" placeholder="Ex: x + cos(x)">
+        </div>
+        
+        <div class="input-group">
+            <label for="x0">Chute inicial (x0):</label>
+            <input type="number" id="x0" step="any" value="1.0">
+        </div>
+        
+        <div class="input-group">
+            <label for="tolerance">Tolerância:</label>
+            <input type="number" id="tolerance" step="any" value="0.000001">
+        </div>
+        
+        <div class="input-group">
+            <label for="max-iter">Máximo de iterações:</label>
+            <input type="number" id="max-iter" value="50">
+        </div>
+        
+        <button id="calculate">Calcular</button>
+    </div>
+    
+    <div id="suggestions-container" style="display: none; margin-top: 20px;">
+        <h3>Sugestões de g(x):</h3>
+        <div id="suggestions"></div>
+        <div class="input-group">
+            <label for="g-option">Escolha uma opção (1, 2 ou 3):</label>
+            <input type="number" id="g-option" min="1" max="3" value="1">
+        </div>
+        <button id="use-suggestion">Usar esta sugestão</button>
+    </div>
+    
+    <div id="results" style="display: none;">
+        <h2>Resultados</h2>
+        <div id="iteration-table"></div>
+        <div id="final-result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('g-choice').addEventListener('change', function() {
+            const customGContainer = document.getElementById('custom-g-container');
+            customGContainer.style.display = this.value === 'custom' ? 'block' : 'none';
+        });
+        
+        document.getElementById('calculate').addEventListener('click', function() {
+            const fStr = document.getElementById('f-function').value.trim();
+            const gChoice = document.getElementById('g-choice').value;
+            const x0 = parseFloat(document.getElementById('x0').value);
+            const tolerance = parseFloat(document.getElementById('tolerance').value);
+            const maxIter = parseInt(document.getElementById('max-iter').value);
+            
+            if (!fStr) {
+                alert('Por favor, digite a função f(x)');
+                return;
+            }
+            
+            if (gChoice === 'custom') {
+                const customG = document.getElementById('custom-g').value.trim();
+                if (!customG) {
+                    alert('Por favor, digite a função g(x)');
+                    return;
+                }
+                runMethod(fStr, customG, x0, tolerance, maxIter);
+            } else {
+                showSuggestions(fStr, x0, tolerance, maxIter);
+            }
+        });
+        
+        function showSuggestions(fStr, x0, tolerance, maxIter) {
+            // Gerar sugestões
+            const g1 = `x - 0.1*(${fStr})`;
+            const g2 = `x + (${fStr})`;
+            
+            let g3;
+            if (fStr.includes('cos')) {
+                g3 = 'x + cos(x)';
+            } else if (fStr.includes('x^2')) {
+                g3 = '(x + (4/x))/2';
+            } else {
+                g3 = `(x + (${fStr.replace('x^2', '0')})/x)/2`;
+            }
+            
+            // Mostrar sugestões
+            document.getElementById('suggestions').innerHTML = `
+                <p><strong>1)</strong> g(x) = ${g1}</p>
+                <p><strong>2)</strong> g(x) = ${g2}</p>
+                <p><strong>3)</strong> g(x) = ${g3}</p>
+            `;
+            
+            document.getElementById('suggestions-container').style.display = 'block';
+            
+            // Configurar botão para usar sugestão
+            document.getElementById('use-suggestion').onclick = function() {
+                const option = parseInt(document.getElementById('g-option').value);
+                let selectedG;
+                
+                switch(option) {
+                    case 1: selectedG = g1; break;
+                    case 2: selectedG = g2; break;
+                    case 3: selectedG = g3; break;
+                    default:
+                        alert('Opção inválida. Escolha 1, 2 ou 3.');
+                        return;
+                }
+                
+                runMethod(fStr, selectedG, x0, tolerance, maxIter);
+                document.getElementById('suggestions-container').style.display = 'none';
+            };
+        }
+        
+        function runMethod(fStr, gStr, x0, tolerance, maxIter) {
+            try {
+                // Criar as funções
+                const f = new Function('x', `return ${fStr.replace(/x/g, '(x)')};`);
+                const g = new Function('x', `return ${gStr.replace(/x/g, '(x)')};`);
+                
+                // Inicializar variáveis
+                let x = x0;
+                let iter = 0;
+                let error = Infinity;
+                let tableHTML = `
+                    <table>
+                        <tr>
+                            <th>Iteração</th>
+                            <th>x_n</th>
+                            <th>Erro</th>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>${x.toFixed(6)}</td>
+                            <td>-</td>
+                        </tr>
+                `;
+                
+                // Loop de iterações
+                while (error > tolerance && iter < maxIter) {
+                    const xNew = g(x);
+                    error = Math.abs(xNew - x);
+                    iter++;
+                    x = xNew;
+                    
+                    tableHTML += `
+                        <tr>
+                            <td>${iter}</td>
+                            <td>${x.toFixed(6)}</td>
+                            <td>${error.toFixed(6)}</td>
+                        </tr>
+                    `;
+                    
+                    if (!isFinite(x)) {
+                        throw new Error('Divergência detectada!');
+                    }
+                }
+                
+                tableHTML += `</table>`;
+                document.getElementById('iteration-table').innerHTML = tableHTML;
+                
+                // Mostrar resultado final
+                let resultHTML;
+                if (error <= tolerance) {
+                    resultHTML = `<p class="success">Convergência para x = ${x.toFixed(6)} após ${iter} iterações.</p>`;
+                } else {
+                    resultHTML = `<p class="error">Não convergiu em ${maxIter} iterações (Erro final: ${error.toFixed(6)}).</p>`;
+                }
+                
+                resultHTML += `<p>Função utilizada: g(x) = ${gStr}</p>`;
+                document.getElementById('final-result').innerHTML = resultHTML;
+                document.getElementById('results').style.display = 'block';
+                
+            } catch (e) {
+                alert(`Erro: ${e.message}`);
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+</html>
