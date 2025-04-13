@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Método do Ponto Fixo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #004080;
+      color: white;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .final {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Método do Ponto Fixo – Iterações</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Iteração</th>
+        <th>x<sub>n</sub></th>
+        <th>x<sub>n+1</sub> = cos(x<sub>n</sub>)</th>
+        <th>|x<sub>n+1</sub> - x<sub>n</sub>|</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0</td><td>0.50000</td><td>0.87758</td><td>0.37758</td></tr>
+      <tr><td>1</td><td>0.87758</td><td>0.63901</td><td>0.23857</td></tr>
+      <tr><td>2</td><td>0.63901</td><td>0.80269</td><td>0.16367</td></tr>
+      <tr><td>3</td><td>0.80269</td><td>0.69478</td><td>0.10791</td></tr>
+      <tr><td>4</td><td>0.69478</td><td>0.76820</td><td>0.07342</td></tr>
+      <tr><td>5</td><td>0.76820</td><td>0.71917</td><td>0.04903</td></tr>
+      <tr><td>6</td><td>0.71917</td><td>0.75236</td><td>0.03319</td></tr>
+      <tr><td>7</td><td>0.75236</td><td>0.73008</td><td>0.02227</td></tr>
+      <tr><td>8</td><td>0.73008</td><td>0.74512</td><td>0.01504</td></tr>
+      <tr><td>9</td><td>0.74512</td><td>0.73501</td><td>0.01011</td></tr>
+      <tr><td>10</td><td>0.73501</td><td>0.74183</td><td>0.00682</td></tr>
+      <tr><td>11</td><td>0.74183</td><td>0.73724</td><td>0.00459</td></tr>
+      <tr><td>12</td><td>0.73724</td><td>0.74033</td><td>0.00309</td></tr>
+      <tr><td>13</td><td>0.74033</td><td>0.73825</td><td>0.00208</td></tr>
+      <tr><td>14</td><td>0.73825</td><td>0.73965</td><td>0.00140</td></tr>
+      <tr><td>15</td><td>0.73965</td><td>0.73870</td><td>0.00095</td></tr>
+      <tr><td>16</td><td>0.73870</td><td>0.73934</td><td>0.00064</td></tr>
+      <tr><td>17</td><td>0.73934</td><td>0.73891</td><td>0.00043</td></tr>
+      <tr><td>18</td><td>0.73891</td><td>0.73920</td><td>0.00029</td></tr>
+      <tr><td>19</td><td>0.73920</td><td>0.73901</td><td>0.00019</td></tr>
+      <tr><td>20</td><td>0.73901</td><td>0.73914</td><td>0.00013</td></tr>
+      <tr><td>21</td><td>0.73914</td><td>0.73905</td><td>0.00009</td></tr>
+      <tr><td>22</td><td>0.73905</td><td>0.73911</td><td>0.00006</td></tr>
+      <tr><td>23</td><td>0.73911</td><td>0.73907</td><td>0.00004</td></tr>
+      <tr><td>24</td><td>0.73907</td><td>0.73910</td><td>0.00003</td></tr>
+      <tr><td>25</td><td>0.73910</td><td>0.73908</td><td>0.00002</td></tr>
+      <tr><td>26</td><td>0.73908</td><td>0.73909</td><td>0.00001</td></tr>
+      <tr class="final"><td>27</td><td>0.73909</td><td>0.73908</td><td>0.00001 ✅</td></tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
