@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Método da Bisseção</title>
+<style>
+    body { font-family: Arial; margin: 20px; }
+    input { margin: 5px; padding: 5px; width: 200px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    table { margin-top: 20px; border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #000; padding: 6px; text-align: center; }
+    th { background-color: #eee; }
+</style>
+</head>
+<body>
+
+<h2>Método da Bisseção</h2>
+
+<label>Função f(x):</label><br>
+<input id="funcao" placeholder="ex.: x**3 - 4*x + 1"><br>
+
+<label>Intervalo a:</label><br>
+<input id="a" type="number"><br>
+
+<label>Intervalo b:</label><br>
+<input id="b" type="number"><br>
+
+<button onclick="executar()">Calcular</button>
+
+<div id="saida"></div>
+
+<script>
+function executar() {
+    const f_str = document.getElementById('funcao').value;
+    const a0 = parseFloat(document.getElementById('a').value);
+    const b0 = parseFloat(document.getElementById('b').value);
+
+    // Criar função
+    let f;
+    try {
+        f = new Function("x", "return " + f_str + ";");
+        f(1); // teste mínimo
+    } catch (e) {
+        document.getElementById('saida').innerHTML = "<p style='color:red'>Função inválida.</p>";
+        return;
+    }
+
+    let a = a0, b = b0;
+    let fa = f(a), fb = f(b);
+
+    if (fa * fb > 0) {
+        document.getElementById('saida').innerHTML = "<p style='color:red'>A função não muda de sinal no intervalo.</p>";
+        return;
+    }
+
+    let tol = 1e-6;
+    let maxIter = 50;
+    let tabela = [];
+
+    for (let i = 1; i <= maxIter; i++) {
+        let m = (a + b) / 2;
+        let fm = f(m);
+
+        tabela.push([i, a, b, m, fm]);
+
+        if (Math.abs(fm) < tol || Math.abs(b - a) < tol) break;
+
+        if (fa * fm < 0) {
+            b = m;
+            fb = fm;
+        } else {
+            a = m;
+            fa = fm;
+        }
+    }
+
+    // Gerar tabela HTML
+    let html = "<table><tr><th>Iter</th><th>a</th><th>b</th><th>m</th><th>f(m)</th></tr>";
+    tabela.forEach(l => {
+        html += `<tr>
+                    <td>${l[0]}</td>
+                    <td>${l[1].toFixed(6)}</td>
+                    <td>${l[2].toFixed(6)}</td>
+                    <td>${l[3].toFixed(6)}</td>
+                    <td>${l[4].toExponential(6)}</td>
+                 </tr>`;
+    });
+    html += "</table>";
+
+    document.getElementById('saida').innerHTML = html;
+}
+</script>
+
+</body>
+</html>
