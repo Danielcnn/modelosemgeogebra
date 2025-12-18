@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas</title>
+    <style>
+        /* Estilos básicos para centralizar a imagem e melhorar a apresentação */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .link-image {
+            max-width: 100%; /* Garante que a imagem seja responsiva */
+            height: auto;
+            border: 5px solid #007BFF; /* Borda para destacar que é um link */
+            border-radius: 8px; /* Cantos arredondados */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .link-image:hover {
+            transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Classe para o contêiner do link, para garantir o efeito hover na imagem */
+        .image-container {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 Clique na Imagem e Conheça o Produto!</h1>
+
+    <div class="image-container">
+        <a href="https://go.hotmart.com/C103393246J?dp=1" target="_blank" title="Desafios Geometria">
+            <img src="1000105700.jpg" alt="Capa do livro Desafios Geometria" class="link-image">
+        </a>
+    </div>
+    
+    <p>O link será aberto em uma nova aba.</p>
+
+</body>
+</html>
