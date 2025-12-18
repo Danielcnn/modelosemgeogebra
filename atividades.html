@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebooks para Aprender Geogebra</title>
+    <style>
+        /* Estilos Globais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Título Principal da Página */
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        /* Container Principal do Produto */
+        .product-container {
+            max-width: 900px; /* Largura máxima do conteúdo */
+            margin: 0 auto; /* Centraliza o container */
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Layout de Duas Colunas (Imagem + Texto) usando Flexbox */
+        .product-content {
+            display: flex;
+            gap: 20px; /* Espaçamento entre a imagem e o texto */
+            align-items: flex-start; /* Alinha o conteúdo ao topo */
+        }
+
+        /* Estilo da Imagem */
+        .product-image {
+            flex-shrink: 0; /* Impede que a imagem encolha */
+            width: 250px; /* Largura fixa para a imagem */
+            max-width: 40%;
+            height: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        /* Estilo do Bloco de Texto */
+        .product-text {
+            flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+        }
+
+        /* Título do Produto (dentro do bloco de texto) */
+        .product-text h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff; /* Cor para destacar o título */
+        }
+
+        /* Estilo do Botão */
+        .product-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            color: #333; /* Cor do texto do botão */
+            background-color: #ffffff; /* Fundo branco, como no exemplo */
+            border: 1px solid #333; /* Borda preta/cinza, como no exemplo */
+            border-radius: 20px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .product-button:hover {
+            background-color: #f0f0f0;
+            border-color: #000;
+        }
+
+        /* Media Query para telas menores (Responsividade) */
+        @media (max-width: 600px) {
+            .product-content {
+                flex-direction: column; /* Coloca a imagem e o texto em pilha */
+                align-items: center;
+            }
+
+            .product-image {
+                width: 70%; /* Imagem maior em telas pequenas */
+                max-width: 300px;
+            }
+
+            .product-text h2 {
+                text-align: center;
+            }
+
+            .product-text {
+                text-align: justify;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="page-title">Atividades em pdf</h1>
+
+    <div class="product-container">
+        <div class="product-content">
+            
+            <img 
+                src="atividade001.jpg" 
+                alt="" 
+                class="product-image"
+            >
+
+            <div class="product-text">
+                <h2>Parábola</h2>
+                
+                
+                    <p class="texto-justificado">
+                    Exercício resolvido sobre parábola.
+                </p>
+
+                <p class="texto-justificado">
+                   
+                </p>
+
+                <a 
+                    href="https://drive.google.com/file/d/14K-0DDGXfb1Pdq_EyAVgq0XwodpJ4mAU/view" 
+                    class="product-button" 
+                    target="_blank"
+                >
+                    Página do produto
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+ 
+
+
+
+
+
+    
+    
+    
+</html>
