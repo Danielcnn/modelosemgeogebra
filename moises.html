@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<title>Snow Slide</title>
+
+<style>
+
+html, body {
+
+  margin: 0;
+
+  padding: 0;
+
+  background: #eef6fb;
+
+  overflow: hidden;
+
+  font-family: 'Segoe UI', Arial, sans-serif;
+
+}
+
+canvas { display: block; }/* ===== MENU ===== */ #menu { position: fixed; inset: 0; background: linear-gradient(#f7fbff, #e3f0fa); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; } #menu h1 { font-size: 40px; margin: 0; } #menu p { opacity: 0.7; margin-bottom: 20px; } #start { padding: 14px 42px; font-size: 18px; border: none; border-radius: 30px; background: linear-gradient(#4facfe, #00c6ff); color: #fff; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+
+#skins { display: flex; gap: 14px; margin: 18px 0; } .skin { width: 54px; height: 54px; border-radius: 50%; border: 3px solid #ccc; box-shadow: inset 0 4px 8px rgba(255,255,255,0.7); } .skin.selected { border-color: #3498db; } .skin.locked { opacity: 0.3; }
+
+/* ===== UI ===== */ #ui { position: fixed; top: 14px; left: 14px; padding: 8px 14px; background: rgba(255,255,255,0.85); border-radius: 14px; font-weight: 600; }
+
+/* ===== CONTROLES ===== */ #controls { position: fixed; bottom: 18px; width: 100%; display: flex; justify-content: space-between; padding: 0 28px; } .btn { width: 84px; height: 84px; background: linear-gradient(#ffffff, #dfefff); border-radius: 50%; font-size: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px rgba(0,0,0,0.18); } </style>
+
+</head>
+
+<body>
+
+<canvas id="game"></canvas><div id="menu">
+
+  <h1>❄️ Snow Slide</h1>
+
+  <p>Deslize • Desvie • Evolua</p>
+
+  <div id="skins"></div>
+
+  <button id="start">JOGAR</button>
+
+</div><div id="ui">Score: <span id="score">0</span></div>
+
+<div id="controls">
+
+  <div class="btn" id="left">◀</div>
+
+  <div class="btn" id="right">▶</div>
+
+</div><script>
+
+const canvas = document.getElementById('game');
+
+const ctx = canvas.getContext('2d');
+
+function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+
+resize(); addEventListener('resize', resize);
+
+/* ===== SKINS ===== */
+
+const skins=[
+
+  {c:'#ffffff',u:true},
+
+  {c:'#e0f7ff',u:true},
+
+  {c:'#cfe9ff',u:true},
+
+  {c:'#f1c40f',u:false,need:1000}
+
+];
+
+let skin=0;
+
+const skinsDiv=document.getElementById('skins');
+
+function drawSkins(){
+
+  skinsDiv.innerHTML='';
+
+  skins.forEach((s,i)=>{
+
+    const d=document.createElement('div');
+
+    d.className='skin'+(i===skin?' selected':'')+(s.u?'':' locked');
+
+    d.style.background=s.c;
+
+    d.onclick=()=>{ if(s.u){ skin=i; drawSkins(); }};
+
+    skinsDiv.appendChild(d);
+
+  });
+
+}
+
+drawSkins();
+
+/* ===== GAME ===== */
+
+const p={x:0,y:0,r:26,vx:0,acc:0.38,fr:0.965,max:6};
+
+let obs=[],pow=[];
+
+let score=0,run=false;
+
+let L=false,R=false;
+
+document.getElementById('start').onclick=()=>{
+
+  score=0; obs=[]; pow=[];
+
+  p.x=canvas.width/2; p.y=canvas.height-120; p.vx=0;
+
+  run=true; document.getElementById('menu').style.display='none';
+
+};
+
+setInterval(()=>run&&obs.push({x:Math.random()*canvas.width,y:-40,s:34}),900);
+
+setInterval(()=>run&&pow.push({x:Math.random()*canvas.width,y:-40}),6500);
+
+function update(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  if(run){
+
+    if(L)p.vx-=p.acc;
+
+    if(R)p.vx+=p.acc;
+
+    p.vx*=p.fr;
+
+    p.vx=Math.max(-p.max,Math.min(p.vx,p.max));
+
+    p.x+=p.vx;
+
+    p.x=Math.max(p.r,Math.min(p.x,canvas.width-p.r));
+
+    score++;
+
+    p.max=6+score/350;
+
+    if(score>=1000) skins[3].u=true;
+
+    document.getElementById('score').textContent=score;
+
+  }
+
+  // player (sombra + brilho)
+
+  ctx.fillStyle='rgba(0,0,0,0.15)';
+
+  ctx.beginPath(); ctx.arc(p.x,p.y+6,p.r,0,Math.PI*2); ctx.fill();
+
+  ctx.fillStyle=skins[skin].c;
+
+  ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+
+  // obstáculos
+
+  obs.forEach((o,i)=>{
+
+    o.y+=4;
+
+    ctx.fillStyle='#7f8c8d';
+
+    ctx.fillRect(o.x-o.s/2,o.y-o.s/2,o.s,o.s);
+
+    if(Math.hypot(p.x-o.x,p.y-o.y)<p.r+o.s/2){
+
+      run=false; document.getElementById('menu').style.display='flex'; drawSkins();
+
+    }
+
+  });
+
+  obs=obs.filter(o=>o.y<canvas.height+60);
+
+  // power-up
+
+  pow.forEach((pu,i)=>{
+
+    pu.y+=3;
+
+    ctx.fillStyle='#2ecc71';
+
+    ctx.beginPath(); ctx.arc(pu.x,pu.y,14,0,Math.PI*2); ctx.fill();
+
+    if(Math.hypot(p.x-pu.x,p.y-pu.y)<p.r+14){
+
+      score+=150; pow.splice(i,1);
+
+    }
+
+  });
+
+  requestAnimationFrame(update);
+
+}
+
+update();
+
+function bind(b,d){
+
+  b.addEventListener('touchstart',e=>{e.preventDefault();d==='L'?L=true:R=true;});
+
+  b.addEventListener('touchend',()=>{d==='L'?L=false:R=false;});
+
+}
+
+bind(left,'L'); bind(right,'R');
+
+addEventListener('keydown',e=>{if(e.key==='a'||e.key==='ArrowLeft')L=true;if(e.key==='d'||e.key==='ArrowRight')R=true;});
+
+addEventListener('keyup',e=>{if(e.key==='a'||e.key==='ArrowLeft')L=false;if(e.key==='d'||e.key==='ArrowRight')R=false;});
+
+</script></body>
+
+</html>
