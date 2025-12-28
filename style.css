@@ -1,0 +1,133 @@
+/* --- Estilos da Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #333; /* Cor de fundo da navbar */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo p {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.menu-icon, .close-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* Garante que o ícone de fechar comece escondido (será controlado pelo JS) */
+.close-icon {
+    display: none; 
+}
+
+/* --- Estilos do Menu Lateral --- */
+.side-menu {
+    /* Cor de Fundo do Menu: Cinza Escuro */
+    background-color: #222;
+    color: white;
+    
+    /* Imagem de Fundo (Exemplo: Símbolo sutil) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="rgba(255, 255, 255, 0.05)">CINEPOP</text></svg>');
+    background-repeat: repeat;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px; /* Largura do menu */
+    padding-top: 60px; /* Espaço para não cobrir a navbar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    
+    /* Posição inicial: Escondido fora da tela */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out; /* Transição suave */
+    overflow-y: auto; /* Permite rolar o conteúdo do menu */
+}
+
+/* Estado Ativo: Mostra o Menu */
+.side-menu.open {
+    transform: translateX(0);
+}
+
+/* Conteúdo do Menu */
+.menu-header {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.menu-title {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.menu-title.active {
+    color: #ffcc00; /* Cor de destaque para o link ativo */
+}
+
+.menu-description {
+    font-size: 0.9em;
+    color: #bbb;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+.menu-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-links li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.menu-links li a:hover {
+    background-color: #444;
+    color: #ffcc00;
+}
+
+.extra-content {
+    margin: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    text-align: center;
+}
+
+.extra-content img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* --- Estilos do Conteúdo Principal --- */
+main {
+    padding-top: 80px; /* Garante que o conteúdo não fique sob a navbar */
+    padding-left: 20px;
+}
+
+/* Opcional: Estilo para a cor de fundo do corpo da página */
+body {
+    background-color: #f0f0f0; 
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
